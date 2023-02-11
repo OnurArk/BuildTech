@@ -1,0 +1,16 @@
+.nav-container {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  max-width: 1200px;
+  margin: auto;
+
+  color: white;
+}
+
+.active {
+  transform: translateY(-37px);
+}

@@ -1,0 +1,51 @@
+.item-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.card:hover {
+  transition: all 0.3s ease-in;
+  box-shadow: 0px 0px 8px 1px rgba(255, 255, 255, 0.515);
+}
+
+.card:hover img {
+  /* margin: -1rem 0;
+    transform: translateY(-10px); */
+  transition: all 0.2s ease-in;
+  -webkit-transform: scale(1.1);
+  transform: scale(1.05);
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  max-height: 175px;
+  height: 80%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.img {
+  height: 80%;
+  width: 80%;
+  border-radius: 0 0 10% 10%;
+}
+
+.price {
+  color: rgb(192, 192, 192);
+  font-size: 1.3rem;
+  margin: auto 0 0;
+}
+
+.icon {
+  position: absolute;
+  right: 0.4rem;
+  z-index: 3;
+  cursor: pointer;
+}
+
+.icon:active {
+  color: rgb(81, 26, 91);
+}

@@ -1,0 +1,14 @@
+.card {
+  position: relative;
+  width: 12.5rem;
+  height: 20.625rem;
+  padding: 1rem 0.7rem;
+  border: 1px solid rgb(56, 56, 56);
+  border-radius: 15px;
+
+  color: rgb(255, 255, 255);
+  background: linear-gradient(135deg, rgb(45, 110, 114), #53165a);
+
+  font-weight: 700;
+  cursor: pointer;
+}

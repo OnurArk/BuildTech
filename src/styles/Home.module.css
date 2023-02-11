@@ -1,0 +1,13 @@
+.home {
+  background-image: linear-gradient(
+    to right bottom,
+
+    #2b0220,
+    #1e0110,
+    #000000
+  );
+}
+
+.slide {
+  color: white;
+}

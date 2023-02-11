@@ -1,0 +1,14 @@
+.input-container {
+  width: 75%;
+
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.input {
+  width: 13rem;
+  padding: 0.4rem;
+
+  align-self: flex-start;
+}

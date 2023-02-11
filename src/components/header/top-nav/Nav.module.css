@@ -1,0 +1,24 @@
+.nav {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 2rem;
+  margin-left: auto;
+}
+
+.links:after {
+  display: block;
+  content: "";
+  border-bottom: solid 3px #ffffff;
+  transform: scaleX(0);
+  transition: transform 250ms ease-in-out;
+}
+
+.links:hover:after {
+  transform: scaleX(1);
+}
+
+.underline {
+  background-color: #ffffff;
+  color: red;
+}

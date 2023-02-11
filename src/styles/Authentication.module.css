@@ -1,0 +1,53 @@
+.auth-container {
+  height: 100vh;
+  max-width: 100rem;
+  margin: auto;
+  padding: 2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+
+  transition: all 0.5s;
+}
+
+.openSignup {
+  animation: modalOpen 0.5s ease-out forwards;
+}
+
+.closeSignup {
+  animation: modalClosed 0.5s ease-out forwards;
+}
+
+@keyframes modalOpen {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(5rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes modalClosed {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: translateX(5rem);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
+}

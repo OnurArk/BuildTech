@@ -1,0 +1,52 @@
+.form {
+  width: 28rem;
+  padding: 2rem;
+  border-radius: 20px;
+
+  position: relative;
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: column;
+  gap: 1.8rem;
+  color: rgb(0, 0, 0);
+  background-color: rgba(255, 255, 255, 0.934);
+
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-container {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  transition: 0.2s ease;
+}
+
+.btnSignup {
+  flex: 1;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.644);
+}
+
+.btnSignup:hover {
+  background-color: rgba(242, 62, 122, 0.76);
+}
+
+.input {
+  /*Reset Input*/
+  appearance: none;
+  outline: none;
+  border: none;
+
+  border-radius: 10px;
+}
+
+.input::selection {
+  background-color: rgb(255, 255, 255);
+  color: white;
+}

@@ -1,0 +1,19 @@
+.features-container {
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  gap: 1rem 1rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  max-width: 540px;
+  border-radius: 20px;
+  padding: 1.5rem;
+
+  color: white;
+  background-color: rgb(61, 59, 59);
+}
+
+.features {
+  width: 48%;
+}

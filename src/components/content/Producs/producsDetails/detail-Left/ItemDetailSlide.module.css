@@ -1,0 +1,53 @@
+.slideContainer {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.slideImg {
+  width: 300px;
+  height: 300px;
+  border-radius: 10px;
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: rgb(55, 102, 144);
+
+  transition: all 0.2s ease-in-out;
+}
+
+.smallImg-container {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.smallImage {
+  height: 50px;
+  width: 50px;
+
+  border-radius: 5px;
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  filter: grayscale();
+  cursor: pointer;
+}
+
+.smallImage:hover {
+  filter: none;
+  border: rgb(0, 173, 200) 2px solid;
+}
+
+.icon {
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.icon:hover {
+  color: gray;
+}
