@@ -12,7 +12,7 @@ const Signup = () => {
 
   return (
     <Form method="post" action="/authentication" className={styled.form}>
-      <h1>Log In</h1>
+      <h1>Sign Up</h1>
       <p>Signup here using your email and password</p>
       <Input
         name="email"
