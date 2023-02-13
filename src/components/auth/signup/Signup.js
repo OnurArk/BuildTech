@@ -20,7 +20,7 @@ const Signup = () => {
         placeholder="Example: mail@mai"
         className={styled.input}
       >
-        Email:
+        New Email:
       </Input>
       <Input
         name="password"
@@ -28,7 +28,15 @@ const Signup = () => {
         placeholder="Must contain at least 6 characters"
         className={styled.input}
       >
-        Password:
+        New Password:
+      </Input>
+      <Input
+        name="password"
+        type="password"
+        placeholder="Must contain at least 6 characters"
+        className={styled.input}
+      >
+        Confirm Password :
       </Input>
       <div className={styled["btn-container"]}>
         <Button

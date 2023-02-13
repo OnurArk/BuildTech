@@ -36,7 +36,6 @@ const Login = () => {
         <Link
           to={`?mode=${isSignup ? "login" : "signup"}`}
           className={`${styled.btnSignup}  ${styled.btn}`}
-          type={"button"}
         >
           +Signup
         </Link>

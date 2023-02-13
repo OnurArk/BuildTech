@@ -14,7 +14,7 @@ import Profile from "./pages/Profile";
 import ProductDetail, {
   loader as detailLoader,
 } from "./components/content/Producs/producsDetails/ProductDetail";
-import Authentication from "./pages/Authentication";
+import Authentication, { action as authAction } from "./pages/Authentication";
 
 import "./App.css";
 
@@ -36,7 +36,11 @@ const router = createBrowserRouter(
       <Route path="/deals" element={<Deals />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/profile" element={<Profile />} />
-      <Route path="authentication" element={<Authentication />} />
+      <Route
+        path="authentication"
+        element={<Authentication />}
+        action={authAction}
+      />
     </Route>
   )
 );
