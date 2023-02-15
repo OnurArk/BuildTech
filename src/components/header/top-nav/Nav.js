@@ -39,7 +39,13 @@ const Nav = () => {
         Profile
       </NavLink>
       <Link>Logout</Link>
-      <Link to="/authentication">Login</Link>
+      <NavLink
+        to="/authentication"
+        className={({ isActive }) => (isActive ? undefined : `${styled.links}`)}
+        style={({ isActive }) => (isActive ? activeStyle : undefined)}
+      >
+        Login
+      </NavLink>
     </div>
   );
 };
