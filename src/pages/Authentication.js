@@ -1,5 +1,5 @@
 import React from "react";
-import { redirect, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 
 import AuthImage from "../components/auth/backgroundAuth/AuthImage";
@@ -19,7 +19,7 @@ const Authentication = () => {
       <Login />
       <CSSTransition
         mountOnEnter
-        unmountOnExit
+        unmountOnExit // domdan silmek için
         in={isSignup}
         timeout={animationTiming}
         classNames={{
@@ -41,33 +41,30 @@ const Authentication = () => {
 };
 export default Authentication;
 
-export async function action({ request }) {
-  console.log(request);
-  const searchParams = new URL(request.url).searchParams;
-  console.log(searchParams);
-  const mode = searchParams.get("mode") || "login";
+// export async function action({ request }) {
+//   const searchParams = new URL(request.url).searchParams;
 
-  const data = await request.formData();
-  const authData = {
-    email: data.get("email"),
-    password: data.get("password"),
-  };
+//   const mode = searchParams.get("mode") || "login";
 
-  const url = mode
-    ? null
-    : "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]";
+// const data = await request.formData();
+// const authData = {
+//   email: data.get("email"),
+//   password: data.get("password"),
+// };
 
-  const response = await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(authData),
-  });
+// let url;
 
-  if (!response.ok) {
-    console.log("error");
-  }
+// const response = await fetch(url, {
+//   method: "POST",
+//   headers: { "Content-Type": "application/json" },
+//   body: JSON.stringify(authData),
+// });
 
-  localStorage.setItem("isLogin", true);
+// if (!response.ok) {
+//   console.log("error");
+// }
 
-  return redirect("/");
-}
+//   // localStorage.setItem("isLogin", true);
+
+//   return redirect("/");
+// }
