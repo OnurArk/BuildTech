@@ -22,15 +22,16 @@ const Login = () => {
         className={styled.input}
         autoFocus
       >
-        Email:
+        Email
       </Input>
       <Input
         name="password"
         type="password"
         placeholder="Must contain at least 6 characters"
         className={styled.input}
+        autoComplete="true"
       >
-        Password:
+        Password
       </Input>
       <div className={styled["btn-container"]}>
         <Link
