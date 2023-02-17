@@ -4,20 +4,23 @@ import styled from "./Input.module.css";
 const Input = forwardRef((props, ref) => {
   return (
     <div className={`${styled["input-container"]}`}>
-      <label htmlFor={props.htmlFor}>{props.children}</label>
+      <label htmlFor={props.htmlFor} className={styled.label}>
+        {props.children}
+      </label>
       <input
+        className={`${styled.input} ${props.className}`}
+        ref={ref}
         type={props.type}
         name={props.name}
         placeholder={props.placeholder}
         onChange={props.onChange}
-        ref={ref}
         onBlur={props.onBlur}
         disabled={props.disabled}
         autoFocus={props.autoFocus}
-        className={`${styled.input} ${props.className}`}
         autoComplete={props.autoComplete}
         value={props.value}
-      ></input>
+        required={props.required}
+      />
     </div>
   );
 });
