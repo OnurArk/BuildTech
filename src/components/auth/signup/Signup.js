@@ -12,6 +12,7 @@ const Signup = () => {
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submittin";
 
+  console.log(actionData);
   return (
     <Form method="post" className={styled.form} noValidate>
       <h1>Sign Up</h1>
@@ -19,8 +20,10 @@ const Signup = () => {
       <Input
         name="email"
         type="email"
-        placeholder="Example: mail@mai"
-        className={styled.input}
+        placeholder="Example: mail@mail"
+        className={`${styled.input} ${
+          actionData?.type === "email" ? `${styled.invalid}` : null
+        }`}
         autoComplete="email"
       >
         New Email
@@ -28,8 +31,10 @@ const Signup = () => {
       <Input
         name="password"
         type="password"
-        placeholder="Must contain at least 6 characters"
-        className={styled.input}
+        placeholder="At least 6 characters"
+        className={`${styled.input} ${
+          actionData?.type === "password" ? `${styled.invalid}` : null
+        }`}
         autoComplete="new-password"
       >
         New Password
@@ -37,8 +42,10 @@ const Signup = () => {
       <Input
         name="confirm-password"
         type="password"
-        placeholder="Must contain at least 6 characters"
-        className={styled.input}
+        placeholder="Confirm New Password"
+        className={`${styled.input} ${
+          actionData?.type === "password" ? `${styled.invalid}` : null
+        }`}
         autoComplete="new-password"
       >
         Confirm Password

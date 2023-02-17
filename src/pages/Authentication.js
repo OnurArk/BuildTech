@@ -1,7 +1,10 @@
 import React from "react";
 import { redirect, useSearchParams } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { auth } from "../firebase";
 
 import AuthImage from "../components/auth/backgroundAuth/AuthImage";
@@ -45,7 +48,7 @@ export default Authentication;
 
 export async function action({ request }) {
   const errors = {};
-  const succeeded = true;
+  // const isSucceed = true;
   const searchParams = new URL(request.url).searchParams;
 
   const mode = searchParams.get("mode") || "login";
@@ -91,8 +94,16 @@ export async function action({ request }) {
       return errors;
     }
 
-    return succeeded;
+    return redirect("?mode=login");
   }
 
+  if (mode === "login") {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+    } catch (err) {
+      errors.message = "Check your email or password again!";
+      return errors;
+    }
+  }
   return redirect("/");
 }

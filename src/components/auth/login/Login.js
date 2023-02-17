@@ -1,10 +1,18 @@
 import React from "react";
-import { Form, Link, useNavigation, useSearchParams } from "react-router-dom";
+import {
+  Form,
+  Link,
+  useNavigation,
+  useSearchParams,
+  useActionData,
+} from "react-router-dom";
 import Input from "../../ui/Input";
 import Button from "../../ui/Button";
 import styled from "./Login.module.css";
 
 const Login = () => {
+  const actionData = useActionData();
+  console.log(actionData);
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submittin";
 
@@ -20,6 +28,7 @@ const Login = () => {
         type="email"
         placeholder="Example: mail@mai"
         className={styled.input}
+        isValid="true"
         autoFocus
       >
         Email
@@ -30,23 +39,30 @@ const Login = () => {
         placeholder="Must contain at least 6 characters"
         className={styled.input}
         autoComplete="true"
+        isValid="true"
       >
         Password
       </Input>
       <div className={styled["btn-container"]}>
-        <Link
-          to={`?mode=${isSignup ? "login" : "signup"}`}
-          className={`${styled.btnSignup}  ${styled.btn}`}
-        >
-          +Signup
-        </Link>
         <Button
           className={`${styled.btnLogin} ${styled.btn}`}
           disabled={isSubmitting}
         >
           {isSubmitting ? "Submitting..." : "Login"}
         </Button>
+        <div>
+          Need an account ?
+          <Link
+            to={`?mode=${isSignup ? "login" : "signup"}`}
+            className={`${styled.btnSignup}  ${styled.btn}`}
+          >
+            +Signup
+          </Link>
+        </div>
       </div>
+      {actionData && actionData?.message && (
+        <p className="err">{actionData.message}</p>
+      )}
     </Form>
   );
 };

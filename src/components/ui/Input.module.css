@@ -2,15 +2,31 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto auto;
-  gap: 0.8rem;
+  gap: 0.7rem;
   align-items: center;
 }
 .label {
   grid-row: 1;
 }
 
+.input-container .input:focus {
+  outline: none;
+  border-color: #1d867f;
+  background: #dcfdff;
+}
+
 .input {
   grid-row: 2;
   width: 13rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font: inherit;
   padding: 0.4rem;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #dcfdff inset !important;
 }

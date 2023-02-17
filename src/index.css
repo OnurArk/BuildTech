@@ -35,9 +35,10 @@ li {
 }
 
 .err {
-  color: red;
+  color: rgb(228, 78, 78);
 }
 
 ::selection {
-  background: rgb(255, 255, 255);
+  background: rgb(0, 0, 0);
+  color: white;
 }

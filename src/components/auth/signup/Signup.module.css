@@ -43,10 +43,23 @@
   outline: none;
   border: none;
 
+  padding-left: 0.7rem;
   border-radius: 10px;
 }
 
 .input::selection {
   background-color: rgb(255, 255, 255);
   color: white;
+}
+
+.invalid {
+  background: #ffc0c0;
+  box-shadow: inset 0 -1px 10px white;
+}
+
+.invalid:-webkit-autofill,
+.invalid:-webkit-autofill:hover,
+.invalid:-webkit-autofill:focus,
+.invalid:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #ffc0c0 inset !important;
 }
