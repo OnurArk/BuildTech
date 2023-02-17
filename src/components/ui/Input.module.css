@@ -1,15 +1,16 @@
 .input-container {
-  width: 75%;
-
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
   gap: 0.8rem;
+  align-items: center;
+}
+.label {
+  grid-row: 1;
 }
 
 .input {
+  grid-row: 2;
   width: 13rem;
   padding: 0.4rem;
-
-  align-self: flex-start;
 }
