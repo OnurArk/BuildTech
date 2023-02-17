@@ -1,6 +1,8 @@
 import React from "react";
-import { useSearchParams } from "react-router-dom";
+import { redirect, useSearchParams } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
 
 import AuthImage from "../components/auth/backgroundAuth/AuthImage";
 import Login from "../components/auth/login/Login";
@@ -41,30 +43,56 @@ const Authentication = () => {
 };
 export default Authentication;
 
-// export async function action({ request }) {
-//   const searchParams = new URL(request.url).searchParams;
+export async function action({ request }) {
+  const errors = {};
+  const succeeded = true;
+  const searchParams = new URL(request.url).searchParams;
 
-//   const mode = searchParams.get("mode") || "login";
+  const mode = searchParams.get("mode") || "login";
 
-// const data = await request.formData();
-// const authData = {
-//   email: data.get("email"),
-//   password: data.get("password"),
-// };
+  const data = await request.formData();
 
-// let url;
+  const email = data.get("email");
+  const password = data.get("password");
+  const confirmPassword = data.get("confirm-password");
 
-// const response = await fetch(url, {
-//   method: "POST",
-//   headers: { "Content-Type": "application/json" },
-//   body: JSON.stringify(authData),
-// });
+  /*Error Handling For Signup */
 
-// if (!response.ok) {
-//   console.log("error");
-// }
+  if (mode === "signup") {
+    if (confirmPassword && password !== confirmPassword) {
+      errors.message = "Passwords did not match!";
+      errors.type = "password";
+    }
 
-//   // localStorage.setItem("isLogin", true);
+    if (
+      typeof email !== "string" ||
+      !email.includes("@") ||
+      !email.includes(".com")
+    ) {
+      errors.message = "Email address must contain @ and .com";
+      errors.type = "email";
+    }
 
-//   return redirect("/");
-// }
+    if (typeof password !== "string" || password.length < 6) {
+      errors.message = "Password must be > 6 characters";
+      errors.type = "password";
+    }
+
+    if (Object.keys(errors).length) {
+      return errors;
+    }
+
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+    } catch (err) {
+      err.message = err.message.replace("Firebase: ", "");
+      err.message = err.message.replace(/ *\([^)]*\) */g, "");
+      errors.message = err.message;
+      return errors;
+    }
+
+    return succeeded;
+  }
+
+  return redirect("/");
+}
