@@ -4,7 +4,7 @@ import styled from "./Footer.module.css";
 const Footer = () => {
   return (
     <div className={styled["footer-container"]}>
-      <p>&#169; This Website Made By Onur ARIK by using React.js</p>
+      <p>&#169; This Website Made By Onur ARIK using React.js</p>
     </div>
   );
 };

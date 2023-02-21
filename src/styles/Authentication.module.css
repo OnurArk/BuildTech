@@ -19,6 +19,7 @@
 
 .closeSignup {
   animation: modalClosed 0.5s ease-out forwards;
+  position: absolute;
 }
 
 @keyframes modalOpen {

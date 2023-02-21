@@ -1,9 +1,19 @@
-import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+
+import AuthContext from "../../../context/Auth-Context";
 
 import styled from "./Nav.module.css";
 
 const Nav = () => {
+  const navigate = useNavigate();
+  const authCtx = useContext(AuthContext);
+
+  const logout = () => {
+    authCtx.logout();
+    navigate("authentication");
+  };
+
   const activeStyle = {
     borderBottom: "solid 3px #ffffff",
   };
@@ -31,21 +41,29 @@ const Nav = () => {
       >
         Cart
       </NavLink>
-      <NavLink
-        to="profile"
-        className={({ isActive }) => (isActive ? undefined : `${styled.links}`)}
-        style={({ isActive }) => (isActive ? activeStyle : undefined)}
-      >
-        Profile
-      </NavLink>
-      <Link>Logout</Link>
-      <NavLink
-        to="/authentication"
-        className={({ isActive }) => (isActive ? undefined : `${styled.links}`)}
-        style={({ isActive }) => (isActive ? activeStyle : undefined)}
-      >
-        Login
-      </NavLink>
+      {authCtx.currentUser && (
+        <NavLink
+          to="profile"
+          className={({ isActive }) =>
+            isActive ? undefined : `${styled.links}`
+          }
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}
+        >
+          Profile
+        </NavLink>
+      )}
+      {authCtx.currentUser && <button onClick={logout}>Logout</button>}
+      {!authCtx.currentUser && (
+        <NavLink
+          to="/authentication"
+          className={({ isActive }) =>
+            isActive ? undefined : `${styled.links}`
+          }
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}
+        >
+          Login
+        </NavLink>
+      )}
     </div>
   );
 };

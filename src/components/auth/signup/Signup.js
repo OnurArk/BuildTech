@@ -12,7 +12,6 @@ const Signup = () => {
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submittin";
 
-  console.log(actionData);
   return (
     <Form method="post" className={styled.form} noValidate>
       <h1>Sign Up</h1>
@@ -22,7 +21,7 @@ const Signup = () => {
         type="email"
         placeholder="Example: mail@mail"
         className={`${styled.input} ${
-          actionData?.type === "email" ? `${styled.invalid}` : null
+          actionData?.errType === "email" ? `${styled.invalid}` : null
         }`}
         autoComplete="email"
       >
@@ -33,7 +32,7 @@ const Signup = () => {
         type="password"
         placeholder="At least 6 characters"
         className={`${styled.input} ${
-          actionData?.type === "password" ? `${styled.invalid}` : null
+          actionData?.errType === "password" ? `${styled.invalid}` : null
         }`}
         autoComplete="new-password"
       >
@@ -44,7 +43,7 @@ const Signup = () => {
         type="password"
         placeholder="Confirm New Password"
         className={`${styled.input} ${
-          actionData?.type === "password" ? `${styled.invalid}` : null
+          actionData?.errType === "password" ? `${styled.invalid}` : null
         }`}
         autoComplete="new-password"
       >
@@ -58,8 +57,8 @@ const Signup = () => {
           {isSubmitting ? "Submitting..." : "+Signup"}
         </Button>
       </div>
-      {actionData && actionData?.message && (
-        <p className="err">{actionData.message}</p>
+      {actionData && actionData?.errMessage && (
+        <p className="err">{actionData.errMessage}</p>
       )}
     </Form>
   );

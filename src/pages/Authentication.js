@@ -4,12 +4,14 @@ import { CSSTransition } from "react-transition-group";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { auth } from "../firebase";
 
 import AuthImage from "../components/auth/backgroundAuth/AuthImage";
 import Login from "../components/auth/login/Login";
 import Signup from "../components/auth/signup/Signup";
+import ForgotPassword from "../components/auth/forgot-password/ForgotPassword";
 
 import styled from "../styles/Authentication.module.css";
 
@@ -18,6 +20,7 @@ const animationTiming = { enter: 500, exit: 500 };
 const Authentication = () => {
   const [searchParams] = useSearchParams();
   const isSignup = searchParams.get("mode") === "signup";
+  const isForgatPassword = searchParams.get("mode") === "forgot-password";
 
   return (
     <AuthImage className={styled["auth-container"]}>
@@ -41,14 +44,33 @@ const Authentication = () => {
       >
         <Signup />
       </CSSTransition>
+
+      <CSSTransition
+        mountOnEnter
+        unmountOnExit // domdan silmek için
+        in={isForgatPassword}
+        timeout={animationTiming}
+        classNames={{
+          enter: `${styled.openSignup}`,
+          enterActive: "",
+          enterDone: "",
+          exit: "",
+          exitActive: `${styled.closeSignup}`,
+          exitDone: "",
+          appear: "",
+          appearActive: "",
+          appearDone: "",
+        }}
+      >
+        <ForgotPassword />
+      </CSSTransition>
     </AuthImage>
   );
 };
 export default Authentication;
 
 export async function action({ request }) {
-  const errors = {};
-  // const isSucceed = true;
+  const toActionData = {};
   const searchParams = new URL(request.url).searchParams;
 
   const mode = searchParams.get("mode") || "login";
@@ -59,51 +81,66 @@ export async function action({ request }) {
   const password = data.get("password");
   const confirmPassword = data.get("confirm-password");
 
+  console.log(mode, email, password);
   /*Error Handling For Signup */
 
-  if (mode === "signup") {
-    if (confirmPassword && password !== confirmPassword) {
-      errors.message = "Passwords did not match!";
-      errors.type = "password";
-    }
+  if (
+    typeof email !== "string" ||
+    !email.includes("@") ||
+    !email.includes(".com")
+  ) {
+    toActionData.errMessage = "Email address must contain @ and .com";
+    toActionData.errType = "email";
+  }
 
-    if (
-      typeof email !== "string" ||
-      !email.includes("@") ||
-      !email.includes(".com")
-    ) {
-      errors.message = "Email address must contain @ and .com";
-      errors.type = "email";
+  if (mode === "login" || mode === "signup") {
+    if (confirmPassword && password !== confirmPassword) {
+      toActionData.errMessage = "Passwords did not match!";
+      toActionData.errType = "password";
     }
 
     if (typeof password !== "string" || password.length < 6) {
-      errors.message = "Password must be > 6 characters";
-      errors.type = "password";
+      toActionData.errMessage = "Password must be > 6 characters";
+      toActionData.errType = "password";
     }
 
-    if (Object.keys(errors).length) {
-      return errors;
+    if (Object.keys(toActionData).length) {
+      return toActionData;
     }
 
-    try {
-      await createUserWithEmailAndPassword(auth, email, password);
-    } catch (err) {
-      err.message = err.message.replace("Firebase: ", "");
-      err.message = err.message.replace(/ *\([^)]*\) */g, "");
-      errors.message = err.message;
-      return errors;
+    if (mode === "signup") {
+      try {
+        await createUserWithEmailAndPassword(auth, email, password);
+        toActionData.isSucceed = true;
+        return toActionData;
+      } catch (err) {
+        err.message = err.message.replace("Firebase: ", "");
+        err.message = err.message.replace(/ *\([^)]*\) */g, "");
+        toActionData.errMessage = err.message;
+        return toActionData;
+      }
     }
 
-    return redirect("?mode=login");
+    if (mode === "login") {
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        return redirect("/");
+      } catch (err) {
+        toActionData.errMessage = "Check your email or password again!";
+        return toActionData;
+      }
+    }
+  }
+  if (Object.keys(toActionData).length) {
+    return toActionData;
   }
 
-  if (mode === "login") {
+  if (mode === "forgot-password") {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      await sendPasswordResetEmail(auth, email);
+      return redirect("/login");
     } catch (err) {
-      errors.message = "Check your email or password again!";
-      return errors;
+      console.log(err);
     }
   }
-  return redirect("/");
 }

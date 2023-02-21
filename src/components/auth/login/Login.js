@@ -12,12 +12,13 @@ import styled from "./Login.module.css";
 
 const Login = () => {
   const actionData = useActionData();
-  console.log(actionData);
+
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submittin";
 
   const [searchParams] = useSearchParams();
   const isSignup = searchParams.get("mode") === "signup";
+  const isForgatPassword = searchParams.get("mode") === "forgot-password";
 
   return (
     <Form method="post" action="/authentication" className={styled.form}>
@@ -46,7 +47,7 @@ const Login = () => {
       <div className={styled["btn-container"]}>
         <Button
           className={`${styled.btnLogin} ${styled.btn}`}
-          disabled={isSubmitting}
+          disabled={isSubmitting || isSignup}
         >
           {isSubmitting ? "Submitting..." : "Login"}
         </Button>
@@ -59,9 +60,15 @@ const Login = () => {
             +Signup
           </Link>
         </div>
+        <Link
+          to={`?mode=${isForgatPassword ? "login" : "forgot-password"}`}
+          className={`${styled.btnSignup}  ${styled.btn}`}
+        >
+          Forgot your password ?
+        </Link>
       </div>
-      {actionData && actionData?.message && (
-        <p className="err">{actionData.message}</p>
+      {actionData && actionData?.errMessage && (
+        <p className="err">{actionData.errMessage}</p>
       )}
     </Form>
   );
