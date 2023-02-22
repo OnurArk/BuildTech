@@ -5,19 +5,6 @@
   width: 100%;
 }
 
-.card:hover {
-  transition: all 0.3s ease-in;
-  box-shadow: 0px 0px 8px 1px rgba(255, 255, 255, 0.515);
-}
-
-.card:hover img {
-  /* margin: -1rem 0;
-    transform: translateY(-10px); */
-  transition: all 0.2s ease-in;
-  -webkit-transform: scale(1.1);
-  transform: scale(1.05);
-}
-
 .image-container {
   display: flex;
   justify-content: center;
