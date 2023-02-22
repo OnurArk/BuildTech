@@ -33,7 +33,8 @@
   background-size: cover;
   background-repeat: no-repeat;
 
-  filter: grayscale();
+  filter: grayscale(100%) contrast(200%);
+  transition: filter 200ms ease;
   cursor: pointer;
 }
 
