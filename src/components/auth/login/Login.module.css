@@ -14,8 +14,6 @@
   gap: 1.8rem;
   color: white;
   background-color: rgb(71, 71, 71);
-
-  transition: all 0.5s ease-in-out;
 }
 
 .btn-container {

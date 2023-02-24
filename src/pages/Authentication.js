@@ -37,15 +37,8 @@ const Authentication = () => {
           in={!isSignup && !isForgatPassword}
           timeout={animationTiming}
           classNames={{
-            enter: '',
             enterActive: `${styled.openSignup}`,
-            enterDone: '',
-            exit: '',
             exitActive: `${styled.closeSignup}`,
-            exitDone: '',
-            appear: '',
-            appearActive: '',
-            appearDone: '',
           }}
         >
           <Login />
@@ -57,15 +50,8 @@ const Authentication = () => {
           in={isSignup}
           timeout={animationTiming}
           classNames={{
-            enter: '',
             enterActive: `${styled.openSignup}`,
-            enterDone: '',
-            exit: '',
             exitActive: `${styled.closeSignup}`,
-            exitDone: '',
-            appear: '',
-            appearActive: '',
-            appearDone: '',
           }}
         >
           <Signup />
@@ -77,15 +63,8 @@ const Authentication = () => {
           in={isForgatPassword}
           timeout={animationTiming}
           classNames={{
-            enter: `${styled.openSignup}`,
-            enterActive: '',
-            enterDone: '',
-            exit: '',
+            enterActive: `${styled.openSignup}`,
             exitActive: `${styled.closeSignup}`,
-            exitDone: '',
-            appear: '',
-            appearActive: '',
-            appearDone: '',
           }}
         >
           <ForgotPassword />
