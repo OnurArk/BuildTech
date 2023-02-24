@@ -1,16 +1,22 @@
-.auth-container {
+.authentication {
+  position: relative;
+
+  overflow: hidden;
+
+  background-color: rgb(144, 144, 144);
+}
+
+.log_sign_reset-container {
+  position: relative;
   height: 85vh;
   height: 85dvh;
-  max-width: 100rem;
-  margin: auto;
-  padding: 2rem;
+  width: 100vw;
 
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
+}
 
-  transition: all 0.5s;
+.not-login {
+  justify-content: flex-end;
 }
 
 .openSignup {
@@ -19,37 +25,24 @@
 
 .closeSignup {
   animation: modalClosed 0.5s ease-out forwards;
-  position: absolute;
 }
 
 @keyframes modalOpen {
   0% {
     opacity: 0;
-    transform: translateX(-10rem);
   }
-  50% {
-    opacity: 1;
-    transform: translateX(5rem);
-  }
+
   100% {
     opacity: 1;
-    transform: translateX(0%);
   }
 }
 
 @keyframes modalClosed {
   0% {
     opacity: 1;
-    transform: translateX(0%);
-  }
-
-  50% {
-    opacity: 0.8;
-    transform: translateX(5rem);
   }
 
   100% {
     opacity: 0;
-    transform: translateX(-10rem);
   }
 }

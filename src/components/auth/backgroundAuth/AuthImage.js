@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
-import styled from "./AuthImage.module.css";
+import styled from './AuthImage.module.css';
 
 const AuthImage = (props) => {
-  return (
-    <div className={`${styled.img} ${props.className}`}>{props.children}</div>
-  );
+  const imgStyle = props.isLogin ? `${styled.toLeft}` : `${styled.toRight}`;
+
+  return <div className={`${styled.img} ${imgStyle}`}></div>;
 };
 
 export default AuthImage;

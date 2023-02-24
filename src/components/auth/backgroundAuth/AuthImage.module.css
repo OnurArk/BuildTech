@@ -1,6 +1,46 @@
 .img {
   background: url(https://c0.wallpaperflare.com/preview/402/118/398/laptop-wood-display-aerial.jpg);
-  background-position: center;
+
   background-repeat: no-repeat;
   background-size: cover;
+
+  height: 85vh;
+  height: 85dvh;
+  width: 50vw;
+
+  position: absolute;
+  z-index: 15;
+}
+
+.toRight {
+  animation: toright 0.5s linear;
+  background-position: 0%;
+  transform: translateX(0);
+}
+@keyframes toright {
+  0% {
+    background-position: 100%;
+    transform: translateX(100%);
+  }
+  100% {
+    background-position: 0%;
+    transform: translateX(0);
+  }
+}
+
+.toLeft {
+  animation: toleft 0.5s linear;
+  transform: translateX(100%);
+  background-position: 100%;
+}
+
+@keyframes toleft {
+  0% {
+    background-position: 0%;
+    transform: translateX(0);
+  }
+  100% {
+    background-position: 100%;
+    transform: translateX(100%);
+  }
 }

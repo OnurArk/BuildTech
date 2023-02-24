@@ -1,0 +1,13 @@
+.direct {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  z-index: 5;
+  padding: 1rem;
+
+  background: white;
+  color: black;
+}
