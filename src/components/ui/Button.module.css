@@ -1,15 +1,77 @@
 .button {
-  padding: 0.5rem;
-
-  text-align: center;
+  width: 13rem;
+  padding: 0.75rem;
   border: none;
+  border-radius: 1em;
+
+  font-weight: 700;
+
+  background-color: rgba(255, 255, 255, 0.62);
+
   appearance: none;
   cursor: pointer;
-
-  background-color: rgb(56, 56, 56);
-  color: white;
 }
 
-.button:hover {
-  background-color: black;
+.glow-effect {
+  /* dont change container-offset*/
+  --container-offset: 120px;
+  position: relative;
+}
+
+.glow-container {
+  pointer-events: none;
+  position: absolute;
+  inset: calc(var(--container-offset) / -2);
+  width: calc(100% + var(--container-offset));
+  height: calc(100% + var(--container-offset));
+  opacity: 0;
+}
+
+.glow-blur,
+.glow-line {
+  width: calc(100% - var(--container-offset) + var(--glow-offset));
+  height: calc(100% - var(--container-offset) + var(--glow-offset));
+  x: calc((var(--container-offset) / 2) + calc(var(--glow-offset) / -2));
+  y: calc((var(--container-offset) / 2) + calc(var(--glow-offset) / -2));
+  fill: transparent;
+  stroke: black;
+  -webkit-stroke: black;
+  stroke-width: 5px;
+  -webkit-stroke-width: 5px;
+  stroke-dasharray: var(--glow-line-lenght) calc(50px - var(--glow-line-lenght)); /*20 on 30 off*/
+  -webkit-stroke-dasharray: var(--glow-line-lenght)
+    calc(50px - var(--glow-line-lenght)); /*20 on 30 off*/
+}
+
+.glow-line {
+  stroke: var(--glow-line-color);
+  stroke-width: var(--glow-line-thicness);
+}
+
+.glow-blur {
+  filter: blur(var(--glow-blur-size));
+  stroke: var(--glow-blur-color);
+  -webkit-stroke: var(--glow-blur-color);
+  stroke-width: var(--glow-blur-size);
+  -webkit-stroke-width: var(--glow-blur-size);
+}
+
+.glow-effect:is(:hover, :focus) :is(.glow-line, .glow-blur) {
+  stroke-dashoffset: -100px;
+  transition: stroke-dashoffset var(--animation-speed) ease-in;
+}
+
+.glow-effect:is(:hover, :focus) .glow-container {
+  animation: glow-visibility var(--animation-speed);
+}
+
+@keyframes glow-visibility {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  25%,
+  75% {
+    opacity: 1;
+  }
 }

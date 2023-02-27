@@ -28,7 +28,9 @@ const Login = () => {
         name='email'
         type='email'
         placeholder='Example: mail@mai'
-        className={styled.input}
+        className={`${styled.input} ${
+          actionData?.errType.includes('email') ? `${styled.invalid}` : null
+        }`}
         isValid='true'
         autoFocus
       >
@@ -38,7 +40,9 @@ const Login = () => {
         name='password'
         type='password'
         placeholder='Must contain at least 6 characters'
-        className={styled.input}
+        className={`${styled.input} ${
+          actionData?.errType.includes('password') ? `${styled.invalid}` : null
+        }`}
         autoComplete='true'
         isValid='true'
       >
@@ -46,23 +50,15 @@ const Login = () => {
       </Input>
       <div className={styled['btn-container']}>
         <Button
-          className={`${styled.btnLogin} ${styled.btn}`}
           disabled={isSubmitting || isSignup}
+          lineLength={20}
+          glowOffset={20}
         >
           {isSubmitting ? 'Submitting...' : 'Login'}
         </Button>
-        <div>
-          Need an account ?
-          <Link
-            to={`?mode=${isSignup ? 'login' : 'signup'}`}
-            className={`${styled.btnSignup}  ${styled.btn}`}
-          >
-            +Signup
-          </Link>
-        </div>
         <Link
           to={`?mode=${isForgatPassword ? 'login' : 'forgot-password'}`}
-          className={`${styled.btnSignup}  ${styled.btn}`}
+          className={`${styled.btnResetPassword}  ${styled.btn}`}
         >
           Forgot your password ?
         </Link>

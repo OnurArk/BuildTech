@@ -87,7 +87,6 @@ export async function action({ request }) {
   const password = data.get('password');
   const confirmPassword = data.get('confirm-password');
 
-  console.log(mode, email, password);
   /*Error Handling For Signup */
 
   if (
@@ -96,18 +95,24 @@ export async function action({ request }) {
     !email.includes('.com')
   ) {
     toActionData.errMessage = 'Email address must contain @ and .com';
-    toActionData.errType = 'email';
+    toActionData.errType
+      ? toActionData.errType.push('email')
+      : (toActionData.errType = ['email']);
   }
 
   if (mode === 'login' || mode === 'signup') {
     if (confirmPassword && password !== confirmPassword) {
       toActionData.errMessage = 'Passwords did not match!';
-      toActionData.errType = 'password';
+      toActionData.errType
+        ? toActionData.errType.push('password')
+        : (toActionData.errType = ['password']);
     }
 
     if (typeof password !== 'string' || password.length < 6) {
       toActionData.errMessage = 'Password must be > 6 characters';
-      toActionData.errType = 'password';
+      toActionData.errType
+        ? toActionData.errType.push('password')
+        : (toActionData.errType = ['password']);
     }
 
     if (Object.keys(toActionData).length) {

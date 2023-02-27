@@ -1,23 +1,27 @@
 .img {
-  background: url(https://preview.redd.it/0bb6dqsiab451.gif?s=b0c65596a54a30708da26669da6e79abf3be1680);
-
+  background: url(https://wallpaperaccess.com/full/2641052.gif);
   background-repeat: no-repeat;
   background-size: cover;
 
   height: 85vh;
   height: 85dvh;
   width: 50vw;
+  padding: 2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   position: absolute;
   z-index: 15;
 }
 
-.toRight {
-  animation: toright 0.5s linear;
+.toLeft {
+  animation: toleft 0.5s linear;
   background-position: 0%;
   transform: translateX(0);
 }
-@keyframes toright {
+@keyframes toleft {
   0% {
     background-position: 100%;
     transform: translateX(100%);
@@ -28,13 +32,13 @@
   }
 }
 
-.toLeft {
-  animation: toleft 0.5s linear;
+.toRight {
+  animation: toright 0.5s linear;
   transform: translateX(100%);
   background-position: 100%;
 }
 
-@keyframes toleft {
+@keyframes toright {
   0% {
     background-position: 0%;
     transform: translateX(0);

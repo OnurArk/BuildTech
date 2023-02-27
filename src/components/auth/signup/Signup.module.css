@@ -24,35 +24,6 @@
   justify-content: center;
 }
 
-.btn {
-  transition: 0.2s ease;
-}
-
-.btnSignup {
-  flex: 1;
-  border-radius: 5px;
-  background-color: rgba(0, 0, 0, 0.644);
-}
-
-.btnSignup:hover {
-  background-color: rgba(242, 62, 122, 0.76);
-}
-
-.input {
-  /*Reset Input*/
-  appearance: none;
-  outline: none;
-  border: none;
-
-  padding-left: 0.7rem;
-  border-radius: 10px;
-}
-
-.input::selection {
-  background-color: rgb(255, 255, 255);
-  color: white;
-}
-
 .invalid {
   background: #ffc0c0;
   box-shadow: inset 0 -1px 10px white;
