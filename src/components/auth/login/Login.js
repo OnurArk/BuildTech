@@ -22,50 +22,54 @@ const Login = () => {
 
   return (
     <Form method='post' action='/authentication' className={styled.form}>
-      <h1>Log In</h1>
-      <p>Login here using your email and password</p>
-      <Input
-        name='email'
-        type='email'
-        placeholder='Example: mail@mai'
-        className={`${styled.input} ${
-          actionData?.errType.includes('email') ? `${styled.invalid}` : null
-        }`}
-        isValid='true'
-        autoFocus
-      >
-        Email
-      </Input>
-      <Input
-        name='password'
-        type='password'
-        placeholder='Must contain at least 6 characters'
-        className={`${styled.input} ${
-          actionData?.errType.includes('password') ? `${styled.invalid}` : null
-        }`}
-        autoComplete='true'
-        isValid='true'
-      >
-        Password
-      </Input>
-      <div className={styled['btn-container']}>
-        <Button
-          disabled={isSubmitting || isSignup}
-          lineLength={20}
-          glowOffset={20}
+      <div className={styled.container}>
+        <h1>Log In</h1>
+        <p>Login here using your email and password</p>
+        <Input
+          name='email'
+          type='email'
+          placeholder='Example: mail@mai'
+          className={`${styled.input} ${
+            actionData?.errType.includes('email') ? `${styled.invalid}` : null
+          }`}
+          isValid='true'
+          autoFocus
         >
-          {isSubmitting ? 'Submitting...' : 'Login'}
-        </Button>
-        <Link
-          to={`?mode=${isForgatPassword ? 'login' : 'forgot-password'}`}
-          className={`${styled.btnResetPassword}  ${styled.btn}`}
+          Email
+        </Input>
+        <Input
+          name='password'
+          type='password'
+          placeholder='Must contain at least 6 characters'
+          className={`${styled.input} ${
+            actionData?.errType.includes('password')
+              ? `${styled.invalid}`
+              : null
+          }`}
+          autoComplete='true'
+          isValid='true'
         >
-          Forgot your password ?
-        </Link>
+          Password
+        </Input>
+        <div className={styled['btn-container']}>
+          <Button
+            disabled={isSubmitting || isSignup}
+            lineLength={20}
+            glowOffset={20}
+          >
+            {isSubmitting ? 'Submitting...' : 'Login'}
+          </Button>
+          <Link
+            to={`?mode=${isForgatPassword ? 'login' : 'forgot-password'}`}
+            className={`${styled.btnResetPassword}  ${styled.btn}`}
+          >
+            Forgot your password ?
+          </Link>
+        </div>
+        {actionData && actionData?.errMessage && (
+          <p className='err'>{actionData.errMessage}</p>
+        )}
       </div>
-      {actionData && actionData?.errMessage && (
-        <p className='err'>{actionData.errMessage}</p>
-      )}
     </Form>
   );
 };

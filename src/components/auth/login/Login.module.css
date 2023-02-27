@@ -1,5 +1,4 @@
 .form {
-  height: 100%;
   max-width: 50vw;
   flex: 0.5;
   padding: 2rem;
@@ -13,9 +12,20 @@
   flex-direction: column;
   gap: 1.8rem;
   color: white;
-  background-color: rgb(71, 71, 71);
-  box-shadow: inset rgba(0, 0, 0, 0.16) 0px 1px 4px,
-    inset rgb(51, 51, 51) 0px 0px 0px 3px;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.8rem;
+
+  border: solid 7px rgb(255, 255, 255);
+  padding: 5.2rem;
 }
 
 .btn-container {
@@ -35,11 +45,11 @@
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.82rem;
 
-  color: rgb(138, 124, 243);
+  color: rgba(0, 11, 226, 0.741);
 }
 
 .btnResetPassword:hover {
-  color: rgba(250, 132, 171, 0.76);
+  color: rgb(255, 255, 255);
 }
 
 .invalid {
@@ -52,4 +62,16 @@
 .invalid:-webkit-autofill:focus,
 .invalid:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px #ffc0c0 inset !important;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

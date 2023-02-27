@@ -11,24 +11,26 @@ const ForgotPassword = () => {
 
   return (
     <Form method='post' className={styled.form}>
-      <h1>Reset Password</h1>
-      <p>Reset your password here using your email</p>
-      <Input
-        name='email'
-        type='email'
-        placeholder='Example: mail@mai'
-        className={`${styled.input} ${
-          actionData?.errType.includes('email') ? `${styled.invalid}` : null
-        }`}
-        isValid='true'
-        autoFocus
-      >
-        Email
-      </Input>
-      <Button>Change the Password</Button>
-      {actionData && actionData.errMessage && (
-        <p className='err'>{actionData.errMessage}</p>
-      )}
+      <div className={styled.container}>
+        <h1>Reset Password</h1>
+        <p>Reset your password here using your email</p>
+        <Input
+          name='email'
+          type='email'
+          placeholder='Example: mail@mai'
+          className={`${styled.input} ${
+            actionData?.errType.includes('email') ? `${styled.invalid}` : null
+          }`}
+          isValid='true'
+          autoFocus
+        >
+          Email
+        </Input>
+        <Button>Change the Password</Button>
+        {actionData && actionData.errMessage && (
+          <p className='err'>{actionData.errMessage}</p>
+        )}
+      </div>
     </Form>
   );
 };
