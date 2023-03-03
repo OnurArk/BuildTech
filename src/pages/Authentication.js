@@ -123,7 +123,7 @@ export async function action({ request }) {
       try {
         await createUserWithEmailAndPassword(auth, email, password);
         toActionData.isSucceed = true;
-        return toActionData;
+        return redirect('/');
       } catch (err) {
         err.message = err.message.replace('Firebase: ', '');
         err.message = err.message.replace(/ *\([^)]*\) */g, '');
@@ -149,7 +149,7 @@ export async function action({ request }) {
   if (mode === 'forgot-password') {
     try {
       await sendPasswordResetEmail(auth, email);
-      return redirect('/login');
+      return redirect('?mode=login');
     } catch (err) {
       console.log(err);
     }

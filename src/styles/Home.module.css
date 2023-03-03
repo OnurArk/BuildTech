@@ -2,9 +2,10 @@
   background-image: linear-gradient(
     to right bottom,
 
-    #2b0220,
-    #1e0110,
-    #000000
+    #022b0e,
+    #245d03,
+    rgb(115, 165, 128),
+    rgb(73, 170, 144)
   );
 }
 

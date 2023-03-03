@@ -30,7 +30,7 @@ const Login = () => {
           type='email'
           placeholder='Example: mail@mai'
           className={`${styled.input} ${
-            actionData?.errType.includes('email') ? `${styled.invalid}` : null
+            actionData?.errType?.includes('email') ? `${styled.invalid}` : null
           }`}
           isValid='true'
           autoFocus
@@ -42,7 +42,7 @@ const Login = () => {
           type='password'
           placeholder='Must contain at least 6 characters'
           className={`${styled.input} ${
-            actionData?.errType.includes('password')
+            actionData?.errType?.includes('password')
               ? `${styled.invalid}`
               : null
           }`}

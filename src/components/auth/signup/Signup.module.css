@@ -50,3 +50,7 @@
 .invalid:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px #ffc0c0 inset !important;
 }
+
+.err {
+  color: rgb(255, 222, 222);
+}

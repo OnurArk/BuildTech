@@ -22,7 +22,7 @@ const Signup = () => {
           type='email'
           placeholder='Example: mail@mail'
           className={`${styled.input} ${
-            actionData?.errType.includes('email') ? `${styled.invalid}` : null
+            actionData?.errType?.includes('email') ? `${styled.invalid}` : null
           }`}
           autoComplete='email'
         >
@@ -33,7 +33,7 @@ const Signup = () => {
           type='password'
           placeholder='At least 6 characters'
           className={`${styled.input} ${
-            actionData?.errType.includes('password')
+            actionData?.errType?.includes('password')
               ? `${styled.invalid}`
               : null
           }`}
@@ -46,7 +46,7 @@ const Signup = () => {
           type='password'
           placeholder='Confirm New Password'
           className={`${styled.input} ${
-            actionData?.errType.includes('password')
+            actionData?.errType?.includes('password')
               ? `${styled.invalid}`
               : null
           }`}
@@ -58,16 +58,16 @@ const Signup = () => {
           <Button
             className={`${styled.btn}`}
             disabled={isSubmitting}
+            dashOffset={100}
             lineColor='rgb(76, 234, 240)'
             blurColor='rgb(76, 234, 240)'
-            blurSize={3}
             animationSpeed={3000}
           >
             {isSubmitting ? 'Submitting...' : '+Signup'}
           </Button>
         </div>
         {actionData && actionData?.errMessage && (
-          <p className='err'>{actionData.errMessage}</p>
+          <p className={styled.err}>! {actionData.errMessage}</p>
         )}
       </div>
     </Form>

@@ -57,7 +57,7 @@
 }
 
 .glow-effect:is(:hover, :focus) :is(.glow-line, .glow-blur) {
-  stroke-dashoffset: -100px;
+  stroke-dashoffset: var(--glow-dash-offset);
   transition: stroke-dashoffset var(--animation-speed) ease-in;
 }
 

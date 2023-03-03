@@ -4,6 +4,7 @@ import styled from './Button.module.css';
 
 const Button = (props) => {
   const style = {
+    '--glow-dash-offset': props.dashOffset ? `${props.dashOffset}px` : '-100px',
     '--glow-line-thicness': props.lineThicness
       ? `${props.lineThicness}`
       : '2px',

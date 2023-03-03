@@ -19,7 +19,7 @@ const ForgotPassword = () => {
           type='email'
           placeholder='Example: mail@mai'
           className={`${styled.input} ${
-            actionData?.errType.includes('email') ? `${styled.invalid}` : null
+            actionData?.errType?.includes('email') ? `${styled.invalid}` : null
           }`}
           isValid='true'
           autoFocus
