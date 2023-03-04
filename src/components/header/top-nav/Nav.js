@@ -5,7 +5,7 @@ import AuthContext from '../../../context/Auth-Context';
 
 import styled from './Nav.module.css';
 
-const Nav = () => {
+const Nav = (props) => {
   const navigate = useNavigate();
   const authCtx = useContext(AuthContext);
 
@@ -15,14 +15,16 @@ const Nav = () => {
   };
 
   const activeStyle = {
-    borderBottom: 'solid 3px #ffffff',
+    borderBottom: props.isInAuth ? 'solid 3px #fff' : 'solid 3px #293462',
   };
 
   return (
-    <div className={styled.nav}>
+    <div className={styled.nav} style={props.styling}>
       <NavLink
         to='/home'
-        className={({ isActive }) => (isActive ? undefined : `${styled.links}`)}
+        className={({ isActive }) =>
+          `${isActive ? null : `${styled.links}`} ${styled.linkColor}`
+        }
         style={({ isActive }) => (isActive ? activeStyle : undefined)}
       >
         Home
@@ -32,7 +34,7 @@ const Nav = () => {
         <NavLink
           to='/cart'
           className={({ isActive }) =>
-            isActive ? undefined : `${styled.links}`
+            `${isActive ? null : `${styled.links}`} ${styled.linkColor}`
           }
           style={({ isActive }) => (isActive ? activeStyle : undefined)}
         >
@@ -43,19 +45,27 @@ const Nav = () => {
         <NavLink
           to='profile'
           className={({ isActive }) =>
-            isActive ? undefined : `${styled.links}`
+            `${isActive ? null : `${styled.links}`} ${styled.linkColor}`
           }
           style={({ isActive }) => (isActive ? activeStyle : undefined)}
         >
           Profile
         </NavLink>
       )}
-      {authCtx.currentUser && <button onClick={logout}>Logout</button>}
+      {authCtx.currentUser && (
+        <NavLink
+          onClick={logout}
+          to='/authentication'
+          className={`${styled.links} ${styled.linkColor}`}
+        >
+          Logout
+        </NavLink>
+      )}
       {!authCtx.currentUser && (
         <NavLink
           to='/authentication'
           className={({ isActive }) =>
-            isActive ? undefined : `${styled.links}`
+            `${isActive ? null : `${styled.links}`} ${styled.linkColor}`
           }
           style={({ isActive }) => (isActive ? activeStyle : undefined)}
         >

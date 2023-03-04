@@ -5,8 +5,12 @@
   height: 4.7rem;
   padding: 0 2.4rem;
 
-  background-color: #000000;
-  color: white;
+  background: var(--background-color);
 
   z-index: 1010;
+  transition: all 1s ease;
+}
+
+.logo {
+  color: var(--text-color);
 }
