@@ -1,14 +1,8 @@
 .home {
-  background-image: linear-gradient(
-    to right bottom,
-
-    #022b0e,
-    #245d03,
-    rgb(115, 165, 128),
-    rgb(73, 170, 144)
-  );
+  background: linear-gradient(45deg, #737dfe, #ffcac9);
 }
 
 .slide {
+  background: radial-gradient(suggestedAngle suggestedColor);
   color: white;
 }
