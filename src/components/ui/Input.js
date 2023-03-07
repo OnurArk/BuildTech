@@ -1,9 +1,13 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef } from 'react';
 
-import styled from "./Input.module.css";
+import styled from './Input.module.css';
 const Input = forwardRef((props, ref) => {
+  const style = {
+    '--grid-row': props.inputGridRow ? `${props.inputGridRow}` : '2',
+  };
+
   return (
-    <div className={`${styled["input-container"]}`}>
+    <div className={`${styled['input-container']}`} style={style}>
       <label htmlFor={props.htmlFor} className={styled.label}>
         {props.children}
       </label>
@@ -20,6 +24,8 @@ const Input = forwardRef((props, ref) => {
         autoComplete={props.autoComplete}
         value={props.value}
         required={props.required}
+        maxLength={props.maxLength}
+        minLength={props.minLength}
       />
     </div>
   );

@@ -20,7 +20,7 @@
   outline: none;
   border: none;
 
-  grid-row: 2;
+  grid-row: var(--grid-row);
   width: 13rem;
   border: 1px solid #ccc;
   border-radius: 6px;
