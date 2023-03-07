@@ -25,7 +25,7 @@ const Nav = (props) => {
         className={({ isActive }) =>
           `${isActive ? null : `${styled.links}`} ${styled.linkColor}`
         }
-        style={({ isActive }) => (isActive ? activeStyle : undefined)}
+        style={({ isActive }) => (isActive ? activeStyle : null)}
       >
         Home
       </NavLink>
@@ -36,7 +36,7 @@ const Nav = (props) => {
           className={({ isActive }) =>
             `${isActive ? null : `${styled.links}`} ${styled.linkColor}`
           }
-          style={({ isActive }) => (isActive ? activeStyle : undefined)}
+          style={({ isActive }) => (isActive ? activeStyle : null)}
         >
           Cart
         </NavLink>
@@ -47,7 +47,7 @@ const Nav = (props) => {
           className={({ isActive }) =>
             `${isActive ? null : `${styled.links}`} ${styled.linkColor}`
           }
-          style={({ isActive }) => (isActive ? activeStyle : undefined)}
+          style={({ isActive }) => (isActive ? activeStyle : null)}
         >
           Profile
         </NavLink>
@@ -67,7 +67,7 @@ const Nav = (props) => {
           className={({ isActive }) =>
             `${isActive ? null : `${styled.links}`} ${styled.linkColor}`
           }
-          style={({ isActive }) => (isActive ? activeStyle : undefined)}
+          style={({ isActive }) => (isActive ? activeStyle : null)}
         >
           Login
         </NavLink>
