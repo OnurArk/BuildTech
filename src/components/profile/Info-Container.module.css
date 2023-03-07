@@ -1,0 +1,51 @@
+.info-container {
+  grid-area: 1 / 2 / 2 / 3;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-inner-container {
+  display: flex;
+  flex-direction: column;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.titles {
+  width: fit-content;
+
+  color: white;
+  text-shadow: 1px 1px 1px black;
+  user-select: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.titles:hover {
+  box-shadow: 0 14px 15px -11px rgb(255, 255, 255);
+  text-shadow: 0px -3px 3px black;
+}
+
+.active {
+  transition: all 0.3s ease;
+  transform: translateX(10px);
+}
+
+.notActive {
+  transition: all 0.3s ease;
+}
+
+.titles::before {
+  content: '- ';
+  color: rgb(255, 252, 150);
+}
+
+.titles:active {
+  color: #a8a5f5;
+}
+
+.account-navigation {
+  position: relative;
+}
