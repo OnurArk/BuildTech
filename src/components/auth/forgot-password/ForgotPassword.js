@@ -21,7 +21,6 @@ const ForgotPassword = () => {
           className={`${styled.input} ${
             actionData?.errType?.includes('email') ? `${styled.invalid}` : null
           }`}
-          isValid='true'
           autoFocus
         >
           Email
