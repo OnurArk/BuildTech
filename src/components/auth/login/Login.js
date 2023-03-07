@@ -32,7 +32,6 @@ const Login = () => {
           className={`${styled.input} ${
             actionData?.errType?.includes('email') ? `${styled.invalid}` : null
           }`}
-          isValid='true'
           autoFocus
         >
           Email
@@ -47,7 +46,6 @@ const Login = () => {
               : null
           }`}
           autoComplete='true'
-          isValid='true'
         >
           Password
         </Input>
