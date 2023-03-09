@@ -2,16 +2,43 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
   gap: 1rem;
 }
 
-.icon {
-  align-self: flex-end;
-  cursor: pointer;
-  font-size: 1.3rem;
+.longAdress {
+  transition: all 0.3s ease;
+
+  width: 50rem;
 }
 
-.icon:hover {
-  color: rgb(69, 69, 255);
+@media (max-width: 1000px) and (min-width: 850px) {
+  .longAdress {
+    width: 40rem;
+  }
+}
+
+@media (max-width: 850px) and (min-width: 580px) {
+  .longAdress {
+    width: 25rem;
+  }
+}
+
+@media (max-width: 580px) {
+  .longAdress {
+    width: auto;
+  }
+}
+
+.short-adress-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.shortAdresses {
+  width: 5rem;
 }
