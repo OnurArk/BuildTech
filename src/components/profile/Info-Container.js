@@ -11,7 +11,7 @@ const InfoContainer = () => {
     <div className={styled['info-container']}>
       <div className={styled['info-inner-container']}>
         <Link
-          to={mode === 'change-password' ? '' : '?mode=change-password'}
+          to={mode === 'change-password' ? null : '?mode=change-password'}
           className={
             mode === 'change-password' ? styled.active : styled.notActive
           }
@@ -19,7 +19,7 @@ const InfoContainer = () => {
           <h3 className={styled.titles}>Change Password</h3>
         </Link>
         <Link
-          to={mode === 'change-user-name' ? '' : '?mode=change-user-name'}
+          to={mode === 'change-user-name' ? null : '?mode=change-user-name'}
           className={
             mode === 'change-user-name' ? styled.active : styled.notActive
           }
@@ -28,7 +28,7 @@ const InfoContainer = () => {
         </Link>
 
         <Link
-          to={mode === 'account-details' ? '' : '?mode=account-details'}
+          to={mode === 'account-details' ? null : '?mode=account-details'}
           className={`${styled['account-navigation']} ${
             mode === 'account-details' ? styled.active : styled.notActive
           }`}
@@ -37,7 +37,7 @@ const InfoContainer = () => {
         </Link>
 
         <Link
-          to={mode === 'payment-details' ? '' : '?mode=payment-details'}
+          to={mode === 'payment-details' ? null : '?mode=payment-details'}
           className={
             mode === 'payment-details' ? styled.active : styled.notActive
           }
