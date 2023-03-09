@@ -21,7 +21,7 @@ const Login = () => {
   const isForgatPassword = searchParams.get('mode') === 'forgot-password';
 
   return (
-    <Form method='post' action='/authentication' className={styled.form}>
+    <Form method='post' className={styled.form}>
       <div className={styled.container}>
         <h1>Log In</h1>
         <p>Login here using your email and password</p>
