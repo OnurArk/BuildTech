@@ -142,9 +142,6 @@ export async function action({ request }) {
       }
     }
   }
-  if (Object.keys(toActionData).length) {
-    return toActionData;
-  }
 
   if (mode === 'forgot-password') {
     try {
