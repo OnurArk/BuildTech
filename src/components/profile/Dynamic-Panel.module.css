@@ -13,8 +13,6 @@
 }
 
 .closeSignup {
-  position: absolute;
-
   animation: modalClosed 1s ease-out forwards;
 }
 
