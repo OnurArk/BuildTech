@@ -44,10 +44,13 @@ const PhoneNumb = ({ phoneNumber, setPhoneNumber }) => {
         }
         className={err ? `${styled.invalid}` : null}
       >
-        Phone Number :
+        New Phone Number :
       </Input>
       {err && <p className={styled.err}>{err}</p>}
-      <Button>Save</Button>
+      <div>
+        <Button className={styled.btn}>Cancel</Button>
+        <Button className={styled.btn}>Save</Button>
+      </div>
     </form>
   );
 };
