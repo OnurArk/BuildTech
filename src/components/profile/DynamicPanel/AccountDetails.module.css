@@ -41,9 +41,29 @@
 }
 
 .infos {
+  color: white;
   cursor: pointer;
 }
 
 .infos:hover .titles {
   color: rgb(255, 138, 138);
+}
+
+.open {
+  animation: modalOpen 1s ease-out forwards;
+}
+
+.close {
+  opacity: 0;
+  visibility: 0;
+}
+
+@keyframes modalOpen {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
