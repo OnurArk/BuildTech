@@ -30,7 +30,7 @@ const Nav = (props) => {
         Home
       </NavLink>
 
-      {authCtx.currentUser && (
+      {authCtx.currentEmail && (
         <NavLink
           to='/cart'
           className={({ isActive }) =>
@@ -41,7 +41,7 @@ const Nav = (props) => {
           Cart
         </NavLink>
       )}
-      {authCtx.currentUser && (
+      {authCtx.currentEmail && (
         <NavLink
           to='profile'
           className={({ isActive }) =>
@@ -52,7 +52,7 @@ const Nav = (props) => {
           Profile
         </NavLink>
       )}
-      {authCtx.currentUser && (
+      {authCtx.currentEmail && (
         <NavLink
           onClick={logout}
           to='/authentication'
@@ -61,7 +61,7 @@ const Nav = (props) => {
           Logout
         </NavLink>
       )}
-      {!authCtx.currentUser && (
+      {!authCtx.currentEmail && (
         <NavLink
           to='/authentication'
           className={({ isActive }) =>
