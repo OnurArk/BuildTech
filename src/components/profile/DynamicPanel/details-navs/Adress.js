@@ -7,11 +7,9 @@ import styled from './Adress.module.css';
 
 const Adress = () => {
   const [address, setAddress] = useState({
-    line1: '',
-    line2: '',
+    line: '',
     city: '',
     state: '',
-
     country: '',
   });
 
@@ -29,7 +27,7 @@ const Adress = () => {
         type='text'
         name='line1'
         onChange={handleChange}
-        value={address.line1}
+        value={address.line}
         placeholder='Address Line'
         className={styled.longAdress}
       />
