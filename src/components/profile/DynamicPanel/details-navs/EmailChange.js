@@ -4,7 +4,7 @@ import { useActionData, Form, Link } from 'react-router-dom';
 import Input from '../../../ui/Input';
 import Button from '../../../ui/Button';
 
-import styled from './Email.module.css';
+import styled from './EmailChange.module.css';
 
 const EmailChange = () => {
   const actionData = useActionData();
