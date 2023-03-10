@@ -1,57 +1,54 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import { Form, Link, useActionData } from 'react-router-dom';
 
-// import { faker } from '@faker-js/faker';
+import AuthContext from '../../../../context/Auth-Context';
 import Input from '../../../ui/Input';
 import Button from '../../../ui/Button';
 
 import styled from './PhoneNumb.module.css';
 
-const PhoneNumb = ({ phoneNumber, setPhoneNumber }) => {
-  const [err, setError] = useState();
+const PhoneNumb = ({ phoneNumber }) => {
+  const actionData = useActionData();
 
-  function handleChange(event) {
-    setError();
-    const inputValue = event.target.value.replace(/[^0-9]/g, '');
-    setPhoneNumber(inputValue);
-  }
+  const authCtx = useContext(AuthContext);
 
-  const submitHandler = (event) => {
-    event.preventDefault();
-
-    if (phoneNumber.length < 11 && phoneNumber.length !== 1) {
-      setError('Your phone number at least should have 11 digits!');
-    }
-    if (phoneNumber.length === 11 || phoneNumber.length === 1) {
-      if (phoneNumber.length === 1) {
-      }
-    }
-
-    if (!err) {
-      console.log(phoneNumber);
-    }
+  const getNewNumber = () => {
+    authCtx.getPhone();
   };
 
   return (
-    <form onSubmit={submitHandler} className={styled['phone-container']}>
+    <Form
+      method='post'
+      onSubmit={getNewNumber}
+      className={styled['phone-container']}
+    >
       <Input
+        name='phone'
         type='tel'
         inputGridRow={1}
-        maxLength={10}
-        minLenght={10}
-        onChange={handleChange}
+        maxLength={11}
+        minLenght={11}
         placeholder={
-          phoneNumber ? `Current No: ${phoneNumber}` : `Example: 5001234567`
+          phoneNumber ? `Current No: ${phoneNumber}` : `Example: 05001234567`
         }
-        className={err ? `${styled.invalid}` : null}
+        className={actionData?.errMessage ? `${styled.invalid}` : null}
       >
         New Phone Number :
       </Input>
-      {err && <p className={styled.err}>{err}</p>}
+
       <div>
-        <Button className={styled.btn}>Cancel</Button>
+        <Link to={'?mode=account-details'}>
+          <Button type='button' className={styled.btn}>
+            Cancel
+          </Button>
+        </Link>
         <Button className={styled.btn}>Save</Button>
       </div>
-    </form>
+
+      {actionData?.errMessage && (
+        <p className={styled.err}>{actionData.errMessage}</p>
+      )}
+    </Form>
   );
 };
 
