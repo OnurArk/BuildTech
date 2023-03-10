@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 
-import { faker } from '@faker-js/faker';
+// import { faker } from '@faker-js/faker';
 
 import AuthContext from '../../../context/Auth-Context';
 import PhoneNumb from './details-navs/PhoneNumb';
@@ -10,7 +10,7 @@ import EmailChange from './details-navs/EmailChange';
 
 import styled from './AccountDetails.module.css';
 import { CSSTransition } from 'react-transition-group';
-import { AiFillEdit } from 'react-icons/ai';
+// import { AiFillEdit } from 'react-icons/ai';
 
 const fakeAdd =
   'Lorem ipsum dolor sit amet consectetur adipisicing elit. tae impedit qvoluptatem. Esse quo inventore vero, nemo nisi obcaecati, ab nulla excepturi expedita qui architecto magnam?';
@@ -18,9 +18,9 @@ const fakeAdd =
 const AccountDetails = () => {
   const authCtx = useContext(AuthContext);
 
-  const [phoneNumber, setPhoneNumber] = useState(authCtx.currentPhone);
-  const [adress, setAdress] = useState(fakeAdd);
-
+  const phoneNumber = authCtx.currentPhone;
+  const [adress] = useState(fakeAdd);
+  console.log(phoneNumber);
   const [searchParams] = useSearchParams();
   const nav = searchParams.get('nav');
 
@@ -49,7 +49,7 @@ const AccountDetails = () => {
                   '-' +
                   phoneNumber.substring(7)
                 }`
-              : '(optional) Add your phone number for connection'}
+              : '(Optional) Add your phone number for connection'}
           </Link>
 
           <Link to='?mode=account-details&nav=adress' className={styled.infos}>
@@ -77,7 +77,7 @@ const AccountDetails = () => {
           exitActive: `${styled.close}`,
         }}
       >
-        <PhoneNumb phoneNumber={phoneNumber} setPhoneNumber={setPhoneNumber} />
+        <PhoneNumb phoneNumber={phoneNumber} />
       </CSSTransition>
       <CSSTransition
         mountOnEnter
