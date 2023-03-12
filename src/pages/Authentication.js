@@ -101,6 +101,15 @@ export async function action({ request }) {
   }
 
   if (mode === 'login' || mode === 'signup') {
+    if (mode === 'signup') {
+      if (!confirmPassword || !password) {
+        toActionData.errMessage = 'You need to type!';
+        toActionData.errType
+          ? toActionData.errType.push('password')
+          : (toActionData.errType = ['password']);
+      }
+    }
+
     if (confirmPassword && password !== confirmPassword) {
       toActionData.errMessage = 'Passwords did not match!';
       toActionData.errType

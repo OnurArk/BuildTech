@@ -13,7 +13,7 @@ const PhoneNumb = ({ phoneNumber }) => {
   const authCtx = useContext(AuthContext);
 
   const getNewNumber = () => {
-    authCtx.getPhone();
+    authCtx.getUserData('phone');
   };
 
   return (

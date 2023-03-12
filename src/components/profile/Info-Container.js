@@ -35,15 +35,6 @@ const InfoContainer = () => {
         >
           <h3 className={styled.titles}>Account Details</h3>
         </Link>
-
-        <Link
-          to={mode === 'payment-details' ? null : '?mode=payment-details'}
-          className={
-            mode === 'payment-details' ? styled.active : styled.notActive
-          }
-        >
-          <h3 className={styled.titles}>Payment Details</h3>
-        </Link>
       </div>
     </div>
   );

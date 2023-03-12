@@ -26,6 +26,9 @@ const Input = forwardRef((props, ref) => {
         required={props.required}
         maxLength={props.maxLength}
         minLength={props.minLength}
+        pattern={props.pattern}
+        inputMode={props.inputMode}
+        onInput={props.onInput}
       />
     </div>
   );

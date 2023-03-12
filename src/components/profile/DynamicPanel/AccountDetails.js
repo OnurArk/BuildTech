@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 
 // import { faker } from '@faker-js/faker';
@@ -7,20 +7,18 @@ import AuthContext from '../../../context/Auth-Context';
 import PhoneNumb from './details-navs/PhoneNumb';
 import Adress from './details-navs/Adress';
 import EmailChange from './details-navs/EmailChange';
+import PaymentDetails from './details-navs/PaymentDetails';
 
 import styled from './AccountDetails.module.css';
 import { CSSTransition } from 'react-transition-group';
 // import { AiFillEdit } from 'react-icons/ai';
 
-const fakeAdd =
-  'Lorem ipsum dolor sit amet consectetur adipisicing elit. tae impedit qvoluptatem. Esse quo inventore vero, nemo nisi obcaecati, ab nulla excepturi expedita qui architecto magnam?';
-
 const AccountDetails = () => {
   const authCtx = useContext(AuthContext);
 
   const phoneNumber = authCtx.currentPhone;
-  const [adress] = useState(fakeAdd);
-  console.log(phoneNumber);
+  const adress = authCtx.currentAdress;
+
   const [searchParams] = useSearchParams();
   const nav = searchParams.get('nav');
 
@@ -62,6 +60,14 @@ const AccountDetails = () => {
           <Link to='?mode=account-details&nav=email' className={styled.infos}>
             <span className={styled.titles}>Email : </span>
             {authCtx.currentEmail}
+          </Link>
+
+          <Link
+            to='?mode=account-details&nav=payment-details'
+            className={styled.infos}
+          >
+            <span className={styled.titles}>Payment Details : </span>
+            details
           </Link>
         </div>
       </CSSTransition>
@@ -105,6 +111,20 @@ const AccountDetails = () => {
         }}
       >
         <EmailChange />
+      </CSSTransition>
+
+      <CSSTransition
+        mountOnEnter
+        unmountOnExit
+        key={'payment-details'}
+        in={nav === 'payment-details'}
+        timeout={{ enter: 500, exit: 0 }}
+        classNames={{
+          enterActive: `${styled.open}`,
+          exitActive: `${styled.close}`,
+        }}
+      >
+        <PaymentDetails />
       </CSSTransition>
     </div>
   );

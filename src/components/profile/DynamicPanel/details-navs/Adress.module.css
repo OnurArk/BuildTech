@@ -39,6 +39,10 @@
   gap: 1rem;
 }
 
+.middleAdresses {
+  width: 9rem;
+}
+
 .shortAdresses {
   width: 5rem;
 }

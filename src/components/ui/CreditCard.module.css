@@ -1,0 +1,78 @@
+.credit-card-container {
+  position: relative;
+  width: 21rem;
+  height: 14rem;
+  padding: 1.5rem;
+  border-radius: 22px;
+  font-family: 'Raleway';
+  box-shadow: 2px 5px 10px black;
+  overflow: hidden;
+  /* rgb(57, 27, 112) */
+  background: var(--backgoundCard);
+  transform: scale(1, 1);
+}
+
+.credit-card-container::before {
+  content: '';
+  display: block;
+  position: absolute;
+  border-radius: 100%;
+  width: 100%;
+  height: 300px;
+  background-color: var(--backgoundWave);
+  right: -25%;
+  bottom: -95%;
+}
+
+.chip {
+  position: absolute;
+  left: 2rem;
+  top: 1.5rem;
+  width: 15%;
+}
+
+.logo {
+  position: absolute;
+  right: 2rem;
+  top: 1.5rem;
+  width: 27%;
+}
+
+.cardNumber {
+  position: absolute;
+  top: 6rem;
+}
+
+.nameSection {
+  position: absolute;
+  top: 10.5rem;
+}
+
+.name {
+  max-width: 175px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cardText {
+  color: rgba(255, 255, 255, 0.726);
+}
+
+.expiration {
+  position: absolute;
+  left: 13rem;
+  bottom: 1rem;
+}
+
+.date {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.dateText {
+  color: rgba(255, 255, 255, 0.726);
+  font-size: 0.5rem;
+  padding: 0.1rem;
+}

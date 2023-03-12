@@ -1,7 +1,7 @@
 .profile-container {
-  height: 800px;
+  min-height: 50rem;
   padding: 3rem 5rem;
-  background: linear-gradient(45deg, #737dfe, #ffcac9);
+  background: linear-gradient(45deg, rgb(189, 189, 189), rgb(97, 97, 97));
 }
 
 .profile-size-control {
@@ -10,7 +10,17 @@
 
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: var(--gridTemplateRows);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
+}
+
+.user-container-grid {
+  grid-area: 1 / 1 / 2 / 2;
+}
+.info-container-grid {
+  grid-area: 1 / 2 / 2 / 3;
+}
+.dynamic-container-grid {
+  grid-area: 2 / 1 / 3 / 3;
 }
