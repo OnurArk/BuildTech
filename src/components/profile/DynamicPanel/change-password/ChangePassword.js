@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form } from 'react-router-dom';
 
-import Input from '../../ui/Input';
+import Input from '../../../ui/Input';
 import styled from './ChangePassword.module.css';
 
 const ChangePassword = () => {

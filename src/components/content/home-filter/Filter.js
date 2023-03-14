@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { itemActions } from "../../store/item-slice";
-import Button from "../ui/Button";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { itemActions } from '../../../store/item-slice';
+import Button from '../../ui/Button';
 
-import styled from "./Filter.module.css";
+import styled from './Filter.module.css';
 const Filter = () => {
   const [rangeVal, setRangeVal] = useState(0);
   const [isTouched, setIsTouched] = useState(false);
@@ -30,25 +30,25 @@ const Filter = () => {
   };
 
   return (
-    <form className={styled["filter-container"]} onSubmit={onSubmit}>
-      <div className={styled["range-slider"]}>
+    <form className={styled['filter-container']} onSubmit={onSubmit}>
+      <div className={styled['range-slider']}>
         <input
-          type="range"
-          min="0"
-          max="100000"
-          step="500"
+          type='range'
+          min='0'
+          max='100000'
+          step='500'
           value={rangeVal}
           onChange={onSliding}
           className={styled.slider}
         />
-        <div className={styled["slider-thumb"]} style={sliderThumbStyle} />
+        <div className={styled['slider-thumb']} style={sliderThumbStyle} />
 
         <div className={styled.progress} style={progressStyle} />
       </div>
       {isTouched && rangeVal > 0 && (
         <div className={styled.tooltip}>{rangeVal} TL</div>
       )}
-      <Button type="subbit" className={styled.btn}>
+      <Button type='subbit' className={styled.btn}>
         <span>Filt</span>
       </Button>
     </form>

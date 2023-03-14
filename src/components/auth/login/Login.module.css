@@ -55,6 +55,7 @@
 .invalid {
   background: #ffc0c0;
   box-shadow: inset 0 -1px 10px white;
+  color: black;
 }
 
 .invalid:-webkit-autofill,

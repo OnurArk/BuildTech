@@ -2,14 +2,24 @@ import React from 'react';
 
 import styled from './CreditCard.module.css';
 import { BiCaretRight } from 'react-icons/bi';
-const CreditCard = (props) => {
+const CreditCard = ({
+  backgound,
+  nameVal,
+  securityVal,
+  expiryVal,
+  numericVal,
+  logo,
+}) => {
   const containerStyle = {
-    '--backgoundCard': props.backgoundCard
-      ? props.backgoundCard
+    '--backgoundCard': backgound.backgoundCard
+      ? backgound.backgoundCard
       : 'rgb(189, 189, 189)',
-    '--backgoundWave': props.backgoundWave
-      ? props.backgoundWave
+    '--backgoundWave': backgound.backgoundWave
+      ? backgound.backgoundWave
       : 'rgb(97, 97, 97)',
+    '--colorText': backgound.colorText
+      ? backgound.colorText
+      : 'rgba(255, 255, 255, 0.726)',
   };
 
   return (
@@ -21,17 +31,18 @@ const CreditCard = (props) => {
       />
 
       <img
-        src='https://creazilla-store.fra1.digitaloceanspaces.com/icons/3197778/mastercard-icon-md.png'
+        src={logo}
         alt='logo'
+        style={{ display: logo ? 'block' : 'none' }}
         className={styled.logo}
       />
       <div className={styled.cardNumber}>
         <p className={styled.cardText}>card number</p>
-        <h1>{props.numericVal.replace(/(.{4})/g, '$1 ')}</h1>
+        <h1>{numericVal.replace(/(.{4})/g, '$1 ')}</h1>
       </div>
       <div className={styled.nameSection}>
         <p className={styled.cardText}>cardholder name</p>
-        <h3 className={styled.name}>{props.nameVal}</h3>
+        <h3 className={styled.name}>{nameVal}</h3>
       </div>
 
       <div className={styled.expiration}>
@@ -42,7 +53,7 @@ const CreditCard = (props) => {
             <p className={styled.dateText}>THRU</p>
           </div>
           <BiCaretRight />
-          <h3>{props.expiryVal}</h3>
+          <h3>{expiryVal}</h3>
         </div>
       </div>
     </div>

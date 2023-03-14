@@ -1,15 +1,15 @@
-import React, { Fragment, useEffect } from "react";
-import { useLoaderData } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import React, { Fragment, useEffect } from 'react';
+import { useLoaderData } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
-import { fetchİtemsData } from "../store/item-action";
-import Slide from "../components/ui/Slide";
-import Nav from "../components/main-nav/Nav";
-import Products from "../components/content/Producs/Products";
-import Filter from "../components/home-filter/Filter";
-import api from "../util/api";
+import { fetchİtemsData } from '../store/item-action';
+import Slide from '../components/ui/Slide';
+import Nav from '../components/content/main-nav/Nav';
+import Products from '../components/content/Producs/Products';
+import Filter from '../components/content/home-filter/Filter';
+import api from '../util/api';
 
-import styled from "../styles/Home.module.css";
+import styled from '../styles/Home.module.css';
 
 const Home = () => {
   const loaderData = useLoaderData();
@@ -28,7 +28,7 @@ const Home = () => {
       />
       <div className={styled.home}>
         <Nav />
-        <div className={styled["responsive"]}>
+        <div className={styled['responsive']}>
           <Filter />
           <Products />
         </div>
@@ -41,7 +41,7 @@ export default Home;
 
 export function loader() {
   const { requestFetch } = api();
-  const adress = "carousel.json";
+  const adress = 'carousel.json';
 
   return requestFetch({ adress });
 }

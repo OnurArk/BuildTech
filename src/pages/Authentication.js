@@ -146,18 +146,45 @@ export async function action({ request }) {
         await signInWithEmailAndPassword(auth, email, password);
         return redirect('/');
       } catch (err) {
-        toActionData.errMessage = 'Check your email or password again!';
+        err.message = err.message.replace('Firebase: ', '');
+        err.message = err.message.replace(/ *\([^)]*\) */g, '');
+        toActionData.errMessage = err.message;
         return toActionData;
       }
     }
   }
 
   if (mode === 'forgot-password') {
+    if (!email) {
+      toActionData.errMessage = 'Please enter an email first';
+      toActionData.errType
+        ? toActionData.errType.push('email')
+        : (toActionData.errType = ['email']);
+    }
+
+    if (
+      typeof email !== 'string' ||
+      !email.includes('@') ||
+      !email.includes('.com')
+    ) {
+      toActionData.errMessage = 'Email address must contain @ and .com';
+      toActionData.errType
+        ? toActionData.errType.push('email')
+        : (toActionData.errType = ['email']);
+    }
+
+    if (Object.keys(toActionData).length) {
+      return toActionData;
+    }
+
     try {
       await sendPasswordResetEmail(auth, email);
       return redirect('?mode=login');
     } catch (err) {
-      console.log(err);
+      err.message = err.message.replace('Firebase: ', '');
+      err.message = err.message.replace(/ *\([^)]*\) */g, '');
+      toActionData.errMessage = err.message;
+      return toActionData;
     }
   }
 }

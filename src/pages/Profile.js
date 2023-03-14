@@ -1,33 +1,29 @@
-import React from 'react';
-import { redirect, useSearchParams } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { redirect } from 'react-router-dom';
 import { updateEmail } from 'firebase/auth';
 import { doc, collection, setDoc, serverTimestamp } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 
-import UserContainer from '../components/profile/User-Container';
-import InfoContainer from '../components/profile/Info-Container';
-import DynamicPanel from '../components/profile/Dynamic-Panel';
+import AuthContext from '../context/Auth-Context';
+import UserContainer from '../components/profile/user-container/User-Container';
+import InfoContainer from '../components/profile/info-container/Info-Container';
+import DynamicPanel from '../components/profile/DynamicPanel/Dynamic-Panel';
 
 import styled from '../styles/Profile.module.css';
 
 const Profile = () => {
-  const [searchParams] = useSearchParams();
-  const isPaymentDetail = searchParams.get('nav') === 'payment-details';
-
-  const profileSizeControlStyle = {
-    '--gridTemplateRows': isPaymentDetail ? '0.5fr 1fr' : 'repeat(2, 1fr)',
-  };
+  const propfileCtx = useContext(AuthContext);
 
   return (
-    <div className={styled['profile-container']}>
-      <div
-        className={styled['profile-size-control']}
-        style={profileSizeControlStyle}
-      >
-        <UserContainer className={styled['user-container-grid']} />
-        <InfoContainer className={styled['info-container-grid']} />
-        <DynamicPanel className={styled['dynamic-container-grid']} />
+    <div
+      className={styled['profile-container']}
+      style={propfileCtx.profileBackground}
+    >
+      <div className={styled['user-info-container']}>
+        <UserContainer />
+        <InfoContainer />
       </div>
+      <DynamicPanel />
     </div>
   );
 };
@@ -41,21 +37,22 @@ export async function action({ request }) {
   const userInfo = {};
 
   if (user) {
-    user.providerData.forEach((profile) => {
-      userInfo.uid = profile.uid;
-    });
+    userInfo.uid = user.uid;
+    console.log(user.uid);
   } else {
     toActionData.errMessage = 'No user Founded';
   }
 
-  const phoneRef = collection(db, 'phone');
-  const adressRef = collection(db, 'adress');
-
+  //  Search Keys
   const searchParams = new URL(request.url).searchParams;
   const nav = searchParams.get('nav');
 
+  // formating getted data
   const data = await request.formData();
+
+  // Phone
   const phone = data.get('phone')?.trim();
+  // Reset email
   const email = data.get('email')?.trim();
   // Adress
   const line1 = data.get('line1')?.trim();
@@ -63,9 +60,17 @@ export async function action({ request }) {
   const state = data.get('state')?.trim();
   const country = data.get('country')?.trim();
 
+  // Payment-Details
+  const namePayment = data.get('card-name')?.trim();
+  const cardNumber = data.get('card-number')?.trim();
+  const expiration = data.get('expiration')?.trim();
+  const securityCode = data.get('security-code')?.trim();
+
   // Update Phone Section
 
   if (nav === 'phone') {
+    const phoneRef = collection(db, 'phone');
+
     if (phone?.length < 11) {
       toActionData.errMessage =
         'Your phone number at least should have 11 digits!';
@@ -97,6 +102,8 @@ export async function action({ request }) {
   // Update Adress Section
 
   if (nav === 'adress') {
+    const adressRef = collection(db, 'adress');
+
     if (line1.length < 20) {
       toActionData.errMessage = 'Please enter at leat 20 characters';
     }
@@ -177,5 +184,59 @@ export async function action({ request }) {
     }
   }
 
+  // Update Payment Data Section
+
+  if (nav === 'payment-details') {
+    const paymentRef = collection(db, 'payment');
+
+    if (!namePayment) {
+      toActionData.errMessage = 'Card name must be enter';
+      toActionData.errType
+        ? toActionData.errType.push('nameErr')
+        : (toActionData.errType = ['nameErr']);
+    }
+
+    if (!cardNumber) {
+      toActionData.errMessage = 'Card Number must be enter';
+      toActionData.errType
+        ? toActionData.errType.push('cardNumberErr')
+        : (toActionData.errType = ['cardNumberErr']);
+    }
+
+    if (!expiration) {
+      toActionData.errMessage = 'Expiration must be enter';
+      toActionData.errType
+        ? toActionData.errType.push('expirationErr')
+        : (toActionData.errType = ['expirationErr']);
+    }
+    if (!securityCode) {
+      toActionData.errMessage = 'Security code must be enter';
+      toActionData.errType
+        ? toActionData.errType.push('securityErr')
+        : (toActionData.errType = ['securityErr']);
+    }
+
+    if (Object.keys(toActionData).length) {
+      return toActionData;
+    }
+
+    if (namePayment && cardNumber && expiration && securityCode) {
+      try {
+        await setDoc(doc(paymentRef, userInfo.uid), {
+          namePayment: namePayment,
+          cardNumber: cardNumber,
+          expiration: expiration,
+          securityCode: securityCode,
+        });
+        return redirect('?mode=account-details');
+      } catch (err) {
+        err.message = err.message.replace('Firebase: ', '');
+        err.message = err.message.replace(/ *\([^)]*\) */g, '');
+        toActionData.errMessage = err.message;
+
+        return toActionData;
+      }
+    }
+  }
   return redirect('/profile');
 }

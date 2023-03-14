@@ -2,9 +2,9 @@ import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 
-import ChangePassword from './DynamicPanel/ChangePassword';
-import ChangeUserName from './DynamicPanel/Change-User-Name';
-import AccountDetails from './DynamicPanel/AccountDetails';
+import ChangePassword from './change-password/ChangePassword';
+import ChangeUserName from './change-user/Change-User-Name';
+import AccountDetails from './account-details/AccountDetails';
 
 import styled from './Dynamic-Panel.module.css';
 const DynamicPanel = () => {

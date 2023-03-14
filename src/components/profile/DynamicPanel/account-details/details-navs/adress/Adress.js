@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { Form, useActionData } from 'react-router-dom';
 
-import AuthContext from '../../../../context/Auth-Context';
-import Input from '../../../ui/Input';
-import Button from '../../../ui/Button';
+import AuthContext from '../../../../../../context/Auth-Context';
+import Input from '../../../../../ui/Input';
+import Button from '../../../../../ui/Button';
 
 import styled from './Adress.module.css';
 

@@ -34,7 +34,7 @@
 .logo {
   position: absolute;
   right: 2rem;
-  top: 1.5rem;
+  top: 1.7rem;
   width: 27%;
 }
 
@@ -49,14 +49,14 @@
 }
 
 .name {
-  max-width: 175px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 175px;
 }
 
 .cardText {
-  color: rgba(255, 255, 255, 0.726);
+  color: var(--colorText);
 }
 
 .expiration {
@@ -72,7 +72,7 @@
 }
 
 .dateText {
-  color: rgba(255, 255, 255, 0.726);
+  color: var(--colorText);
   font-size: 0.5rem;
   padding: 0.1rem;
 }

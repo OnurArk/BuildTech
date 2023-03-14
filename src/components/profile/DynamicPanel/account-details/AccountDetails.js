@@ -1,13 +1,14 @@
 import React, { useContext } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 // import { faker } from '@faker-js/faker';
+import AuthContext from '../../../../context/Auth-Context';
 
-import AuthContext from '../../../context/Auth-Context';
-import PhoneNumb from './details-navs/PhoneNumb';
-import Adress from './details-navs/Adress';
-import EmailChange from './details-navs/EmailChange';
-import PaymentDetails from './details-navs/PaymentDetails';
+import AccountInfo from './account-informations/AccountInfo';
+import PhoneNumb from './details-navs/phone-number/PhoneNumb';
+import Adress from './details-navs/adress/Adress';
+import EmailChange from './details-navs/email-change/EmailChange';
+import PaymentDetails from './details-navs/payment-details/PaymentDetails';
 
 import styled from './AccountDetails.module.css';
 import { CSSTransition } from 'react-transition-group';
@@ -18,6 +19,8 @@ const AccountDetails = () => {
 
   const phoneNumber = authCtx.currentPhone;
   const adress = authCtx.currentAdress;
+  const email = authCtx.currentEmail;
+  const payment = authCtx.currentPayment;
 
   const [searchParams] = useSearchParams();
   const nav = searchParams.get('nav');
@@ -36,40 +39,12 @@ const AccountDetails = () => {
           exitActive: `${styled.close}`,
         }}
       >
-        <div className={styled['account-informations']}>
-          <Link to='?mode=account-details&nav=phone' className={styled.infos}>
-            <span className={styled.titles}>Phone Number : </span>
-            {phoneNumber
-              ? `${
-                  phoneNumber.substring(0, 4) +
-                  '-' +
-                  phoneNumber.substring(4, 7) +
-                  '-' +
-                  phoneNumber.substring(7)
-                }`
-              : '(Optional) Add your phone number for connection'}
-          </Link>
-
-          <Link to='?mode=account-details&nav=adress' className={styled.infos}>
-            <span className={styled.titles}>Adress : </span>
-            {adress
-              ? `${adress}`
-              : 'Enter your address so that the cargo can arrive'}
-          </Link>
-
-          <Link to='?mode=account-details&nav=email' className={styled.infos}>
-            <span className={styled.titles}>Email : </span>
-            {authCtx.currentEmail}
-          </Link>
-
-          <Link
-            to='?mode=account-details&nav=payment-details'
-            className={styled.infos}
-          >
-            <span className={styled.titles}>Payment Details : </span>
-            details
-          </Link>
-        </div>
+        <AccountInfo
+          adress={adress}
+          email={email}
+          payment={payment}
+          phoneNumber={phoneNumber}
+        />
       </CSSTransition>
 
       <CSSTransition
