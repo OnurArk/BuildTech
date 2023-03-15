@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { redirect } from 'react-router-dom';
-import { updateEmail } from 'firebase/auth';
+import { updateEmail, updateProfile } from 'firebase/auth';
 import { doc, collection, setDoc, serverTimestamp } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 
@@ -33,42 +33,29 @@ export default Profile;
 export async function action({ request }) {
   const toActionData = {};
 
+  // to send backend information
   const user = auth.currentUser;
   const userInfo = {};
 
   if (user) {
     userInfo.uid = user.uid;
-    console.log(user.uid);
   } else {
     toActionData.errMessage = 'No user Founded';
   }
 
   //  Search Keys
   const searchParams = new URL(request.url).searchParams;
+  const mode = searchParams.get('mode');
   const nav = searchParams.get('nav');
 
   // formating getted data
   const data = await request.formData();
 
-  // Phone
-  const phone = data.get('phone')?.trim();
-  // Reset email
-  const email = data.get('email')?.trim();
-  // Adress
-  const line1 = data.get('line1')?.trim();
-  const city = data.get('city')?.trim();
-  const state = data.get('state')?.trim();
-  const country = data.get('country')?.trim();
-
-  // Payment-Details
-  const namePayment = data.get('card-name')?.trim();
-  const cardNumber = data.get('card-number')?.trim();
-  const expiration = data.get('expiration')?.trim();
-  const securityCode = data.get('security-code')?.trim();
-
   // Update Phone Section
 
   if (nav === 'phone') {
+    const phone = data.get('phone')?.trim();
+
     const phoneRef = collection(db, 'phone');
 
     if (phone?.length < 11) {
@@ -102,6 +89,11 @@ export async function action({ request }) {
   // Update Adress Section
 
   if (nav === 'adress') {
+    const line1 = data.get('line1')?.trim();
+    const city = data.get('city')?.trim();
+    const state = data.get('state')?.trim();
+    const country = data.get('country')?.trim();
+
     const adressRef = collection(db, 'adress');
 
     if (line1.length < 20) {
@@ -155,6 +147,8 @@ export async function action({ request }) {
   // Update Email Section
 
   if (nav === 'email') {
+    const email = data.get('email')?.trim();
+
     if (
       typeof email !== 'string' ||
       !email.includes('@') ||
@@ -187,6 +181,11 @@ export async function action({ request }) {
   // Update Payment Data Section
 
   if (nav === 'payment-details') {
+    const namePayment = data.get('card-name')?.trim();
+    const cardNumber = data.get('card-number')?.trim();
+    const expiration = data.get('expiration')?.trim();
+    const securityCode = data.get('security-code')?.trim();
+
     const paymentRef = collection(db, 'payment');
 
     if (!namePayment) {
@@ -238,5 +237,38 @@ export async function action({ request }) {
       }
     }
   }
+
+  // Update User Name
+  if (mode === 'change-user-name') {
+    const userName = data.get('user-name');
+
+    if (userName.length < 2) {
+      toActionData.errMessage = 'User Name must be longer than 2 characters';
+    }
+
+    if (Object.keys(toActionData).length) {
+      return toActionData;
+    }
+
+    if (userName) {
+      try {
+        await updateProfile(auth.currentUser, {
+          displayName: userName,
+        });
+
+        const name = auth.currentUser.displayName;
+
+        return { name };
+      } catch (err) {
+        err.message = err.message.replace('Firebase: ', '');
+        err.message = err.message.replace(/ *\([^)]*\) */g, '');
+        toActionData.errMessage = err.message;
+
+        return toActionData;
+      }
+    }
+  }
+
+  // Default
   return redirect('/profile');
 }

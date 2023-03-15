@@ -8,6 +8,7 @@
 }
 
 .user-info-container {
+  max-width: 2000px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;

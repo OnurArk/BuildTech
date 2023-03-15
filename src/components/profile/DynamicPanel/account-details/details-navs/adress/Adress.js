@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Form, useActionData } from 'react-router-dom';
+import { Form, useActionData, Link } from 'react-router-dom';
 
 import AuthContext from '../../../../../../context/Auth-Context';
 import Input from '../../../../../ui/Input';
@@ -51,9 +51,17 @@ const Adress = () => {
           className={styled.shortAdresses}
         />
       </div>
-      <Button>Save</Button>
+      <div>
+        <Link to={'?mode=account-details'}>
+          <Button type='button' className={styled.btn}>
+            Cancel
+          </Button>
+        </Link>
+        <Button className={styled.btn}>Save</Button>
+      </div>
+
       {actionData?.errMessage && (
-        <p className={styled.err}>{actionData.errMessage}</p>
+        <p className={styled.err}>{actionData?.errMessage}</p>
       )}
     </Form>
   );

@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 // import { faker } from '@faker-js/faker';
 import AuthContext from '../../../../context/Auth-Context';
 
-import AccountInfo from './account-informations/AccountInfo';
+import AccountNavigation from './account-navigation/AccountNavigation';
 import PhoneNumb from './details-navs/phone-number/PhoneNumb';
 import Adress from './details-navs/adress/Adress';
 import EmailChange from './details-navs/email-change/EmailChange';
@@ -39,7 +39,7 @@ const AccountDetails = () => {
           exitActive: `${styled.close}`,
         }}
       >
-        <AccountInfo
+        <AccountNavigation
           adress={adress}
           email={email}
           payment={payment}

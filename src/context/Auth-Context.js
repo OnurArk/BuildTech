@@ -6,6 +6,8 @@ const AuthContext = React.createContext({
   profileBackground: {},
   profileBackgroundHandler: () => {},
   currentEmail: '',
+  currentUserName: '',
+  setCurrentUserName: () => {},
   currentPhone: '',
   currentAdress: '',
   currentPayment: '',
@@ -19,6 +21,7 @@ export const AuthContextProvider = (props) => {
   const [currentAdress, setCurrentAdress] = useState(null);
   const [currentPayment, setCurrentPayment] = useState(null);
   const [currentEmail, setCurrentEmail] = useState();
+  const [currentUserName, setCurrentUserName] = useState();
   const [currentUid, setCurrentUid] = useState();
 
   const [profileBackground, setProfileBackground] = useState({});
@@ -58,8 +61,10 @@ export const AuthContextProvider = (props) => {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
+      console.log(user);
       setCurrentEmail(user?.email);
       setCurrentUid(user?.uid);
+      setCurrentUserName(user?.displayName);
     });
     getUserData('phone');
     getUserData('adress');
@@ -79,9 +84,11 @@ export const AuthContextProvider = (props) => {
     currentPhone,
     currentAdress,
     currentEmail,
+    currentUserName,
     currentPayment,
     logout,
     getUserData,
+    setCurrentUserName,
   };
 
   return (

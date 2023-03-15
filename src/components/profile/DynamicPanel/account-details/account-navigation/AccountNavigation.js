@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import styled from './AccountInfo.module.css';
+import styled from './AccountNavigation.module.css';
 
-const AccountInfo = ({ adress, email, payment, phoneNumber }) => {
+const AccountNavigation = ({ adress, email, payment, phoneNumber }) => {
   return (
-    <div className={styled['account-informations']}>
+    <div className={styled['account-navigation']}>
       <Link to='?mode=account-details&nav=phone' className={styled.infos}>
         <span className={styled.titles}>Phone Number : </span>
         {phoneNumber
@@ -37,4 +37,4 @@ const AccountInfo = ({ adress, email, payment, phoneNumber }) => {
   );
 };
 
-export default AccountInfo;
+export default AccountNavigation;
