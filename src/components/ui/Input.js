@@ -8,7 +8,7 @@ const Input = forwardRef((props, ref) => {
 
   return (
     <div className={`${styled['input-container']}`} style={style}>
-      <label htmlFor={props.htmlFor} className={styled.label}>
+      <label htmlFor={props.name} className={styled.label}>
         {props.children}
       </label>
       <input
