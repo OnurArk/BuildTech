@@ -36,7 +36,7 @@ export async function action({ request }) {
   // to send backend information
   const user = auth.currentUser;
   const userInfo = {};
-
+  console.log(user);
   if (user) {
     userInfo.uid = user.uid;
   } else {
@@ -254,6 +254,7 @@ export async function action({ request }) {
       try {
         await updateProfile(auth.currentUser, {
           displayName: userName,
+          photoURL: user.photoURL,
         });
 
         const name = auth.currentUser.displayName;
@@ -266,6 +267,38 @@ export async function action({ request }) {
 
         return toActionData;
       }
+    }
+  }
+
+  // Photo Update
+  const urlPhoto = data.get('url-photo');
+  const localPhoto = data.get('local-photo');
+
+  if (urlPhoto || localPhoto.name) {
+    try {
+      if (urlPhoto) {
+        await updateProfile(auth.currentUser, {
+          displayName: user.displayName,
+          photoURL: urlPhoto,
+        });
+        const photo = user.photoURL;
+        return { photo };
+      }
+      if (localPhoto.name) {
+        await updateProfile(auth.currentUser, {
+          displayName: user.displayName,
+          photoURL: localPhoto,
+        });
+
+        const photo = user.photoURL;
+        return { photo };
+      }
+    } catch (err) {
+      err.message = err.message.replace('Firebase: ', '');
+      err.message = err.message.replace(/ *\([^)]*\) */g, '');
+      toActionData.errMessage = err.message;
+
+      return toActionData;
     }
   }
 
