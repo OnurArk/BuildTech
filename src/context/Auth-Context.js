@@ -8,13 +8,20 @@ const AuthContext = React.createContext({
   currentEmail: '',
   currentUserName: '',
   setCurrentUserName: () => {},
+  currentUserPhoto: '',
+  setCurrentUserPhoto: () => {},
+  currentPhotoProp: '',
+  setCurrentPhotoProp: () => {},
   currentPhone: '',
   currentAdress: '',
   currentPayment: '',
   currentUid: '',
   logout: () => {},
   getUserData: () => {},
+  isLoading: true,
 });
+
+const initialIsloading = true;
 
 export const AuthContextProvider = (props) => {
   const [currentPhone, setCurrentPhone] = useState(null);
@@ -22,7 +29,10 @@ export const AuthContextProvider = (props) => {
   const [currentPayment, setCurrentPayment] = useState(null);
   const [currentEmail, setCurrentEmail] = useState();
   const [currentUserName, setCurrentUserName] = useState();
+  const [currentUserPhoto, setCurrentUserPhoto] = useState();
+  const [currentPhotoProp, setCurrentPhotoProp] = useState();
   const [currentUid, setCurrentUid] = useState();
+  const [isLoading, setIsLoadin] = useState(initialIsloading);
 
   const [profileBackground, setProfileBackground] = useState({});
 
@@ -52,6 +62,9 @@ export const AuthContextProvider = (props) => {
         if (user && inputType === 'payment') {
           setCurrentPayment(user?.data);
         }
+        if (user && inputType === 'photoProp') {
+          setCurrentPhotoProp(user?.data);
+        }
       } catch (err) {
         console.log(err);
       }
@@ -60,23 +73,28 @@ export const AuthContextProvider = (props) => {
   );
 
   useEffect(() => {
+    // fetch user data from Firebase
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      console.log(user);
       setCurrentEmail(user?.email);
       setCurrentUid(user?.uid);
       setCurrentUserName(user?.displayName);
+      setCurrentUserPhoto(user?.photoURL);
     });
     getUserData('phone');
     getUserData('adress');
     getUserData('payment');
+    getUserData('photoProp');
 
+    // set isLoading to false after fetching
+
+    setIsLoadin(false);
     return unsubscribe;
   }, [getUserData]);
 
   const profileBackgroundHandler = (backgoundObj) => {
     setProfileBackground(backgoundObj);
   };
-
+  console.log(isLoading);
   const value = {
     profileBackground,
     profileBackgroundHandler,
@@ -84,11 +102,16 @@ export const AuthContextProvider = (props) => {
     currentPhone,
     currentAdress,
     currentEmail,
-    currentUserName,
     currentPayment,
     logout,
     getUserData,
+    currentUserName,
     setCurrentUserName,
+    currentUserPhoto,
+    setCurrentUserPhoto,
+    currentPhotoProp,
+    setCurrentPhotoProp,
+    isLoading,
   };
 
   return (
