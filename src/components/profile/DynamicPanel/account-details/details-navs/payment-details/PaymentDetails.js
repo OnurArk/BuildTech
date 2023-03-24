@@ -12,17 +12,17 @@ import styled from './PaymentDetails.module.css';
 
 const PaymentDetails = () => {
   const actionData = useActionData();
-  const propfileCtx = useContext(AuthContext);
+  const profileCtx = useContext(AuthContext);
 
   // When Updated Fetch the data right away
 
   const updatePaymentHandler = () => {
-    propfileCtx.getUserData('payment');
+    profileCtx.getUserData('payment');
   };
 
   // Styling Credit Card
 
-  const { logo, backgound, companyFilter } = ColorCompany(propfileCtx);
+  const { logo, backgound, companyFilter } = ColorCompany(profileCtx);
 
   // Card inputs Handling
 
