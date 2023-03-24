@@ -272,27 +272,34 @@ export async function action({ request }) {
 
   // Photo Update
   const urlPhoto = data.get('url-photo');
-  const localPhoto = data.get('local-photo');
 
-  if (urlPhoto || localPhoto.name) {
+  if (urlPhoto) {
+    const photoPropRef = collection(db, 'photoProp');
+    const position = data.get('position');
+    const size = data.get('size');
+
     try {
       if (urlPhoto) {
+        await setDoc(doc(photoPropRef, userInfo.uid), {
+          position,
+          size,
+        });
         await updateProfile(auth.currentUser, {
           displayName: user.displayName,
           photoURL: urlPhoto,
         });
         const photo = user.photoURL;
-        return { photo };
+        return { photo, position, size };
       }
-      if (localPhoto.name) {
-        await updateProfile(auth.currentUser, {
-          displayName: user.displayName,
-          photoURL: localPhoto,
-        });
+      // if (localPhoto.name) {
+      //   await updateProfile(auth.currentUser, {
+      //     displayName: user.displayName,
+      //     photoURL: filePhoto,
+      //   });
 
-        const photo = user.photoURL;
-        return { photo };
-      }
+      //   const photo = user.photoURL;
+      //   return { photo };
+      // }
     } catch (err) {
       err.message = err.message.replace('Firebase: ', '');
       err.message = err.message.replace(/ *\([^)]*\) */g, '');
