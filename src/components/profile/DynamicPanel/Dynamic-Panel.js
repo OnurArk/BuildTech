@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 
@@ -7,6 +6,7 @@ import ChangeUserName from './change-user/Change-User-Name';
 import AccountDetails from './account-details/AccountDetails';
 
 import styled from './Dynamic-Panel.module.css';
+
 const DynamicPanel = () => {
   const [searchParams] = useSearchParams();
   const mode = searchParams.get('mode');
@@ -17,10 +17,17 @@ const DynamicPanel = () => {
         mountOnEnter
         unmountOnExit
         in={mode === 'change-password'}
-        timeout={{ enter: 500, exit: mode ? 0 : 500 }}
+        timeout={{
+          enter: 500,
+          exit: mode && mode !== 'change-password' ? 0 : 400,
+        }}
         classNames={{
-          enterActive: `${styled.openSignup}`,
-          exitActive: `${styled.closeSignup}`,
+          enterActive: `${styled.open}`,
+          exitActive: `${
+            mode && mode !== 'change-password'
+              ? styled.closeRightAway
+              : styled.close
+          }`,
         }}
       >
         <ChangePassword />
@@ -29,10 +36,17 @@ const DynamicPanel = () => {
         mountOnEnter
         unmountOnExit
         in={mode === 'change-user-name'}
-        timeout={{ enter: 500, exit: mode ? 0 : 500 }}
+        timeout={{
+          enter: 500,
+          exit: mode && mode !== 'change-user-name' ? 0 : 500,
+        }}
         classNames={{
-          enterActive: `${styled.openSignup}`,
-          exitActive: `${styled.closeSignup}`,
+          enterActive: `${styled.open}`,
+          exitActive: `${
+            mode && mode !== 'change-user-name'
+              ? styled.closeRightAway
+              : styled.close
+          }`,
         }}
       >
         <ChangeUserName />
@@ -41,10 +55,17 @@ const DynamicPanel = () => {
         mountOnEnter
         unmountOnExit
         in={mode === 'account-details'}
-        timeout={{ enter: 500, exit: mode ? 0 : 500 }}
+        timeout={{
+          enter: 500,
+          exit: mode && mode !== 'account-details' ? 0 : 500,
+        }}
         classNames={{
-          enterActive: `${styled.openSignup}`,
-          exitActive: `${styled.closeSignup}`,
+          enterActive: `${styled.open}`,
+          exitActive: `${
+            mode && mode !== 'account-details'
+              ? styled.closeRightAway
+              : styled.close
+          }`,
         }}
       >
         <AccountDetails />

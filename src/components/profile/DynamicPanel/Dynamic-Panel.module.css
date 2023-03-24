@@ -8,12 +8,18 @@
   gap: 0.8rem;
 }
 
-.openSignup {
-  animation: modalOpen 1s ease-out forwards;
+.open {
+  animation: modalOpen 0.5s ease-out forwards;
 }
 
-.closeSignup {
-  animation: modalClosed 1s ease-out forwards;
+.close {
+  animation: modalClosed 0.4s ease-out forwards;
+}
+
+.closeRightAway {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
 }
 
 @keyframes modalOpen {
