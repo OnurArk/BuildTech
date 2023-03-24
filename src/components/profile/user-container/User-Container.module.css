@@ -12,6 +12,13 @@
   max-height: 200px;
   max-width: 200px;
   border-radius: 100%;
+
+  background: rgba(0, 0, 0, 0.841);
+  background-image: var(--urlPhoto);
+  background-position: var(--position);
+  background-size: var(--size);
+  background-clip: border-box;
+  background-repeat: no-repeat;
 }
 
 .img {
