@@ -35,3 +35,71 @@
   gap: 2rem;
   z-index: 1000;
 }
+
+.preView {
+  position: relative;
+  overflow: hidden;
+  height: 20vw;
+  width: 20vw;
+  max-height: 200px;
+  max-width: 200px;
+  border-radius: 100%;
+
+  background: rgba(0, 0, 0, 0.841);
+  background-image: var(--urlPhoto);
+  background-position: var(--position);
+  background-size: var(--size);
+  background-clip: border-box;
+  background-repeat: no-repeat;
+}
+
+.selectContainer {
+  position: relative;
+  display: flex;
+  align-self: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.typeSelect {
+  text-align: center;
+  width: 10vw;
+  min-width: 6rem;
+  max-width: 15rem;
+  height: 1.2rem;
+  padding: 0 1.1rem 0 0.7rem;
+
+  transition: all 0.3s ease-in-out;
+  background-color: #4d5061;
+  color: white;
+
+  appearance: none;
+  outline: 0;
+  border: 0;
+  outline: 0;
+  /* Reset */
+  /* appearance: none;
+  border: 0;
+  outline: 0;
+  font: inherit; */
+}
+.typeSelect:hover {
+  background-color: #595b65;
+}
+
+.custom-arrow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  background-color: rgb(0, 0, 0);
+  height: 100%;
+  width: 1.2rem;
+  pointer-events: none;
+  /*so under the span can be clickeble*/
+}
+
+.icon {
+  color: white;
+}
