@@ -10,6 +10,8 @@
   /* rgb(57, 27, 112) */
   background: var(--backgoundCard);
   transform: scale(1, 1);
+
+  cursor: pointer;
 }
 
 .credit-card-container::before {
