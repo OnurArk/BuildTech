@@ -51,6 +51,17 @@ export async function action({ request }) {
   // formating getted data
   const data = await request.formData();
 
+  function formatErrorMessage(err) {
+    err.message = err.message.replace('Firebase: ', '');
+    err.message = err.message.replace(/ *\([^)]*\) */g, '');
+    return err.message;
+  }
+
+  function handleError(err) {
+    toActionData.errMessage = formatErrorMessage(err);
+    return toActionData;
+  }
+
   // Update Phone Section
 
   if (nav === 'phone') {
@@ -58,15 +69,14 @@ export async function action({ request }) {
 
     const phoneRef = collection(db, 'phone');
 
+    if (isNaN(phone)) {
+      toActionData.errMessage = 'That not a number. Please enter number!';
+      return toActionData;
+    }
+
     if (phone?.length < 11) {
       toActionData.errMessage =
         'Your phone number at least should have 11 digits!';
-    }
-    if (isNaN(phone)) {
-      toActionData.errMessage = 'That not a number. Please enter number!';
-    }
-
-    if (Object.keys(toActionData).length) {
       return toActionData;
     }
 
@@ -78,10 +88,7 @@ export async function action({ request }) {
         });
         return redirect('?mode=account-details');
       } catch (err) {
-        err.message = err.message.replace('Firebase: ', '');
-        err.message = err.message.replace(/ *\([^)]*\) */g, '');
-        toActionData.errMessage = err.message;
-        return toActionData;
+        return handleError(err);
       }
     }
   }
@@ -135,11 +142,7 @@ export async function action({ request }) {
         });
         return redirect('?mode=account-details');
       } catch (err) {
-        err.message = err.message.replace('Firebase: ', '');
-        err.message = err.message.replace(/ *\([^)]*\) */g, '');
-        toActionData.errMessage = err.message;
-
-        return toActionData;
+        return handleError(err);
       }
     }
   }
@@ -158,9 +161,6 @@ export async function action({ request }) {
       toActionData.errType
         ? toActionData.errType.push('email')
         : (toActionData.errType = ['email']);
-    }
-
-    if (Object.keys(toActionData).length) {
       return toActionData;
     }
 
@@ -170,10 +170,7 @@ export async function action({ request }) {
         await auth.signOut();
         return redirect('/authentication');
       } catch (err) {
-        err.message = err.message.replace('Firebase: ', '');
-        err.message = err.message.replace(/ *\([^)]*\) */g, '');
-        toActionData.errMessage = err.message;
-        return toActionData;
+        return handleError(err);
       }
     }
   }
@@ -191,28 +188,28 @@ export async function action({ request }) {
     if (!namePayment) {
       toActionData.errMessage = 'Card name must be enter';
       toActionData.errType
-        ? toActionData.errType.push('nameErr')
-        : (toActionData.errType = ['nameErr']);
+        ? toActionData.errType.push('card-name')
+        : (toActionData.errType = ['card-name']);
     }
 
     if (!cardNumber) {
       toActionData.errMessage = 'Card Number must be enter';
       toActionData.errType
-        ? toActionData.errType.push('cardNumberErr')
-        : (toActionData.errType = ['cardNumberErr']);
+        ? toActionData.errType.push('card-number')
+        : (toActionData.errType = ['card-number']);
     }
 
     if (!expiration) {
       toActionData.errMessage = 'Expiration must be enter';
       toActionData.errType
-        ? toActionData.errType.push('expirationErr')
-        : (toActionData.errType = ['expirationErr']);
+        ? toActionData.errType.push('expiration')
+        : (toActionData.errType = ['expiration']);
     }
     if (!securityCode) {
       toActionData.errMessage = 'Security code must be enter';
       toActionData.errType
-        ? toActionData.errType.push('securityErr')
-        : (toActionData.errType = ['securityErr']);
+        ? toActionData.errType.push('security-code')
+        : (toActionData.errType = ['security-code']);
     }
 
     if (Object.keys(toActionData).length) {
@@ -229,11 +226,7 @@ export async function action({ request }) {
         });
         return redirect('?mode=account-details');
       } catch (err) {
-        err.message = err.message.replace('Firebase: ', '');
-        err.message = err.message.replace(/ *\([^)]*\) */g, '');
-        toActionData.errMessage = err.message;
-
-        return toActionData;
+        return handleError(err);
       }
     }
   }
@@ -261,11 +254,7 @@ export async function action({ request }) {
 
         return { name };
       } catch (err) {
-        err.message = err.message.replace('Firebase: ', '');
-        err.message = err.message.replace(/ *\([^)]*\) */g, '');
-        toActionData.errMessage = err.message;
-
-        return toActionData;
+        return handleError(err);
       }
     }
   }
@@ -277,6 +266,12 @@ export async function action({ request }) {
     const photoPropRef = collection(db, 'photoProp');
     const position = data.get('position');
     const size = data.get('size');
+
+    if (!urlPhoto.startsWith('https://')) {
+      toActionData.errMessage = 'That not a proper https format';
+      toActionData.errType = 'url-photo';
+      return toActionData;
+    }
 
     try {
       if (urlPhoto) {
@@ -301,11 +296,7 @@ export async function action({ request }) {
       //   return { photo };
       // }
     } catch (err) {
-      err.message = err.message.replace('Firebase: ', '');
-      err.message = err.message.replace(/ *\([^)]*\) */g, '');
-      toActionData.errMessage = err.message;
-
-      return toActionData;
+      return handleError(err);
     }
   }
 
