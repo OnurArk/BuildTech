@@ -69,6 +69,11 @@ function UploadPhoto() {
         <Input
           name='url-photo'
           type='text'
+          className={
+            actionData?.errType.includes('url-photo')
+              ? `${styled.invalid}`
+              : null
+          }
           placeholder='Enter image URL'
           value={preViewPhoto || ''}
           onChange={(event) => {
@@ -103,6 +108,9 @@ function UploadPhoto() {
         </div>
 
         <Button>Upload</Button>
+        {actionData?.errMessage && (
+          <p className={styled.err}>{actionData.errMessage.trim()}</p>
+        )}
       </Form>
     </div>
   );

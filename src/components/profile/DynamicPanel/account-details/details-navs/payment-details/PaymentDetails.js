@@ -54,20 +54,28 @@ const PaymentDetails = () => {
       />
       <Input
         name='card-name'
-        className={styled.bigInput}
+        className={`${styled.bigInput} ${
+          actionData?.errType.includes('card-name') ? `${styled.invalid}` : null
+        }`}
         value={nameVal || ''}
         placeholder='FIRSTNAME LASTNAME'
         maxLength={30}
+        minLength={2}
         onChange={nameHandlerChange}
       >
         Name
       </Input>
       <Input
         name='card-number'
-        className={styled.bigInput}
+        className={`${styled.bigInput} ${
+          actionData?.errType.includes('card-number')
+            ? `${styled.invalid}`
+            : null
+        }`}
         placeholder='XXXX XXXX XXXX XXXX'
         inputMode='numeric'
         maxLength={19}
+        minLength={19}
         value={formatCardNumber(numericVal || '')}
         onInput={onlyNumber}
         required
@@ -78,10 +86,15 @@ const PaymentDetails = () => {
       <div className={styled.inputs}>
         <Input
           name='expiration'
-          className={styled.smallInput}
+          className={`${styled.smallInput} ${
+            actionData?.errType.includes('expiration')
+              ? `${styled.invalid}`
+              : null
+          }`}
           type='text'
           placeholder='MM/YY'
           maxLength={5}
+          minLength={5}
           value={expiryVal || ''}
           onChange={handleExpiryChange}
           required
@@ -90,10 +103,15 @@ const PaymentDetails = () => {
         </Input>
         <Input
           name='security-code'
-          className={styled.smallInput}
+          className={`${styled.smallInput} ${
+            actionData?.errType.includes('security-code')
+              ? `${styled.invalid}`
+              : null
+          }`}
           value={securityVal || ''}
           onChange={handleSecurityCodeChange}
           maxLength={4}
+          minLength={3}
         >
           Security Code
         </Input>

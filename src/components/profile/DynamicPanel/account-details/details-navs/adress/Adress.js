@@ -15,6 +15,7 @@ const Adress = () => {
   const getNewAdress = () => {
     authCtx.getUserData('adress');
   };
+  console.log(actionData?.errType);
 
   return (
     <Form
@@ -26,14 +27,18 @@ const Adress = () => {
         type='text'
         name='line1'
         placeholder='Address Line'
-        className={styled.longAdress}
+        className={`${styled.longAdress} ${
+          actionData?.errType.includes('line1') ? styled.invalid : null
+        }`}
       />
       <div className={styled['short-adress-container']}>
         <Input
           type='text'
           name='country'
           placeholder='Country'
-          className={styled.shortAdresses}
+          className={`${styled.shortAdresses} ${
+            actionData?.errType.includes('country') ? styled.invalid : null
+          }`}
         />
 
         <span>:</span>
@@ -48,7 +53,9 @@ const Adress = () => {
           type='text'
           name='city'
           placeholder='City'
-          className={styled.shortAdresses}
+          className={`${styled.shortAdresses} ${
+            actionData?.errType.includes('city') ? styled.invalid : null
+          }`}
         />
       </div>
       <div>
