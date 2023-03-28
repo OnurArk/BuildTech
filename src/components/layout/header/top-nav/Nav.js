@@ -14,29 +14,23 @@ const Nav = (props) => {
     navigate('authentication');
   };
 
-  const activeStyle = {
-    borderBottom: props.isInAuth ? 'solid 3px #fff' : 'solid 3px #293462',
-  };
-
   return (
     <div className={styled.nav} style={props.styling}>
       <NavLink
-        to='/home'
+        to='home'
         className={({ isActive }) =>
-          `${isActive ? null : `${styled.links}`} ${styled.linkColor}`
+          `${isActive ? styled.activeLink : styled.links} ${styled.linkColor}`
         }
-        style={({ isActive }) => (isActive ? activeStyle : null)}
       >
         Home
       </NavLink>
 
       {authCtx.currentEmail && (
         <NavLink
-          to='/cart'
+          to='cart'
           className={({ isActive }) =>
-            `${isActive ? null : `${styled.links}`} ${styled.linkColor}`
+            `${isActive ? styled.activeLink : styled.links} ${styled.linkColor}`
           }
-          style={({ isActive }) => (isActive ? activeStyle : null)}
         >
           Cart
         </NavLink>
@@ -45,9 +39,8 @@ const Nav = (props) => {
         <NavLink
           to='profile'
           className={({ isActive }) =>
-            `${isActive ? null : `${styled.links}`} ${styled.linkColor}`
+            `${isActive ? styled.activeLink : styled.links} ${styled.linkColor}`
           }
-          style={({ isActive }) => (isActive ? activeStyle : null)}
         >
           Profile
         </NavLink>
@@ -55,7 +48,7 @@ const Nav = (props) => {
       {authCtx.currentEmail && (
         <NavLink
           onClick={logout}
-          to='/authentication'
+          to='authentication'
           className={`${styled.links} ${styled.linkColor}`}
         >
           Logout
@@ -63,11 +56,11 @@ const Nav = (props) => {
       )}
       {!authCtx.currentEmail && (
         <NavLink
-          to='/authentication'
+          to='authentication'
           className={({ isActive }) =>
-            `${isActive ? null : `${styled.links}`} ${styled.linkColor}`
+            `${isActive ? styled.activeLink : styled.links} ${styled.linkColor}`
           }
-          style={({ isActive }) => (isActive ? activeStyle : null)}
+          // end = {true} sadece bu sonda bitiyorsa bu ektif kalır ve end koyarsan defaul olarak true demek zaten
         >
           Login
         </NavLink>

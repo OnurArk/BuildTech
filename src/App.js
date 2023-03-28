@@ -8,7 +8,7 @@ import {
 
 import RootLayout from './pages/RootLayout';
 import Home, { loader as slideLoader } from './pages/Home';
-import Deals from './pages/Deals';
+
 import Cart from './pages/Cart';
 import Profile, { action as accountAction } from './pages/Profile';
 import ProductDetail, {
@@ -16,16 +16,14 @@ import ProductDetail, {
 } from './components/content/Producs/producsDetails/ProductDetail';
 import Authentication, { action as authAction } from './pages/Authentication';
 
+import ErrorPage from './pages/ErrorPage';
+
 import './App.css';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route element={<RootLayout />}>
-      <Route
-        path='/'
-        element={<Navigate replace to='/home' />}
-        errorElement={<h1 className='centered err'>Some Thing Went Wrong!</h1>}
-      />
+    <Route path='/' element={<RootLayout />} errorElement={<ErrorPage />}>
+      <Route index element={<Navigate replace key={'toHome'} to='/home' />} />
       <Route path='/home' element={<Home />} loader={slideLoader} />
       <Route
         path='/home/:itemId'
@@ -33,7 +31,6 @@ const router = createBrowserRouter(
         loader={detailLoader}
       />
 
-      <Route path='/deals' element={<Deals />} />
       <Route path='/cart' element={<Cart />} />
       <Route path='/profile' element={<Profile />} action={accountAction} />
       <Route

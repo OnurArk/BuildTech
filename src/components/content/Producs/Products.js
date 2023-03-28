@@ -1,6 +1,6 @@
-import Item from "./Item/Item";
-import { useSelector } from "react-redux";
-import styled from "./Products.module.css";
+import Item from './Item/Item';
+import { useSelector } from 'react-redux';
+import styled from './Products.module.css';
 const Products = () => {
   const items = useSelector((state) => state.items.preferedItems);
 

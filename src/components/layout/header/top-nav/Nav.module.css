@@ -14,10 +14,15 @@
   transition: transform 250ms ease-in-out;
 }
 
+.links:focus:after,
 .links:hover:after {
   transform: scaleX(1);
 }
 
 .linkColor {
   color: var(--text-color);
+}
+
+.activeLink {
+  border-bottom: var(--border-bottom);
 }

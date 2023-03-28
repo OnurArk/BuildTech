@@ -11,6 +11,7 @@ const Header = () => {
   const styleColor = {
     '--text-color': isInAuth ? '#fff' : '#293462',
     '--background-color': isInAuth ? '#000' : '#f2f2f2',
+    '--border-bottom': isInAuth ? 'solid 3px #fff' : 'solid 3px #293462',
   };
 
   return (
