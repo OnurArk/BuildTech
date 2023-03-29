@@ -1,0 +1,27 @@
+.credit-card-container {
+  position: relative;
+  width: 21rem;
+  height: 14rem;
+  padding: 1.5rem;
+  border-radius: 22px;
+  font-family: 'Raleway';
+  box-shadow: 2px 5px 10px black;
+  overflow: hidden;
+  /* rgb(57, 27, 112) */
+  background: var(--backgoundCard);
+  transform: scale(1, 1);
+
+  cursor: pointer;
+}
+
+.credit-card-container::before {
+  content: '';
+  display: block;
+  position: absolute;
+  border-radius: 100%;
+  width: 100%;
+  height: 300px;
+  background-color: var(--backgoundWave);
+  right: var(--right);
+  bottom: -95%;
+}
