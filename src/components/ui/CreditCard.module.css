@@ -82,6 +82,13 @@
     #f2f2f2 80%,
     #f2f2f2 100%
   );
+  color: black;
+  font-size: 1.4rem;
+  font-family: 'Rock Salt', cursive;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .security-code {
