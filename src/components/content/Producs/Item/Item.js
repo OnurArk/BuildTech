@@ -6,7 +6,7 @@ import Card from '../../../ui/Card';
 import styled from './Item.module.css';
 import { BsFillHeartFill } from 'react-icons/bs';
 
-const Item = ({ img, name, price, type, id }) => {
+const Item = ({ img, name, price, id }) => {
   const onFav = () => {};
 
   return (
