@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, useLoaderData } from 'react-router-dom';
+import { useParams, useLoaderData, json } from 'react-router-dom';
 
 import ItemDetailSlide from './detail-Left/ItemDetailSlide';
 import FeaturesTable from './detail-Left/FeaturesTable';
@@ -23,7 +23,9 @@ const ProductDetail = () => {
   // Sliderdaki item id ile adresteki item id sini karşılaştırıldığı yer
   const items = useSelector((state) => state.detailItem.items);
   const item = items.find((item) => item.id === itemId);
-
+  if (!item) {
+    throw json({}, { status: 404, statusText: 'Can not find this item!' });
+  }
   // TO DO Eğer item yoksa hata mesajı gönder
 
   // Item deiyının dispaci burda yapılır
