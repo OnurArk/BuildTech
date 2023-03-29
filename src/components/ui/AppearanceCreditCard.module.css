@@ -11,6 +11,7 @@
   background: var(--backgoundCard);
   transform: scale(1, 1);
 
+  user-select: none;
   cursor: pointer;
 }
 
