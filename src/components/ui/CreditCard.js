@@ -104,7 +104,7 @@ const CreditCard = ({
           style={{ '--backgoundWave': containerStyle['--backgoundWave'] }}
         />
         <div className={styled['sucurity-container']}>
-          <div className={styled['signature-panel']}></div>
+          <div className={styled['signature-panel']}>{nameVal}</div>
           <div className={styled['security-code']}>{securityVal}</div>
         </div>
       </AppearanceCreditCard>
