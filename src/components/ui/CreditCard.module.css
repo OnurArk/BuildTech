@@ -1,30 +1,4 @@
-.credit-card-container {
-  position: relative;
-  width: 21rem;
-  height: 14rem;
-  padding: 1.5rem;
-  border-radius: 22px;
-  font-family: 'Raleway';
-  box-shadow: 2px 5px 10px black;
-  overflow: hidden;
-  /* rgb(57, 27, 112) */
-  background: var(--backgoundCard);
-  transform: scale(1, 1);
-
-  cursor: pointer;
-}
-
-.credit-card-container::before {
-  content: '';
-  display: block;
-  position: absolute;
-  border-radius: 100%;
-  width: 100%;
-  height: 300px;
-  background-color: var(--backgoundWave);
-  right: -25%;
-  bottom: -95%;
-}
+/* FRONT OF CARD*/
 
 .chip {
   position: absolute;
@@ -77,4 +51,50 @@
   color: var(--colorText);
   font-size: 0.5rem;
   padding: 0.1rem;
+}
+
+/* BACK OF CARD*/
+
+.sucurity-container {
+  position: absolute;
+  left: 1.5rem;
+  right: 10%;
+  bottom: 7rem;
+  text-align: center;
+
+  display: flex;
+}
+
+.signature-panel {
+  flex: 4;
+  height: 1.8rem;
+  border: 1px solid #ddd;
+  background: linear-gradient(
+    to bottom,
+    #f2f2f2 0%,
+    #f2f2f2 20%,
+    #d8d2db 20%,
+    #d8d2db 40%,
+    #f2f2f2 40%,
+    #f2f2f2 60%,
+    #d8d2db 60%,
+    #d8d2db 80%,
+    #f2f2f2 80%,
+    #f2f2f2 100%
+  );
+}
+
+.security-code {
+  flex: 0.7;
+  padding: 0.3rem;
+  background-color: rgb(108, 108, 108);
+}
+
+.panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+
+  height: 2rem;
+  background-color: var(--backgoundWave);
 }
