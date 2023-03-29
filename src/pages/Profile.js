@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { redirect } from 'react-router-dom';
+import { json, redirect } from 'react-router-dom';
 import { updateEmail, updateProfile } from 'firebase/auth';
 
 import {
@@ -319,40 +319,43 @@ export async function loader() {
 
   // fetch user data from Firebase
   auth.onAuthStateChanged((user) => {
-    userInfo.email = user?.email;
-    userInfo.uid = user?.uid;
-    userInfo.userName = user?.displayName;
-    userInfo.userPhoto = user?.photoURL;
+    if (user) {
+      userInfo.email = user?.email;
+      userInfo.uid = user?.uid;
+      userInfo.userName = user?.displayName;
+      userInfo.userPhoto = user?.photoURL;
+    } else {
+      // throw new Response(JSON.stringify({ message: 'No user founded!' }), {
+      //   status: 404,
+      // });
+      // or
+      throw json({ message: 'No user founded!' }, { status: 403 });
+    }
   });
 
   const getUserData = async (inputType) => {
-    try {
-      const userRef = collection(db, inputType);
-      const docRef = query(userRef, auth?.currentUser?.uid);
-      const docSnap = await getDocs(docRef);
+    const userRef = collection(db, inputType);
+    const docRef = query(userRef, auth?.currentUser?.uid);
+    const docSnap = await getDocs(docRef);
 
-      const mappedData = docSnap.docs.map((doc) => ({
-        id: doc.id,
-        data: doc.data(),
-      }));
+    const mappedData = docSnap.docs.map((doc) => ({
+      id: doc.id,
+      data: doc.data(),
+    }));
 
-      const user = mappedData.find(
-        (user) => user.id === auth?.currentUser?.uid
-      );
-      if (inputType === 'phone') {
-        userInfo.phone = user?.data.phone;
-      }
-      if (inputType === 'adress') {
-        userInfo.adress = user?.data.adress;
-      }
-      if (inputType === 'payment') {
-        userInfo.payment = user?.data;
-      }
-      if (inputType === 'photoProp') {
-        userInfo.photoProp = user?.data;
-      }
-    } catch (err) {
-      console.log(err);
+    const user = mappedData.find((user) => user.id === auth?.currentUser?.uid);
+
+    if (inputType === 'phone') {
+      userInfo.phone = user?.data.phone;
+    }
+    if (inputType === 'adress') {
+      userInfo.adress = user?.data.adress;
+    }
+    if (inputType === 'payment') {
+      userInfo.payment = user?.data;
+    }
+    if (inputType === 'photoProp') {
+      userInfo.photoProp = user?.data;
     }
   };
 
