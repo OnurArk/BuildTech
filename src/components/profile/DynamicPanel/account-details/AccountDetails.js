@@ -1,8 +1,7 @@
-import React, { useContext } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { Suspense } from 'react';
+import { useLoaderData, Await, useSearchParams } from 'react-router-dom';
 
 // import { faker } from '@faker-js/faker';
-import AuthContext from '../../../../context/Auth-Context';
 
 import AccountNavigation from './account-navigation/AccountNavigation';
 import PhoneNumb from './details-navs/phone-number/PhoneNumb';
@@ -10,17 +9,14 @@ import Adress from './details-navs/adress/Adress';
 import EmailChange from './details-navs/email-change/EmailChange';
 import PaymentDetails from './details-navs/payment-details/PaymentDetails';
 
+import ErrorPage from '../../../../pages/ErrorPage';
 import styled from './AccountDetails.module.css';
 import { CSSTransition } from 'react-transition-group';
+
 // import { AiFillEdit } from 'react-icons/ai';
 
 const AccountDetails = () => {
-  const authCtx = useContext(AuthContext);
-
-  const phoneNumber = authCtx.currentPhone;
-  const adress = authCtx.currentAdress;
-  const email = authCtx.currentEmail;
-  const payment = authCtx.currentPayment;
+  const loaderData = useLoaderData();
 
   const [searchParams] = useSearchParams();
   const nav = searchParams.get('nav');
@@ -28,25 +24,28 @@ const AccountDetails = () => {
   return (
     <div className={styled['account-details']}>
       <h2 className={styled.title}>Account Details</h2>
-      <CSSTransition
-        mountOnEnter
-        unmountOnExit
-        key={'account-informations'}
-        in={!nav}
-        timeout={{ enter: 500, exit: 0 }}
-        classNames={{
-          enterActive: `${styled.open}`,
-          exitActive: `${styled.close}`,
-        }}
-      >
-        <AccountNavigation
-          adress={adress}
-          email={email}
-          payment={payment}
-          phoneNumber={phoneNumber}
-        />
-      </CSSTransition>
-
+      <Suspense fallback='Loading...'>
+        <Await resolve={loaderData} errorElement={ErrorPage}>
+          <CSSTransition
+            mountOnEnter
+            unmountOnExit
+            key={'account-informations'}
+            in={!nav}
+            timeout={{ enter: 500, exit: 0 }}
+            classNames={{
+              enterActive: `${styled.open}`,
+              exitActive: `${styled.close}`,
+            }}
+          >
+            <AccountNavigation
+              adress={loaderData?.adress}
+              email={loaderData?.email}
+              payment={loaderData?.payment}
+              phoneNumber={loaderData?.phone}
+            />
+          </CSSTransition>
+        </Await>
+      </Suspense>
       <CSSTransition
         mountOnEnter
         unmountOnExit
@@ -58,7 +57,7 @@ const AccountDetails = () => {
           exitActive: `${styled.close}`,
         }}
       >
-        <PhoneNumb phoneNumber={phoneNumber} />
+        <PhoneNumb phoneNumber={loaderData?.currentPhone} />
       </CSSTransition>
       <CSSTransition
         mountOnEnter

@@ -1,7 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Form, Link, useActionData } from 'react-router-dom';
 
-import AuthContext from '../../../../../../context/Auth-Context';
 import Input from '../../../../../ui/Input';
 import Button from '../../../../../ui/Button';
 
@@ -10,18 +9,8 @@ import styled from './PhoneNumb.module.css';
 const PhoneNumb = ({ phoneNumber }) => {
   const actionData = useActionData();
 
-  const authCtx = useContext(AuthContext);
-
-  const getNewNumber = () => {
-    authCtx.getUserData('phone');
-  };
-
   return (
-    <Form
-      method='post'
-      onSubmit={getNewNumber}
-      className={styled['phone-container']}
-    >
+    <Form method='post' className={styled['phone-container']}>
       <Input
         name='phone'
         type='tel'

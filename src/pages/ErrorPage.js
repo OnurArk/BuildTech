@@ -1,9 +1,12 @@
 import React from 'react';
+import { useRouteError } from 'react-router-dom';
 
 import Header from '../components/layout/header/Header';
 import Footer from '../components/layout/footer/Footer';
 
 const ErrorPage = () => {
+  let error = useRouteError();
+  console.log(error);
   return (
     <>
       <Header />

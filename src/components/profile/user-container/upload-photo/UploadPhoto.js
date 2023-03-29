@@ -1,7 +1,6 @@
-import React, { useContext, useState } from 'react';
-import { Form, Link, useActionData, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Form, Link, useActionData } from 'react-router-dom';
 
-import AuthContext from '../../../../context/Auth-Context';
 import Input from '../../../ui/Input';
 import Button from '../../../ui/Button';
 
@@ -20,21 +19,6 @@ function UploadPhoto() {
   const [size, setSize] = useState();
 
   const actionData = useActionData();
-
-  const profileCtx = useContext(AuthContext);
-
-  const navigate = useNavigate();
-
-  if (actionData?.photo) {
-    if (actionData?.position || actionData?.size) {
-      profileCtx.setCurrentPhotoProp({
-        position: actionData?.position,
-        size: actionData?.size,
-      });
-    }
-    profileCtx.setCurrentUserPhoto(actionData.photo);
-    navigate('/profile');
-  }
 
   const positionHandler = (event) => {
     setPosition(event.target.value);

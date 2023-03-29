@@ -36,5 +36,5 @@ const AccountNavigation = ({ adress, email, payment, phoneNumber }) => {
     </div>
   );
 };
-
+// Todo icon bul editable olduğunu gösteren
 export default AccountNavigation;

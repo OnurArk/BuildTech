@@ -1,7 +1,15 @@
 import React, { useContext } from 'react';
 import { redirect } from 'react-router-dom';
 import { updateEmail, updateProfile } from 'firebase/auth';
-import { doc, collection, setDoc, serverTimestamp } from 'firebase/firestore';
+
+import {
+  doc,
+  getDocs,
+  query,
+  collection,
+  setDoc,
+  serverTimestamp,
+} from 'firebase/firestore';
 import { auth, db } from '../firebase';
 
 import AuthContext from '../context/Auth-Context';
@@ -12,12 +20,12 @@ import DynamicPanel from '../components/profile/DynamicPanel/Dynamic-Panel';
 import styled from '../styles/Profile.module.css';
 
 const Profile = () => {
-  const propfileCtx = useContext(AuthContext);
+  const profileCtx = useContext(AuthContext);
 
   return (
     <div
       className={styled['profile-container']}
-      style={propfileCtx.profileBackground}
+      style={profileCtx.profileBackground}
     >
       <div className={styled['user-info-container']}>
         <UserContainer />
@@ -239,6 +247,10 @@ export async function action({ request }) {
       toActionData.errMessage = 'User Name must be longer than 2 characters';
     }
 
+    if (userName.length > 20) {
+      toActionData.errMessage = 'User Name must be less than 20 characters';
+    }
+
     if (Object.keys(toActionData).length) {
       return toActionData;
     }
@@ -250,9 +262,7 @@ export async function action({ request }) {
           photoURL: user.photoURL,
         });
 
-        const name = auth.currentUser.displayName;
-
-        return { name };
+        return redirect('/profile');
       } catch (err) {
         return handleError(err);
       }
@@ -283,8 +293,8 @@ export async function action({ request }) {
           displayName: user.displayName,
           photoURL: urlPhoto,
         });
-        const photo = user.photoURL;
-        return { photo, position, size };
+
+        return redirect('/profile');
       }
       // if (localPhoto.name) {
       //   await updateProfile(auth.currentUser, {
@@ -302,4 +312,56 @@ export async function action({ request }) {
 
   // Default
   return redirect('/profile');
+}
+
+export async function loader() {
+  const userInfo = {};
+
+  // fetch user data from Firebase
+  auth.onAuthStateChanged((user) => {
+    userInfo.email = user?.email;
+    userInfo.uid = user?.uid;
+    userInfo.userName = user?.displayName;
+    userInfo.userPhoto = user?.photoURL;
+  });
+
+  const getUserData = async (inputType) => {
+    try {
+      const userRef = collection(db, inputType);
+      const docRef = query(userRef, auth?.currentUser?.uid);
+      const docSnap = await getDocs(docRef);
+
+      const mappedData = docSnap.docs.map((doc) => ({
+        id: doc.id,
+        data: doc.data(),
+      }));
+
+      const user = mappedData.find(
+        (user) => user.id === auth?.currentUser?.uid
+      );
+      if (inputType === 'phone') {
+        userInfo.phone = user?.data.phone;
+      }
+      if (inputType === 'adress') {
+        userInfo.adress = user?.data.adress;
+      }
+      if (inputType === 'payment') {
+        userInfo.payment = user?.data;
+      }
+      if (inputType === 'photoProp') {
+        userInfo.photoProp = user?.data;
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  await Promise.all([
+    getUserData('phone'),
+    getUserData('adress'),
+    getUserData('payment'),
+    getUserData('photoProp'),
+  ]);
+  console.log(userInfo);
+  return userInfo;
 }

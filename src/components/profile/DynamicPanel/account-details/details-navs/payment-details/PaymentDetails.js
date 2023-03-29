@@ -14,12 +14,6 @@ const PaymentDetails = () => {
   const actionData = useActionData();
   const profileCtx = useContext(AuthContext);
 
-  // When Updated Fetch the data right away
-
-  const updatePaymentHandler = () => {
-    profileCtx.getUserData('payment');
-  };
-
   // Styling Credit Card
 
   const { logo, backgound, companyFilter } = ColorCompany(profileCtx);
@@ -39,11 +33,7 @@ const PaymentDetails = () => {
   } = CardInputChange(companyFilter);
 
   return (
-    <Form
-      method='post'
-      onSubmit={updatePaymentHandler}
-      className={styled['patment-detail-container']}
-    >
+    <Form method='post' className={styled['patment-detail-container']}>
       <CreditCard
         numericVal={numericVal}
         expiryVal={expiryVal}

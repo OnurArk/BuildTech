@@ -10,7 +10,10 @@ import RootLayout from './pages/RootLayout';
 import Home, { loader as slideLoader } from './pages/Home';
 
 import Cart from './pages/Cart';
-import Profile, { action as accountAction } from './pages/Profile';
+import Profile, {
+  action as accountAction,
+  loader as profileLoader,
+} from './pages/Profile';
 import ProductDetail, {
   loader as detailLoader,
 } from './components/content/Producs/producsDetails/ProductDetail';
@@ -32,7 +35,12 @@ const router = createBrowserRouter(
       />
 
       <Route path='/cart' element={<Cart />} />
-      <Route path='/profile' element={<Profile />} action={accountAction} />
+      <Route
+        path='/profile'
+        element={<Profile />}
+        loader={profileLoader}
+        action={accountAction}
+      />
       <Route
         path='authentication'
         element={<Authentication />}

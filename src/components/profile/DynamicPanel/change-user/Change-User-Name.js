@@ -1,23 +1,12 @@
-import React from 'react';
-import { Form, Link, useActionData, useNavigate } from 'react-router-dom';
+import { Form, Link, useActionData } from 'react-router-dom';
 
-import AuthContext from '../../../../context/Auth-Context';
 import Input from '../../../ui/Input';
 import Button from '../../../ui/Button';
 
 import styled from './Change-User-Name.module.css';
-import { useContext } from 'react';
 
 const ChangeUserName = () => {
   const actionData = useActionData();
-  const profileCtx = useContext(AuthContext);
-
-  const navigate = useNavigate();
-
-  if (actionData?.name) {
-    profileCtx.setCurrentUserName(actionData.name);
-    navigate('/profile');
-  }
 
   return (
     <Form method='post' className={styled.form}>
@@ -25,6 +14,7 @@ const ChangeUserName = () => {
       <Input
         name='user-name'
         type='text'
+        className={actionData?.errMessage ? styled.invalid : null}
         placeholder='At least 5 characters'
         maxLength={20}
       >
