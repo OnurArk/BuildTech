@@ -4,6 +4,8 @@
   align-items: center;
   flex: 1;
   height: 100px;
+  min-width: 4.5rem;
+  max-width: 6rem;
   padding: 0.2rem;
 
   clip-path: polygon(0 0, 100% 0, 100% 75%, 75% 100%, 25% 100%, 0 75%);
