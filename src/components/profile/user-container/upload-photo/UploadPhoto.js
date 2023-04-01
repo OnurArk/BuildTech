@@ -54,7 +54,7 @@ function UploadPhoto() {
           name='url-photo'
           type='text'
           className={
-            actionData?.errType.includes('url-photo')
+            actionData?.errType?.includes('url-photo')
               ? `${styled.invalid}`
               : null
           }
@@ -92,6 +92,10 @@ function UploadPhoto() {
         </div>
 
         <Button>Upload</Button>
+        <Link to='/profile'>
+          <Button>Cancel</Button>
+        </Link>
+
         {actionData?.errMessage && (
           <p className={styled.err}>{actionData.errMessage.trim()}</p>
         )}
