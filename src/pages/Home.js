@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useRouteLoaderData } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { fetchİtemsData } from '../store/item-action';
@@ -12,7 +12,7 @@ import api from '../util/api';
 import styled from '../styles/Home.module.css';
 
 const Home = () => {
-  const loaderData = useLoaderData();
+  const loaderData = useRouteLoaderData('carousel-load');
   const dispatch = useDispatch();
 
   useEffect(() => {
