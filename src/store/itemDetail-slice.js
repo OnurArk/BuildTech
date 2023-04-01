@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const itemDetailSlice = createSlice({
-  name: "detailedItem",
+  name: 'detailedItem',
   initialState: { items: [] },
   reducers: {
     replaceItem(state, action) {

@@ -1,16 +1,16 @@
-import { itemActions } from "./item-slice";
-import { detailAction } from "./itemDetail-slice";
+import { itemActions } from './item-slice';
+import { detailAction } from './itemDetail-slice';
 
 export const fetchİtemsData = () => {
   return async (dispatch) => {
     const url =
-      "https://pcbuilder-items-default-rtdb.firebaseio.com/items.json";
+      'https://pcbuilder-items-default-rtdb.firebaseio.com/items.json';
 
     const fetchData = async () => {
       const reponse = await fetch(url);
 
       if (!reponse.ok) {
-        throw new Error("Could not fetch cart data!");
+        throw new Error('Could not fetch cart data!');
       }
 
       const data = await reponse.json();
