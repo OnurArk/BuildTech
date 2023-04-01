@@ -15,10 +15,10 @@ const PhoneNumb = ({ phoneNumber }) => {
         name='phone'
         type='tel'
         inputGridRow={1}
-        maxLength={11}
-        minLenght={11}
+        maxLength={10}
+        minLenght={10}
         placeholder={
-          phoneNumber ? `Current No: ${phoneNumber}` : `Example: 05001234567`
+          phoneNumber ? `Current No: ${phoneNumber}` : `Example: 5001234567`
         }
         className={actionData?.errMessage ? `${styled.invalid}` : null}
       >
