@@ -1,6 +1,10 @@
 import React, { useContext } from 'react';
-import { json, redirect } from 'react-router-dom';
-import { updateEmail, updateProfile } from 'firebase/auth';
+import { defer, json, redirect } from 'react-router-dom';
+import {
+  updateEmail,
+  updateProfile,
+  sendPasswordResetEmail,
+} from 'firebase/auth';
 
 import {
   doc,
@@ -41,6 +45,8 @@ export default Profile;
 export async function action({ request }) {
   const toActionData = {};
 
+  // const method = request.method // method that camin is caps up like "POST" not "post"
+
   // to send backend information
   const user = auth.currentUser;
   const userInfo = {};
@@ -59,6 +65,8 @@ export async function action({ request }) {
   // formating getted data
   const data = await request.formData();
 
+  // function to optimize code
+
   function formatErrorMessage(err) {
     err.message = err.message.replace('Firebase: ', '');
     err.message = err.message.replace(/ *\([^)]*\) */g, '');
@@ -70,6 +78,15 @@ export async function action({ request }) {
     return toActionData;
   }
 
+  function handlerErrAndType(message, type) {
+    toActionData.errMessage = message;
+    if (type) {
+      toActionData.errType
+        ? toActionData.errType.push(type)
+        : (toActionData.errType = [type]);
+    }
+  }
+
   // Update Phone Section
 
   if (nav === 'phone') {
@@ -77,18 +94,23 @@ export async function action({ request }) {
 
     const phoneRef = collection(db, 'phone');
 
+    if (phone.startsWith('0')) {
+      handlerErrAndType('Please dont start with 0, example: 5XX XXX XXXX');
+      return toActionData;
+    }
+
     if (isNaN(phone)) {
-      toActionData.errMessage = 'That not a number. Please enter number!';
+      handlerErrAndType('That not a number. Please enter number!');
       return toActionData;
     }
 
-    if (phone?.length < 11) {
-      toActionData.errMessage =
-        'Your phone number at least should have 11 digits!';
+    if (phone?.length < 10) {
+      handlerErrAndType('Your phone number at least should contain 10 digits!');
+
       return toActionData;
     }
 
-    if (phone && phone?.length === 11) {
+    if (phone && phone?.length === 10) {
       try {
         await setDoc(doc(phoneRef, userInfo.uid), {
           phone: phone,
@@ -112,28 +134,22 @@ export async function action({ request }) {
     const adressRef = collection(db, 'adress');
 
     if (line1.length < 20) {
-      toActionData.errMessage = 'Please enter at leat 20 characters';
+      handlerErrAndType(
+        'Please enter at least 20 characters to Adress line',
+        'line1'
+      );
     }
 
     if (!line1) {
-      toActionData.errMessage = 'You should fill the Adress line';
-      toActionData.errType
-        ? toActionData.errType.push('line1')
-        : (toActionData.errType = ['line1']);
+      handlerErrAndType('You should fill the Adress line', 'line1');
     }
 
     if (!country) {
-      toActionData.errMessage = 'You should enter a Country';
-      toActionData.errType
-        ? toActionData.errType.push('country')
-        : (toActionData.errType = ['country']);
+      handlerErrAndType('You should enter a Country', 'country');
     }
 
     if (!city) {
-      toActionData.errMessage = 'You should enter a City';
-      toActionData.errType
-        ? toActionData.errType.push('city')
-        : (toActionData.errType = ['city']);
+      handlerErrAndType('You should enter a City', 'city');
     }
     if (Object.keys(toActionData).length) {
       return toActionData;
@@ -165,10 +181,7 @@ export async function action({ request }) {
       !email.includes('@') ||
       !email.includes('.com')
     ) {
-      toActionData.errMessage = 'Email address must contain @ and .com';
-      toActionData.errType
-        ? toActionData.errType.push('email')
-        : (toActionData.errType = ['email']);
+      handlerErrAndType('Email address must contain @ and .com', 'email');
       return toActionData;
     }
 
@@ -186,51 +199,46 @@ export async function action({ request }) {
   // Update Payment Data Section
 
   if (nav === 'payment-details') {
-    const namePayment = data.get('card-name')?.trim();
-    const cardNumber = data.get('card-number')?.trim();
-    const expiration = data.get('expiration')?.trim();
-    const securityCode = data.get('security-code')?.trim();
+    const paymentData = {
+      namePayment: data.get('card-name')?.trim(),
+      cardNumber: data.get('card-number')?.trim(),
+      expiration: data.get('expiration')?.trim(),
+      securityCode: data.get('security-code')?.trim(),
+    };
 
     const paymentRef = collection(db, 'payment');
 
-    if (!namePayment) {
-      toActionData.errMessage = 'Card name must be enter';
-      toActionData.errType
-        ? toActionData.errType.push('card-name')
-        : (toActionData.errType = ['card-name']);
+    if (!paymentData.namePayment) {
+      handlerErrAndType('Name must be enter', 'card-name');
     }
 
-    if (!cardNumber) {
-      toActionData.errMessage = 'Card Number must be enter';
-      toActionData.errType
-        ? toActionData.errType.push('card-number')
-        : (toActionData.errType = ['card-number']);
+    if (!paymentData.cardNumber) {
+      handlerErrAndType('Card Number must be enter', 'card-number');
     }
 
-    if (!expiration) {
-      toActionData.errMessage = 'Expiration must be enter';
-      toActionData.errType
-        ? toActionData.errType.push('expiration')
-        : (toActionData.errType = ['expiration']);
+    if (!paymentData.expiration) {
+      handlerErrAndType('Expiration must be enter', 'expiration');
     }
-    if (!securityCode) {
-      toActionData.errMessage = 'Security code must be enter';
-      toActionData.errType
-        ? toActionData.errType.push('security-code')
-        : (toActionData.errType = ['security-code']);
+    if (!paymentData.securityCode) {
+      handlerErrAndType('Security code must be enter', 'security-code');
     }
 
     if (Object.keys(toActionData).length) {
       return toActionData;
     }
 
-    if (namePayment && cardNumber && expiration && securityCode) {
+    if (
+      paymentData.namePayment &&
+      paymentData.cardNumber &&
+      paymentData.expiration &&
+      paymentData.securityCode
+    ) {
       try {
         await setDoc(doc(paymentRef, userInfo.uid), {
-          namePayment: namePayment,
-          cardNumber: cardNumber,
-          expiration: expiration,
-          securityCode: securityCode,
+          namePayment: paymentData.namePayment,
+          cardNumber: paymentData.cardNumber,
+          expiration: paymentData.expiration,
+          securityCode: paymentData.securityCode,
         });
         return redirect('?mode=account-details');
       } catch (err) {
@@ -243,12 +251,16 @@ export async function action({ request }) {
   if (mode === 'change-user-name') {
     const userName = data.get('user-name');
 
-    if (userName.length < 2) {
-      toActionData.errMessage = 'User Name must be longer than 2 characters';
+    if (!/^[a-z ]+[0-9]{0,4}$/i.test(userName)) {
+      handlerErrAndType('User Name must be contain at least three letters');
+    }
+
+    if (userName.length <= 2) {
+      handlerErrAndType('User Name must be longer than 2 characters');
     }
 
     if (userName.length > 20) {
-      toActionData.errMessage = 'User Name must be less than 20 characters';
+      handlerErrAndType('User Name must be less than 20 characters');
     }
 
     if (Object.keys(toActionData).length) {
@@ -269,6 +281,17 @@ export async function action({ request }) {
     }
   }
 
+  // Reset User Password
+  if (mode === 'change-password') {
+    try {
+      await sendPasswordResetEmail(auth, user.email);
+
+      return redirect('/authentication');
+    } catch (err) {
+      return handleError(err);
+    }
+  }
+
   // Photo Update
   const urlPhoto = data.get('url-photo');
 
@@ -278,8 +301,7 @@ export async function action({ request }) {
     const size = data.get('size');
 
     if (!urlPhoto.startsWith('https://')) {
-      toActionData.errMessage = 'That not a proper https format';
-      toActionData.errType = 'url-photo';
+      handlerErrAndType('That not a proper https format', 'url-photo');
       return toActionData;
     }
 
@@ -314,7 +336,7 @@ export async function action({ request }) {
   return redirect('/profile');
 }
 
-export async function loader() {
+async function getAuthInfo() {
   const userInfo = {};
 
   // fetch user data from Firebase
@@ -333,38 +355,47 @@ export async function loader() {
     }
   });
 
-  const getUserData = async (inputType) => {
-    const userRef = collection(db, inputType);
-    const docRef = query(userRef, auth?.currentUser?.uid);
-    const docSnap = await getDocs(docRef);
-
-    const mappedData = docSnap.docs.map((doc) => ({
-      id: doc.id,
-      data: doc.data(),
-    }));
-
-    const user = mappedData.find((user) => user.id === auth?.currentUser?.uid);
-
-    if (inputType === 'phone') {
-      userInfo.phone = user?.data.phone;
-    }
-    if (inputType === 'adress') {
-      userInfo.adress = user?.data.adress;
-    }
-    if (inputType === 'payment') {
-      userInfo.payment = user?.data;
-    }
-    if (inputType === 'photoProp') {
-      userInfo.photoProp = user?.data;
-    }
-  };
-
-  await Promise.all([
-    getUserData('phone'),
-    getUserData('adress'),
-    getUserData('payment'),
-    getUserData('photoProp'),
-  ]);
-  console.log(userInfo);
   return userInfo;
+}
+
+async function getUserData(inputType) {
+  const userInfo = {};
+
+  const userRef = collection(db, inputType);
+  const docRef = query(userRef, auth?.currentUser?.uid);
+  const docSnap = await getDocs(docRef);
+
+  const mappedData = docSnap.docs.map((doc) => ({
+    id: doc.id,
+    data: doc.data(),
+  }));
+
+  const user = mappedData.find((user) => user.id === auth?.currentUser?.uid);
+
+  if (inputType === 'phone') {
+    userInfo.phone = user?.data.phone;
+    return userInfo.phone;
+  }
+  if (inputType === 'adress') {
+    userInfo.adress = user?.data.adress;
+    return userInfo.adress;
+  }
+  if (inputType === 'payment') {
+    userInfo.payment = user?.data;
+    return userInfo.payment;
+  }
+  if (inputType === 'photoProp') {
+    userInfo.photoProp = user?.data;
+    return userInfo.photoProp;
+  }
+}
+
+export async function loader() {
+  return defer({
+    authInfo: await getAuthInfo(),
+    phone: getUserData('phone'),
+    adress: getUserData('adress'),
+    payment: getUserData('payment'),
+    photoProp: await getUserData('photoProp'),
+  });
 }
