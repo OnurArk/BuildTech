@@ -7,6 +7,7 @@ import styled from './Item.module.css';
 import { BsFillHeartFill } from 'react-icons/bs';
 
 const Item = ({ img, name, price, id }) => {
+  // TO DO favoriye ekle kalp le
   const onFav = () => {};
 
   return (
