@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import styled from "./FeaturesTable.module.css";
+import styled from './FeaturesTable.module.css';
 const FeaturesTable = ({ item }) => {
   const [featureTable, setFeatureTable] = useState([]);
 
@@ -9,14 +9,14 @@ const FeaturesTable = ({ item }) => {
     for (let key in item?.features) {
       featureTable.push(
         <p className={styled.features} key={key}>
-          {key} : {item.features[key]}
+          {key} : {item?.features[key]}
         </p>
       );
     }
     setFeatureTable(featureTable);
   }, [item]);
 
-  return <div className={styled["features-container"]}>{featureTable}</div>;
+  return <div className={styled['features-container']}>{featureTable}</div>;
 };
 
 export default FeaturesTable;

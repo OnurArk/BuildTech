@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import styled from "./ItemDetailSlide.module.css";
-import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
+import styled from './ItemDetailSlide.module.css';
+import { BiLeftArrow, BiRightArrow } from 'react-icons/bi';
 
 const ItemDetailSlide = ({ item }) => {
   const [slideIndex, setSlideIndex] = useState(0);
 
   const forwardSlide = () => {
-    if (slideIndex === item.images.length - 1) {
+    if (slideIndex === item?.images?.length - 1) {
       setSlideIndex(0);
       return;
     }
@@ -16,13 +16,13 @@ const ItemDetailSlide = ({ item }) => {
 
   const backwardSlide = () => {
     if (slideIndex === 0) {
-      setSlideIndex(item.images.length - 1);
+      setSlideIndex(item?.images?.length - 1);
       return;
     }
     setSlideIndex((preIndex) => preIndex - 1);
   };
 
-  const itemImages = item?.images.map((item, itemIndex) => {
+  const itemImages = item?.images?.map((item, itemIndex) => {
     return (
       <div
         className={styled.smallImage}
@@ -43,7 +43,7 @@ const ItemDetailSlide = ({ item }) => {
         <div className={styled.slideImg} style={slideStyles} />
         <BiRightArrow className={styled.icon} onClick={forwardSlide} />
       </div>
-      <div className={styled["smallImg-container"]}>{itemImages}</div>
+      <div className={styled['smallImg-container']}>{itemImages}</div>
     </>
   );
 };
