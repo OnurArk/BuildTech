@@ -14,9 +14,7 @@ import Profile, {
   action as accountAction,
   loader as profileLoader,
 } from './pages/Profile';
-import ProductDetail, {
-  loader as detailLoader,
-} from './components/content/Producs/producsDetails/ProductDetail';
+import ProductDetail from './pages/ProductDetail';
 import Authentication, { action as authAction } from './pages/Authentication';
 
 import ErrorPage from './pages/ErrorPage';
@@ -27,12 +25,10 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<RootLayout />} errorElement={<ErrorPage />}>
       <Route index element={<Navigate replace key={'toHome'} to='/home' />} />
-      <Route path='/home' element={<Home />} loader={slideLoader} />
-      <Route
-        path='/home/:itemId'
-        element={<ProductDetail />}
-        loader={detailLoader}
-      />
+      <Route path='home' id='carousel-load' loader={slideLoader}>
+        <Route index element={<Home />} />
+        <Route path=':itemId' element={<ProductDetail />} />
+      </Route>
 
       <Route path='/cart' element={<Cart />} />
       <Route
