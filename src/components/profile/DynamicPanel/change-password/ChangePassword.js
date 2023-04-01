@@ -1,30 +1,34 @@
 import React from 'react';
-import { Form } from 'react-router-dom';
+import { Form, useActionData, Link, useNavigation } from 'react-router-dom';
 
-import Input from '../../../ui/Input';
+import Button from '../../../ui/Button';
 import styled from './ChangePassword.module.css';
 
 const ChangePassword = () => {
+  const actionData = useActionData();
+  const navigation = useNavigation();
+
+  const isSubmitting = navigation.state === 'submitting';
+  // TO DO loading ekle
   return (
-    <Form className={styled.form}>
+    <Form method='put' className={styled.form}>
       <h2 className={styled.title}>Change Your Password</h2>
-      <Input
-        name='password'
-        type='password'
-        placeholder='Enter current password'
-      >
-        Current Password
-      </Input>
-      <Input
-        name='password'
-        type='password'
-        placeholder='At least 6 characters'
-      >
-        New Password
-      </Input>
-      <Input name='password' type='password' placeholder='Confirm new password'>
-        Confirm New Password
-      </Input>
+      <h4>Are you sure to reset you password?</h4>
+
+      <div>
+        <Link to={'/profile'}>
+          <Button type='button' className={styled.btn} disabled={isSubmitting}>
+            Cancel
+          </Button>
+        </Link>
+        <Button className={styled.btn} disabled={isSubmitting}>
+          {isSubmitting ? '..Sending' : 'Reset Password'}
+        </Button>
+      </div>
+
+      {actionData?.errMessage && (
+        <p className={styled.err}>{actionData?.errMessage}</p>
+      )}
     </Form>
   );
 };
