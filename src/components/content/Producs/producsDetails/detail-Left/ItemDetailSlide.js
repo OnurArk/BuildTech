@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import styled from './ItemDetailSlide.module.css';
 import { BiLeftArrow, BiRightArrow } from 'react-icons/bi';
 
-const ItemDetailSlide = ({ item }) => {
+const ItemDetailSlide = ({ images }) => {
   const [slideIndex, setSlideIndex] = useState(0);
 
   const forwardSlide = () => {
-    if (slideIndex === item?.images?.length - 1) {
+    if (slideIndex === images?.length - 1) {
       setSlideIndex(0);
       return;
     }
@@ -16,17 +16,17 @@ const ItemDetailSlide = ({ item }) => {
 
   const backwardSlide = () => {
     if (slideIndex === 0) {
-      setSlideIndex(item?.images?.length - 1);
+      setSlideIndex(images?.length - 1);
       return;
     }
     setSlideIndex((preIndex) => preIndex - 1);
   };
 
-  const itemImages = item?.images?.map((item, itemIndex) => {
+  const itemImages = images?.map((itemUrl, itemIndex) => {
     return (
       <div
         className={styled.smallImage}
-        style={{ backgroundImage: `url(${item}) ` }}
+        style={{ backgroundImage: `url(${itemUrl}) ` }}
         onMouseOver={() => setSlideIndex(itemIndex)}
         key={itemIndex}
       />
@@ -34,7 +34,7 @@ const ItemDetailSlide = ({ item }) => {
   });
 
   const slideStyles = {
-    backgroundImage: `url(${item?.images[slideIndex]}) `,
+    backgroundImage: `url(${images[slideIndex]}) `,
   };
   return (
     <>

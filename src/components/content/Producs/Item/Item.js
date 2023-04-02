@@ -6,9 +6,13 @@ import Card from '../../../ui/Card';
 import styled from './Item.module.css';
 import { BsFillHeartFill } from 'react-icons/bs';
 
-const Item = ({ img, name, price, id }) => {
+const Item = ({ img, name, price, id, isLoading }) => {
   // TO DO favoriye ekle kalp le
   const onFav = () => {};
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Card className={styled.card}>

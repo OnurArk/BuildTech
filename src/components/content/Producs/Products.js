@@ -4,6 +4,10 @@ import styled from './Products.module.css';
 const Products = () => {
   const items = useSelector((state) => state.items.preferedItems);
 
+  if (!items) {
+    return <div>Loading...</div>;
+  }
+
   const itemData = items.map((item) => (
     <Item
       img={item.img}
@@ -12,6 +16,7 @@ const Products = () => {
       type={item.type}
       key={item.id}
       id={item.id}
+      isLoading={!items}
     />
   ));
 

@@ -1,47 +1,63 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useParams, useRouteLoaderData } from 'react-router-dom';
+import React, { Suspense } from 'react';
+
+import { Await, defer, useLoaderData } from 'react-router-dom';
 
 import ItemDetailSlide from '../components/content/Producs/producsDetails/detail-Left/ItemDetailSlide';
 import FeaturesTable from '../components/content/Producs/producsDetails/detail-Left/FeaturesTable';
-import { fetchİtemsData } from '../store/item-action';
 import InfoContainer from '../components/content/Producs/producsDetails/infoContainer/InfoContainer';
+import api from '../util/api';
 
 import styled from '../styles/ProductDetail.module.css';
 
 const ProductDetail = () => {
-  const dispatch = useDispatch();
-
-  // Carouselin datası loaderdan geliyor
-  const loaderData = useRouteLoaderData('carousel-load');
-
-  // Adresse yüklenmiş prodğın item idsini almak için
-  const params = useParams();
-  const { itemId } = params;
-
   // Sliderdaki item id ile adresteki item id sini karşılaştırıldığı yer
-  const items = useSelector((state) => state.detailItem.items);
-  const item = items.find((item) => item.id === itemId);
-
-  // Item deiyının dispaci burda yapılır
-
-  useEffect(() => {
-    dispatch(fetchİtemsData());
-  }, [dispatch]);
+  const { crauselData, item } = useLoaderData();
 
   return (
     <div className={styled['detail-container']}>
       <div className={styled['image-container']}>
-        <ItemDetailSlide item={item} />
-        <FeaturesTable item={item} />
+        <Suspense fallback={<p>...Loading</p>}>
+          <Await resolve={item}>
+            {(item) => (
+              <>
+                <ItemDetailSlide images={item.images || []} />
+                <FeaturesTable features={item.features} />
+              </>
+            )}
+          </Await>
+        </Suspense>
       </div>
-      <InfoContainer
-        className={styled['info-container']}
-        item={item}
-        loaderData={loaderData}
-      />
+      <Suspense fallback={<p>...Loading</p>}>
+        <Await resolve={{ crauselData, item }}>
+          {(loadedData) => {
+            const { crauselData, item } = loadedData;
+
+            return (
+              <InfoContainer
+                className={styled['info-container']}
+                item={item}
+                loaderData={Object.values(crauselData)}
+              />
+            );
+          }}
+        </Await>
+      </Suspense>
     </div>
   );
 };
 
 export default ProductDetail;
+
+export async function loader({ params }) {
+  const { requestFetch } = api();
+  const itemId = params.itemId;
+
+  const carouselAdress = 'carousel.json';
+
+  const itemAdress = `items/${itemId}.json`;
+
+  return defer({
+    item: await requestFetch({ adress: itemAdress }),
+    crauselData: await requestFetch({ adress: carouselAdress }),
+  });
+}

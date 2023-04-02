@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from 'react';
 
-import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
-import { FaCircle } from "react-icons/fa";
-import styled from "./Slide.module.css";
+import { BiLeftArrow, BiRightArrow } from 'react-icons/bi';
+import { FaCircle } from 'react-icons/fa';
+import styled from './Slide.module.css';
 
 const Slide = ({ slideData, className, isArrowsActive }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -46,14 +46,14 @@ const Slide = ({ slideData, className, isArrowsActive }) => {
   };
 
   return (
-    <div className={`${styled["slide-section"]} ${className}`}>
-      <div className={styled["slide-container"]}>
+    <div className={`${styled['slide-section']} ${className}`}>
+      <div className={styled['slide-container']}>
         {isArrowsActive && (
           <BiLeftArrow className={styled.icons} onClick={previousImage} />
         )}
         <a
-          target="_blank"
-          rel="noreferrer"
+          target='_blank'
+          rel='noreferrer'
           href={`${slideData[currentIndex]?.linkTo}`}
         >
           <div className={styled.slide} style={slideStyles} />
@@ -62,7 +62,7 @@ const Slide = ({ slideData, className, isArrowsActive }) => {
           <BiRightArrow className={styled.icons} onClick={forwardImage} />
         )}
       </div>
-      <div className={styled["circles-container"]}>{carouselDots}</div>
+      <div className={styled['circles-container']}>{carouselDots}</div>
     </div>
   );
 };

@@ -4,14 +4,14 @@ const api = () => {
       const response = await fetch(
         `https://pcbuilder-items-default-rtdb.firebaseio.com/${requestConfig.adress}`,
         {
-          merhod: requestConfig.method ? requestConfig.method : "GET",
+          merhod: requestConfig.method ? requestConfig.method : 'GET',
           body: requestConfig.body ? JSON.stringify(requestConfig.body) : null,
           headers: requestConfig.header ? requestConfig.header : {},
         }
       );
 
       if (!response.ok) {
-        throw new Error("Response Failed");
+        throw new Error('Response Failed');
       }
 
       const data = await response.json();

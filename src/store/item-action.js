@@ -1,6 +1,4 @@
 import { itemActions } from './item-slice';
-import { detailAction } from './itemDetail-slice';
-
 export const fetchİtemsData = () => {
   return async (dispatch) => {
     const url =
@@ -36,7 +34,6 @@ export const fetchİtemsData = () => {
       }
 
       dispatch(itemActions.replaceItem(items || []));
-      dispatch(detailAction.replaceItem(items || []));
     } catch (err) {
       console.log(err);
     }
