@@ -34,12 +34,18 @@ const Slide = ({ slideData, className, isArrowsActive }) => {
     const active = slideindex === currentIndex ? styled.active : null;
     return (
       <FaCircle
-        className={`${styled.circles} ${styled.icons} ${active}`}
+        className={`${styled.circles} ${active}`}
         key={slideindex}
         onClick={() => setCurrentIndex(slideindex)}
       />
     );
   });
+
+  const containerStyle = {
+    '--ratio': slideData[currentIndex]?.ratio
+      ? slideData[currentIndex]?.ratio
+      : '1.42/1',
+  };
 
   const slideStyles = {
     backgroundImage: `url(${slideData[currentIndex]?.url}) `,
@@ -47,9 +53,12 @@ const Slide = ({ slideData, className, isArrowsActive }) => {
 
   return (
     <div className={`${styled['slide-section']} ${className}`}>
-      <div className={styled['slide-container']}>
+      <div className={styled['slide-container']} style={containerStyle}>
         {isArrowsActive && (
-          <BiLeftArrow className={styled.icons} onClick={previousImage} />
+          <BiLeftArrow
+            className={`${styled.icons} ${styled.leftArrow}`}
+            onClick={previousImage}
+          />
         )}
         <a
           target='_blank'
@@ -59,7 +68,10 @@ const Slide = ({ slideData, className, isArrowsActive }) => {
           <div className={styled.slide} style={slideStyles} />
         </a>
         {isArrowsActive && (
-          <BiRightArrow className={styled.icons} onClick={forwardImage} />
+          <BiRightArrow
+            className={`${styled.icons} ${styled.rightArrow}`}
+            onClick={forwardImage}
+          />
         )}
       </div>
       <div className={styled['circles-container']}>{carouselDots}</div>

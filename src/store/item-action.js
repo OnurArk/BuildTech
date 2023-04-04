@@ -1,5 +1,5 @@
 import { itemActions } from './item-slice';
-export const fetchİtemsData = () => {
+export const fetchItemsData = () => {
   return async (dispatch) => {
     const url =
       'https://pcbuilder-items-default-rtdb.firebaseio.com/items.json';

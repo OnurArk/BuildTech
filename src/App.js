@@ -7,6 +7,7 @@ import {
   Navigate,
 } from 'react-router-dom';
 
+import ProductDetail from './pages/ProductDetail';
 import RootLayout from './pages/RootLayout';
 import { action as authAction } from './pages/Authentication';
 import Cart from './pages/Cart';
@@ -14,9 +15,9 @@ import Cart from './pages/Cart';
 import ErrorPage from './pages/ErrorPage';
 
 import './App.css';
+import Loaders from './components/ui/Loaders';
 
 const Home = lazy(() => import('./pages/Home'));
-const ProductDetail = lazy(() => import('./pages/ProductDetail'));
 
 const Profile = lazy(() => import('./pages/Profile'));
 const Authentication = lazy(() => import('./pages/Authentication'));
@@ -32,7 +33,17 @@ const router = createBrowserRouter(
             import('./pages/Home').then((module) => module.loader())
           }
           element={
-            <Suspense fallback={<p>Loading...</p>}>
+            <Suspense
+              fallback={
+                <Loaders
+                  size={90}
+                  type={'DotSpinner'}
+                  height={'100vh'}
+                  width={'100%'}
+                  bacgroundColor={'rgb(36, 144, 251)'}
+                />
+              }
+            >
               <Home />
             </Suspense>
           }
@@ -44,11 +55,7 @@ const router = createBrowserRouter(
               module.loader(meta)
             )
           }
-          element={
-            <Suspense fallback={<p>Loading...</p>}>
-              <ProductDetail />
-            </Suspense>
-          }
+          element={<ProductDetail />}
         />
       </Route>
 
@@ -56,7 +63,17 @@ const router = createBrowserRouter(
       <Route
         path='/profile'
         element={
-          <Suspense fallback={<p>Loading...</p>}>
+          <Suspense
+            fallback={
+              <Loaders
+                size={90}
+                type={'DotSpinner'}
+                height={'100vh'}
+                width={'100%'}
+                bacgroundColor={'rgb(36, 144, 251)'}
+              />
+            }
+          >
             <Profile />
           </Suspense>
         }
@@ -70,7 +87,17 @@ const router = createBrowserRouter(
       <Route
         path='authentication'
         element={
-          <Suspense fallback={<p>Loading...</p>}>
+          <Suspense
+            fallback={
+              <Loaders
+                size={90}
+                type={'DotSpinner'}
+                height={'100vh'}
+                width={'100%'}
+                bacgroundColor={'rgb(36, 144, 251)'}
+              />
+            }
+          >
             <Authentication />
           </Suspense>
         }
@@ -81,7 +108,7 @@ const router = createBrowserRouter(
 );
 
 function App() {
-  return <RouterProvider router={router} fallbackElement={<p>Loading...</p>} />;
+  return <RouterProvider router={router} />;
 }
 
 export default App;

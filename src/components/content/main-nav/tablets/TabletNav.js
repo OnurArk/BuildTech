@@ -1,31 +1,40 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { itemActions } from '../../../../store/item-slice';
 
 import styled from './TabletNav.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { RxDoubleArrowDown } from 'react-icons/rx';
 
-const TabletNav = (props) => {
+const TabletNav = ({ id, type, icon, Icon2 }) => {
+  const [isActive, setIsActive] = useState(false);
   const dispatch = useDispatch();
 
-  const onFiltedCategory = () => {
-    props.isActive
-      ? dispatch(itemActions.removeFilter({ type: props.type }))
-      : dispatch(itemActions.itemFilter({ type: props.type, id: props.id }));
+  const toggleActive = () => {
+    setIsActive((pre) => !pre);
+    onFiltedCategory();
+  };
 
-    props.onActive(props.id);
+  const onFiltedCategory = () => {
+    isActive
+      ? dispatch(itemActions.removeFilter({ type }))
+      : dispatch(itemActions.itemFilter({ type, id }));
   };
 
   return (
     <Fragment>
       <div
-        className={`${styled['tablet-container']} ${props.className}`}
-        onClick={onFiltedCategory}
+        className={`${styled['tablet-container']} ${
+          isActive ? styled.active : null
+        }`}
+        onClick={toggleActive}
       >
-        <props.icon className={styled.icon} size='2rem' />
-        <p className={styled.typeName}>{props.type}</p>
-        {props.isActive && <RxDoubleArrowDown className={styled.closeIcon} />}
+        {icon && <FontAwesomeIcon className={styled.icon} icon={icon} />}
+        {Icon2 && <Icon2 className={styled.icon} size='2rem' />}
+
+        <p className={styled.typeName}>{type}</p>
+        {isActive && <RxDoubleArrowDown className={styled.closeIcon} />}
       </div>
     </Fragment>
   );

@@ -34,3 +34,11 @@
 .closeIcon {
   margin: auto;
 }
+
+.active {
+  transform: translateY(-37px);
+}
+
+.icon {
+  font-size: 1.5rem;
+}

@@ -15,6 +15,7 @@ const Input = forwardRef((props, ref) => {
         className={`${styled.input} ${props.className}`}
         ref={ref}
         type={props.type}
+        id={props.name}
         name={props.name}
         placeholder={props.placeholder}
         onChange={props.onChange}

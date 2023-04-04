@@ -8,40 +8,30 @@ import InfoContainer from '../components/content/Producs/producsDetails/infoCont
 import api from '../util/api';
 
 import styled from '../styles/ProductDetail.module.css';
+import Loaders from '../components/ui/Loaders';
 
 const ProductDetail = () => {
   // Sliderdaki item id ile adresteki item id sini karşılaştırıldığı yer
-  const { crauselData, item } = useLoaderData();
+  const { item } = useLoaderData();
 
   return (
     <div className={styled['detail-container']}>
       <div className={styled['image-container']}>
-        <Suspense fallback={<p>...Loading</p>}>
+        <Suspense fallback={<Loaders />}>
           <Await resolve={item}>
-            {(item) => (
-              <>
-                <ItemDetailSlide images={item.images || []} />
-                <FeaturesTable features={item.features} />
-              </>
-            )}
+            {(item) => {
+              console.log(item.features);
+              return (
+                <>
+                  <ItemDetailSlide images={item.images || []} />
+                  <FeaturesTable features={Object.entries(item.features)} />
+                </>
+              );
+            }}
           </Await>
         </Suspense>
       </div>
-      <Suspense fallback={<p>...Loading</p>}>
-        <Await resolve={{ crauselData, item }}>
-          {(loadedData) => {
-            const { crauselData, item } = loadedData;
-
-            return (
-              <InfoContainer
-                className={styled['info-container']}
-                item={item}
-                loaderData={Object.values(crauselData)}
-              />
-            );
-          }}
-        </Await>
-      </Suspense>
+      <InfoContainer className={styled['info-container']} item={item} />
     </div>
   );
 };
@@ -57,7 +47,7 @@ export async function loader({ params }) {
   const itemAdress = `items/${itemId}.json`;
 
   return defer({
-    item: await requestFetch({ adress: itemAdress }),
-    crauselData: await requestFetch({ adress: carouselAdress }),
+    item: requestFetch({ adress: itemAdress }),
+    crauselData: requestFetch({ adress: carouselAdress }),
   });
 }

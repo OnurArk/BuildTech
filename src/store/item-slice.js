@@ -1,18 +1,23 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const itemSlice = createSlice({
-  name: "items",
+  name: 'items',
   initialState: {
     allItems: [],
     preferedItems: [],
     filtedTypes: [],
     favItems: [],
+    isLoading: false,
   },
   reducers: {
     replaceItem(state, action) {
       const payload = action.payload;
       state.allItems = payload;
       state.preferedItems = payload;
+      state.isLoading = false;
+    },
+    loading(state) {
+      state.isLoading = true;
     },
     itemFilter(state, action) {
       const payload = action.payload;

@@ -3,6 +3,18 @@
 }
 
 .slide {
-  background: radial-gradient(suggestedAngle suggestedColor);
-  color: white;
+  z-index: 10;
+  height: 260px;
+  padding: 0.5rem 5rem;
+  background: linear-gradient(45deg, #737dfe, #ffcac9);
+}
+.responsive {
+  padding-bottom: 1.2rem;
+}
+
+.products {
+  max-width: 1400px;
+  min-height: 500px;
+  width: 100%;
+  padding: 2rem;
 }
