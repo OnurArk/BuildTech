@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import Nav from './top-nav/Nav';
 
 import styled from './Header.module.css';
 const Header = () => {
+  const [isActive, setIsActive] = useState(false);
+
   const locationData = useLocation();
   const isInAuth = locationData.pathname === '/authentication';
+
+  const toggleHamburger = () => {
+    setIsActive((pre) => !pre);
+  };
 
   const styleColor = {
     '--text-color': isInAuth ? '#fff' : '#293462',
@@ -21,7 +27,13 @@ const Header = () => {
           Brand Logo
         </Link>
       </h1>
-      <Nav isInAuth={isInAuth} styling={styleColor} />
+
+      <div className={styled.hamburger} onClick={toggleHamburger}>
+        <p>Hamburger</p>
+        <Nav styling={styleColor} className={isActive ? styled.active : null} />
+      </div>
+
+      <Nav styling={styleColor} />
     </header>
   );
 };

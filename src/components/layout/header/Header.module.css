@@ -14,3 +14,34 @@
 .logo {
   color: var(--text-color);
 }
+
+.hamburger {
+  display: none;
+  margin-left: auto;
+
+  color: var(--text-color);
+
+  cursor: pointer;
+}
+
+.hamburger .active {
+  padding: 1rem;
+  background-color: var(--background-color);
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 75px;
+
+  z-index: 600;
+}
+
+@media (max-width: 600px) {
+  .hamburger {
+    display: block;
+  }
+
+  .hamburger .active {
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -26,3 +26,9 @@
 .activeLink {
   border-bottom: var(--border-bottom);
 }
+
+@media (max-width: 600px) {
+  .nav {
+    display: none;
+  }
+}
