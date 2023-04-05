@@ -8,7 +8,6 @@ import { itemActions } from '../store/item-slice';
 import Slide from '../components/ui/Slide';
 import Nav from '../components/content/main-nav/Nav';
 import Products from '../components/content/Producs/Products';
-import Filter from '../components/content/home-filter/Filter';
 import api from '../util/api';
 
 import styled from '../styles/Home.module.css';
@@ -51,7 +50,6 @@ const Home = () => {
           <>
             <Nav />
             <div className={styled['responsive']}>
-              <Filter />
               <Products />
             </div>
           </>
