@@ -12,9 +12,10 @@
 
   color: #293462;
   background-color: transparent;
-
+  user-select: none;
   text-align: center;
   cursor: pointer;
+
   transition: all 0.2s ease-in-out;
   -webkit-box-shadow: inset 0px 4px 38px 10px rgba(122, 122, 122, 0.43);
   -moz-box-shadow: inset 0px 4px 38px 10px rgba(122, 122, 122, 0.43);
