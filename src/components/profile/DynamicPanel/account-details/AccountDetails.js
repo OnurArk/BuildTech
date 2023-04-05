@@ -38,25 +38,23 @@ const AccountDetails = () => {
         <AccountNavigation />
       </CSSTransition>
 
-      <Suspense fallback={<p className='centered'>Loading...</p>}>
-        <Await resolve={phone}>
-          {(phone) => (
-            <CSSTransition
-              mountOnEnter
-              unmountOnExit
-              key={'phone'}
-              in={nav === 'phone'}
-              timeout={{ enter: 500, exit: 0 }}
-              classNames={{
-                enterActive: `${styled.open}`,
-                exitActive: `${styled.close}`,
-              }}
-            >
-              <PhoneNumb phoneNumber={phone} />
-            </CSSTransition>
-          )}
-        </Await>
-      </Suspense>
+      <CSSTransition
+        mountOnEnter
+        unmountOnExit
+        key={'phone'}
+        in={nav === 'phone'}
+        timeout={{ enter: 500, exit: 0 }}
+        classNames={{
+          enterActive: `${styled.open}`,
+          exitActive: `${styled.close}`,
+        }}
+      >
+        <Suspense fallback={<p className='centered'>Loading...</p>}>
+          <Await resolve={phone}>
+            {(phone) => <PhoneNumb phoneNumber={phone} />}
+          </Await>
+        </Suspense>
+      </CSSTransition>
 
       <CSSTransition
         mountOnEnter
