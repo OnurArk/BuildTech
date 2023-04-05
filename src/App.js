@@ -80,8 +80,8 @@ const router = createBrowserRouter(
         loader={() =>
           import('./pages/Profile').then((module) => module.loader())
         }
-        action={() =>
-          import('./pages/Profile').then((module) => module.action())
+        action={(meta) =>
+          import('./pages/Profile').then((module) => module.action(meta))
         }
       />
       <Route
