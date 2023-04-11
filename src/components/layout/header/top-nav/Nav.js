@@ -5,11 +5,12 @@ import AuthContext from '../../../../context/Auth-Context';
 
 import styled from './Nav.module.css';
 
-const Nav = ({ styling, className }) => {
+const Nav = ({ styling, className, onClick }) => {
   const navigate = useNavigate();
   const authCtx = useContext(AuthContext);
 
   const logout = () => {
+    onClick();
     authCtx.logout();
     navigate('authentication');
   };
@@ -21,6 +22,7 @@ const Nav = ({ styling, className }) => {
         className={({ isActive }) =>
           `${isActive ? styled.activeLink : styled.links} ${styled.linkColor}`
         }
+        onClick={onClick}
       >
         Home
       </NavLink>
@@ -31,6 +33,7 @@ const Nav = ({ styling, className }) => {
           className={({ isActive }) =>
             `${isActive ? styled.activeLink : styled.links} ${styled.linkColor}`
           }
+          onClick={onClick}
         >
           Cart
         </NavLink>
@@ -41,6 +44,7 @@ const Nav = ({ styling, className }) => {
           className={({ isActive }) =>
             `${isActive ? styled.activeLink : styled.links} ${styled.linkColor}`
           }
+          onClick={onClick}
         >
           Profile
         </NavLink>
@@ -60,6 +64,7 @@ const Nav = ({ styling, className }) => {
           className={({ isActive }) =>
             `${isActive ? styled.activeLink : styled.links} ${styled.linkColor}`
           }
+          onClick={onClick}
           // end = {true} sadece bu sonda bitiyorsa bu ektif kalır ve end koyarsan default olarak true demek zaten
         >
           Login

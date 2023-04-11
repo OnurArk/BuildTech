@@ -5,3 +5,17 @@
   color: white;
   text-align: center;
 }
+
+@media (max-width: 1024px) {
+  .footer-container {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 550px) {
+  .footer-container {
+    height: 3.2rem;
+    padding: 0.6rem;
+    font-size: 0.8rem;
+  }
+}

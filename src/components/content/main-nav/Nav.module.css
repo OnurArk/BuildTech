@@ -11,3 +11,9 @@
 
   color: white;
 }
+
+@media (max-width: 67rem) {
+  .nav-container {
+    gap: 0.2rem;
+  }
+}

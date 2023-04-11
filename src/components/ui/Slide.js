@@ -6,7 +6,6 @@ import styled from './Slide.module.css';
 
 const Slide = ({ slideData, className, isArrowsActive }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-
   // Slide forward or bacward funtions
   const previousImage = () => {
     currentIndex === 0
@@ -24,7 +23,7 @@ const Slide = ({ slideData, className, isArrowsActive }) => {
   useEffect(() => {
     const interval = setTimeout(() => {
       forwardImage();
-    }, 5000);
+    }, 50000);
 
     return () => clearTimeout(interval);
   }, [forwardImage]);

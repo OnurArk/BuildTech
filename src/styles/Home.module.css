@@ -3,8 +3,7 @@
 }
 
 .slide {
-  z-index: 10;
-  height: 260px;
+  height: 250px;
   padding: 0.5rem 5rem;
   background: linear-gradient(45deg, #737dfe, #ffcac9);
 }
@@ -14,4 +13,22 @@
   min-height: 500px;
   width: 100%;
   padding: 2rem;
+}
+
+@media (max-width: 700px) {
+  .slide {
+    height: 200px;
+  }
+}
+
+@media (max-width: 550px) {
+  .slide {
+    height: 150px;
+  }
+}
+
+@media (max-width: 300px) {
+  .slide {
+    height: 120px;
+  }
 }

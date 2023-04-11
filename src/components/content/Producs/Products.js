@@ -37,7 +37,7 @@ const Products = () => {
 
   return (
     <>
-      <div className={styled.container}>{itemData}</div>
+      <div className={styled['item-container']}>{itemData}</div>
       <Pagination
         key={currentPage}
         prevIcon={<MdOutlineNavigateBefore />}

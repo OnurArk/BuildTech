@@ -9,12 +9,12 @@ const Item = ({ img, name, price, id }) => {
   // TO DO favoriye ekle kalp le
 
   return (
-    <Card>
+    <Card className={styled.card}>
       <Link to={id} className={styled['item-container']}>
         <div className={styled['image-container']}>
           <img className={styled.img} src={img} alt={name} />
         </div>
-        <p>{name}</p>
+        <p className={styled.info}>{name}</p>
         <p className={`${styled.price}`}>{price} TL</p>
       </Link>
     </Card>

@@ -15,7 +15,7 @@ import {
   faMobileAndroid,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { UilWatch } from '@iconscout/react-unicons';
+import { IoWatchSharp } from 'react-icons/io5';
 
 const dummyNav = [
   { icon: faDesktop, type: 'Monitor' },
@@ -26,7 +26,7 @@ const dummyNav = [
   { icon: faTelevision, type: 'Tv' },
   { icon: faTablet, type: 'Tablet' },
   { icon: faMobileAndroid, type: 'Phone' },
-  { icon2: UilWatch, type: 'Smart Watch' },
+  { icon2: IoWatchSharp, type: 'Smart Watch' },
   { icon: faCameraRetro, type: 'Camera' },
   { icon: faGamepad, type: 'Game' },
   { icon: faHeadphonesSimple, type: 'Headphones' },

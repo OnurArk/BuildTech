@@ -1,8 +1,8 @@
 .card {
   position: relative;
-  width: 12.5rem;
-  height: 20.625rem;
-  padding: 1rem 0.7rem;
+  width: inherit;
+  height: inherit;
+  padding: inherit;
   border: 1px solid rgb(56, 56, 56);
   border-radius: 15px;
 

@@ -31,7 +31,7 @@ const TabletNav = ({ id, type, icon, Icon2 }) => {
         onClick={toggleActive}
       >
         {icon && <FontAwesomeIcon className={styled.icon} icon={icon} />}
-        {Icon2 && <Icon2 className={styled.icon} size='2rem' />}
+        {Icon2 && <Icon2 className={styled.icon} />}
 
         <p className={styled.typeName}>{type}</p>
         {isActive && <RxDoubleArrowDown className={styled.closeIcon} />}

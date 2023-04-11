@@ -127,3 +127,68 @@ img {
 .rc-pagination-item:focus {
   box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 4px -6px;
 }
+
+@media (max-width: 1024px) {
+  .rc-pagination {
+    padding: 1rem;
+    gap: 1rem;
+    font-size: 1.04rem;
+  }
+
+  .rc-pagination-prev,
+  .rc-pagination-next {
+    font-size: 1.44rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .rc-pagination {
+    padding: 1rem;
+    gap: 1rem;
+    font-size: 0.91rem;
+  }
+
+  .rc-pagination-prev,
+  .rc-pagination-next {
+    font-size: 1.26rem;
+  }
+  .rc-pagination-item {
+    font-size: 0.91rem;
+    line-height: 20.93px;
+  }
+}
+
+@media (max-width: 550px) {
+  .rc-pagination {
+    padding: 0.7rem;
+    gap: 0.7rem;
+    font-size: 0.715rem;
+  }
+
+  .rc-pagination-prev,
+  .rc-pagination-next {
+    font-size: 0.99rem;
+  }
+  .rc-pagination-item {
+    font-size: 0.715rem;
+    line-height: 16.445px;
+  }
+}
+
+@media (max-width: 480px) {
+  .rc-pagination {
+    padding: 0.5rem;
+    gap: 0.5rem;
+    font-size: 0.65rem;
+  }
+
+  .rc-pagination-prev,
+  .rc-pagination-next {
+    font-size: 0.9rem;
+  }
+
+  .rc-pagination-item {
+    font-size: 0.65rem;
+    line-height: 14.95px;
+  }
+}

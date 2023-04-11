@@ -1,9 +1,9 @@
 .detail-container {
-  height: 800px;
+  height: calc(100vh - 64px - 75.2px);
   max-width: 1500px;
   display: grid;
   grid-template-columns: 1fr repeat(2, 0) 1fr 0;
-  grid-template-rows: repeat(5, 1fr);
+
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   margin: auto;
@@ -38,4 +38,9 @@
     #d9dddd,
     #e3e5e6
   );
+}
+
+@media (max-width: 57.5rem) {
+  .detail-container {
+  }
 }

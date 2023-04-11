@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import Nav from './top-nav/Nav';
+import Hamburger from '../../ui/Hamburger';
 
 import styled from './Header.module.css';
 const Header = () => {
@@ -28,9 +29,17 @@ const Header = () => {
         </Link>
       </h1>
 
-      <div className={styled.hamburger} onClick={toggleHamburger}>
-        <p>Hamburger</p>
-        <Nav styling={styleColor} className={isActive ? styled.active : null} />
+      <div className={styled.hamburger}>
+        <Hamburger
+          isActive={isActive}
+          styling={styleColor}
+          onClick={toggleHamburger}
+        />
+        <Nav
+          styling={styleColor}
+          className={isActive ? styled.active : null}
+          onClick={toggleHamburger}
+        />
       </div>
 
       <Nav styling={styleColor} />

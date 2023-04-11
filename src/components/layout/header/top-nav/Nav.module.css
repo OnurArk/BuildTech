@@ -4,6 +4,8 @@
   flex-direction: row;
   gap: 2rem;
   margin-left: auto;
+
+  user-select: none;
 }
 
 .links:after {
