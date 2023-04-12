@@ -7,8 +7,8 @@
 .img-container {
   position: relative;
   overflow: hidden;
-  height: 20vw;
   width: 20vw;
+  aspect-ratio: 1/1;
   max-height: 200px;
   max-width: 200px;
   border-radius: 100%;
@@ -56,4 +56,41 @@
   transform: translate(-50%, -50%);
   width: 15%;
   height: 15%;
+}
+
+@media (max-width: 55rem) {
+  .name {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 45rem) {
+  .name {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 37.5rem) {
+  .name {
+    font-size: 1.8rem;
+  }
+
+  .img-container {
+    width: 35vw;
+    aspect-ratio: 1/1;
+    min-height: 10rem;
+    min-width: 10rem;
+  }
+}
+
+@media (max-width: 29rem) {
+  .name {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 23rem) {
+  .name {
+    font-size: 1.2rem;
+  }
 }

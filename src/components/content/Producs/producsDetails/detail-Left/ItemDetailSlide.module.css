@@ -5,8 +5,8 @@
 }
 
 .slideImg {
-  width: 300px;
   height: 300px;
+  aspect-ratio: 1/1;
   border-radius: 10px;
 
   background-position: center;
@@ -19,13 +19,16 @@
 
 .smallImg-container {
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: 0.5rem;
 }
 
 .smallImage {
   height: 50px;
-  width: 50px;
+  aspect-ratio: 1/1;
 
   border-radius: 5px;
 
@@ -51,4 +54,13 @@
 
 .icon:hover {
   color: gray;
+}
+
+@media (max-width: 29rem) {
+  .slideImg {
+    height: 200px;
+  }
+  .smallImage {
+    height: 45px;
+  }
 }

@@ -7,6 +7,7 @@
 
   background: var(--background-color);
 
+  position: relative;
   z-index: 1010;
   transition: all 1s ease;
 }
@@ -35,7 +36,7 @@
   z-index: 600;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 37.5rem) {
   .hamburger {
     display: block;
   }

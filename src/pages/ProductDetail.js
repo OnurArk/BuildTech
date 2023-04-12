@@ -16,7 +16,7 @@ const ProductDetail = () => {
 
   return (
     <div className={styled['detail-container']}>
-      <div className={styled['image-container']}>
+      <div className={styled['left-side']}>
         <Suspense fallback={<Loaders />}>
           <Await resolve={item}>
             {(item) => {
@@ -31,7 +31,7 @@ const ProductDetail = () => {
           </Await>
         </Suspense>
       </div>
-      <InfoContainer className={styled['info-container']} item={item} />
+      <InfoContainer className={styled['right-side']} item={item} />
     </div>
   );
 };

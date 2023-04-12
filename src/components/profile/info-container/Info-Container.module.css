@@ -1,6 +1,4 @@
 .info-container {
-  grid-area: 1 / 2 / 2 / 3;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,7 +6,6 @@
 
 .info-inner-container {
   display: flex;
-  flex-direction: column;
   flex-direction: column;
   gap: 1rem;
 }
@@ -48,4 +45,10 @@
 
 .account-navigation {
   position: relative;
+}
+
+@media (max-width: 37.5rem) {
+  .info-container {
+    align-self: self-start;
+  }
 }

@@ -15,7 +15,7 @@ const InfoContainer = ({ className }) => {
         <Await resolve={item}>
           {(item) => (
             <>
-              <h3>
+              <h3 className={styled.title}>
                 {item?.name}/{item?.type}
               </h3>
               <div className={styled.price}>

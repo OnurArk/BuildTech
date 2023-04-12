@@ -18,7 +18,8 @@
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.63);
 }
 
-.btn:hover {
+.btn:hover,
+.btn:active {
   animation: updown 0.4s infinite ease-in-out alternate;
 }
 
@@ -51,4 +52,56 @@
   .slide {
     height: 150px;
   }
-} ;
+  .title {
+    font-size: 1rem;
+  }
+  .price {
+    padding: 0.5rem;
+    border-radius: 7px;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  .btn {
+    padding: 0.4rem;
+    border-radius: 10px;
+
+    font-size: 1rem;
+    font-weight: 600;
+  }
+}
+
+@media (max-width: 57.5rem) {
+  .slide {
+    height: 200px;
+  }
+}
+
+@media (max-width: 35rem) {
+  .slide {
+    height: 150px;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+
+  .price {
+    padding: 0.5rem;
+    border-radius: 7px;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  .btn {
+    padding: 0.4rem;
+    border-radius: 10px;
+
+    font-size: 1rem;
+    font-weight: 600;
+  }
+}
+
+@media (max-width: 29rem) {
+  .slide {
+    height: 130px;
+  }
+}

@@ -41,7 +41,9 @@ const UserContainer = () => {
                     <FaEdit className={styled.icon} />
                   </Link>
                 </div>
-                <h1>{authInfo.userName ? authInfo.userName : 'User-Name'}</h1>
+                <h1 className={styled.name}>
+                  {authInfo.userName ? authInfo.userName : 'User-Name'}
+                </h1>
               </>
             );
           }}
