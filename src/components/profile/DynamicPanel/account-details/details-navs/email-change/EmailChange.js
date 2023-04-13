@@ -14,14 +14,15 @@ const EmailChange = () => {
       <Input
         name='email'
         type='email'
-        inputGridRow={1}
+        inputGridRow={2}
         placeholder={'Example: test@test.com'}
-        className={actionData?.errMessage ? `${styled.invalid}` : null}
+        invalid={actionData?.errMessage ? true : false}
+        className={styled.input}
         autoFocus
       >
         New Email :
       </Input>
-      <div>
+      <div className={styled.buttons}>
         <Link to={'?mode=account-details'}>
           <Button type='button' className={styled.btn}>
             Cancel

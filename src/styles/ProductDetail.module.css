@@ -43,7 +43,6 @@
 
 @media (max-width: 57.5rem) {
   .detail-container {
-    min-height: calc(100vh - 64px - 75.2px);
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
     grid-template-areas:
@@ -65,5 +64,14 @@
       #d9dddd,
       #e3e5e6
     );
+  }
+}
+
+@media (max-width: 29rem) {
+  .left-side {
+    padding: 2rem 1rem;
+  }
+  .right-side {
+    padding: 2rem 1rem;
   }
 }

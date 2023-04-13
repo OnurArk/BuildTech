@@ -14,38 +14,35 @@ const Adress = () => {
         type='text'
         name='line1'
         placeholder='Address Line'
-        className={`${styled.longAdress} ${
-          actionData?.errType?.includes('line1') ? styled.invalid : null
-        }`}
+        invalid={actionData?.errType?.includes('line1') ? true : false}
+        className={styled.longAdress}
       />
       <div className={styled['short-adress-container']}>
         <Input
           type='text'
           name='country'
           placeholder='Country'
-          className={`${styled.shortAdresses} ${
-            actionData?.errType?.includes('country') ? styled.invalid : null
-          }`}
+          invalid={actionData?.errType?.includes('country') ? true : false}
+          className={styled.shortAdresses}
         />
 
-        <span>:</span>
+        <span className={styled.colon}>:</span>
         <Input
           type='text'
           name='state'
           placeholder='(optional) State'
           className={styled.middleAdresses}
         />
-        <span>:</span>
+        <span className={styled.colon}>:</span>
         <Input
           type='text'
           name='city'
           placeholder='City'
-          className={`${styled.shortAdresses} ${
-            actionData?.errType?.includes('city') ? styled.invalid : null
-          }`}
+          invalid={actionData?.errType?.includes('city') ? true : false}
+          className={styled.shortAdresses}
         />
       </div>
-      <div>
+      <div className={styled.buttons}>
         <Link to={'?mode=account-details'}>
           <Button type='button' className={styled.btn}>
             Cancel

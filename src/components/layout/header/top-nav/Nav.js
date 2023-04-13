@@ -10,8 +10,8 @@ const Nav = ({ styling, className, onClick }) => {
   const authCtx = useContext(AuthContext);
 
   const logout = () => {
-    onClick();
     authCtx.logout();
+    onClick();
     navigate('authentication');
   };
 

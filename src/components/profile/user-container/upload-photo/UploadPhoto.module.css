@@ -41,8 +41,10 @@
   overflow: hidden;
   height: 20vw;
   width: 20vw;
-  max-height: 200px;
-  max-width: 200px;
+  min-width: 7rem;
+  min-height: 7rem;
+  max-height: 12.5rem;
+  max-width: 12.5rem;
   border-radius: 100%;
 
   background: rgba(0, 0, 0, 0.841);

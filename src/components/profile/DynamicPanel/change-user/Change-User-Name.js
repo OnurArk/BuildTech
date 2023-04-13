@@ -14,13 +14,13 @@ const ChangeUserName = () => {
       <Input
         name='user-name'
         type='text'
-        className={actionData?.errMessage ? styled.invalid : null}
+        invalid={actionData?.errMessage ? true : false}
         placeholder='At least 5 characters'
         maxLength={20}
       >
         New User Name
       </Input>
-      <div>
+      <div className={styled.buttons}>
         <Link to={'/profile'}>
           <Button type='button' className={styled.btn}>
             Cancel

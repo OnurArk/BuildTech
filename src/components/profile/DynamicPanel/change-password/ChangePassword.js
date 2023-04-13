@@ -15,7 +15,7 @@ const ChangePassword = () => {
       <h2 className={styled.title}>Change Your Password</h2>
       <h4>Are you sure to reset you password?</h4>
 
-      <div>
+      <div className={styled.buttons}>
         <Link to={'/profile'}>
           <Button type='button' className={styled.btn} disabled={isSubmitting}>
             Cancel

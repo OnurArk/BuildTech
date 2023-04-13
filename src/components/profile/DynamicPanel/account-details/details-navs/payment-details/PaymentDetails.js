@@ -44,9 +44,9 @@ const PaymentDetails = () => {
       />
       <Input
         name='card-name'
-        className={`${styled.bigInput} ${
-          actionData?.errType.includes('card-name') ? `${styled.invalid}` : null
-        }`}
+        invalid={actionData?.errType.includes('card-name') ? true : false}
+        className={styled.bigInput}
+        width={'100%'}
         value={nameVal || ''}
         placeholder='FIRSTNAME LASTNAME'
         maxLength={30}
@@ -57,11 +57,9 @@ const PaymentDetails = () => {
       </Input>
       <Input
         name='card-number'
-        className={`${styled.bigInput} ${
-          actionData?.errType.includes('card-number')
-            ? `${styled.invalid}`
-            : null
-        }`}
+        invalid={actionData?.errType.includes('card-number') ? true : false}
+        className={styled.bigInput}
+        width={'100%'}
         placeholder='XXXX XXXX XXXX XXXX'
         inputMode='numeric'
         maxLength={19}
@@ -76,11 +74,8 @@ const PaymentDetails = () => {
       <div className={styled.inputs}>
         <Input
           name='expiration'
-          className={`${styled.smallInput} ${
-            actionData?.errType.includes('expiration')
-              ? `${styled.invalid}`
-              : null
-          }`}
+          invalid={actionData?.errType.includes('expiration') ? true : false}
+          className={styled.smallInput}
           type='text'
           placeholder='MM/YY'
           maxLength={5}
@@ -93,11 +88,8 @@ const PaymentDetails = () => {
         </Input>
         <Input
           name='security-code'
-          className={`${styled.smallInput} ${
-            actionData?.errType.includes('security-code')
-              ? `${styled.invalid}`
-              : null
-          }`}
+          invalid={actionData?.errType.includes('security-code') ? true : false}
+          className={styled.smallInput}
           value={securityVal || ''}
           onChange={handleSecurityCodeChange}
           maxLength={4}
@@ -107,7 +99,7 @@ const PaymentDetails = () => {
         </Input>
       </div>
 
-      <div>
+      <div className={styled.buttons}>
         <Link to={'?mode=account-details'}>
           <Button type='button' className={styled.btn}>
             Cancel

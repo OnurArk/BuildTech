@@ -4,6 +4,7 @@ import styled from './Input.module.css';
 const Input = forwardRef((props, ref) => {
   const style = {
     '--grid-row': props.inputGridRow ? `${props.inputGridRow}` : '2',
+    width: props.width ? props.width : null,
   };
 
   return (
@@ -12,7 +13,9 @@ const Input = forwardRef((props, ref) => {
         {props.children}
       </label>
       <input
-        className={`${styled.input} ${props.className}`}
+        className={`${styled.input} ${props.className} ${
+          props.invalid ? styled.invalid : null
+        }`}
         ref={ref}
         type={props.type}
         id={props.name}

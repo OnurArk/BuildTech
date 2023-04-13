@@ -14,18 +14,19 @@ const PhoneNumb = ({ phoneNumber }) => {
       <Input
         name='phone'
         type='tel'
-        inputGridRow={1}
+        inputGridRow={2}
         maxLength={10}
         minLenght={10}
         placeholder={
           phoneNumber ? `Current No: ${phoneNumber}` : `Example: 5001234567`
         }
-        className={actionData?.errMessage ? `${styled.invalid}` : null}
+        invalid={actionData?.errMessage ? true : false}
+        className={styled.input}
       >
         New Phone Number :
       </Input>
 
-      <div>
+      <div className={styled.buttons}>
         <Link to={'?mode=account-details'}>
           <Button type='button' className={styled.btn}>
             Cancel

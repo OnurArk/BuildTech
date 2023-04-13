@@ -14,7 +14,7 @@
   width: 27%;
 }
 
-.cardNumber {
+.cardNo-container {
   position: absolute;
   top: 6rem;
 }
@@ -28,7 +28,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 175px;
+  max-width: 10.95rem;
 }
 
 .cardText {
@@ -44,6 +44,7 @@
 .date {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.3rem;
 }
 
@@ -104,4 +105,172 @@
 
   height: 2rem;
   background-color: var(--backgoundWave);
+}
+
+@media (max-width: 55rem) {
+  /*Front*/
+  .chip {
+    left: 1.7rem;
+    top: 1.3rem;
+    width: 13%;
+  }
+
+  .logo {
+    right: 1.7rem;
+    top: 1.5rem;
+    width: 24%;
+  }
+
+  .cardNo-container {
+    top: 5rem;
+  }
+
+  .cardNumber {
+    font-size: 1.6rem;
+  }
+
+  .nameSection {
+    top: 9rem;
+  }
+
+  .name {
+    max-width: 9.7rem;
+    font-size: 0.9rem;
+  }
+
+  .expiration {
+    left: 11.5rem;
+    bottom: 1rem;
+  }
+
+  .date {
+    gap: 0.2rem;
+  }
+
+  .dateText {
+    font-size: 0.4rem;
+  }
+
+  .expiryVal {
+    font-size: 0.85rem;
+  }
+
+  .cardText {
+    font-size: 0.8rem;
+  }
+
+  /*Back*/
+
+  .sucurity-container {
+    position: absolute;
+    left: 1.5rem;
+    right: 10%;
+    bottom: 6rem;
+    text-align: center;
+
+    display: flex;
+  }
+
+  .signature-panel {
+    height: 1.6rem;
+    font-size: 1.2rem;
+  }
+
+  .security-code {
+    padding: 0.3rem;
+    font-size: 0.8rem;
+  }
+
+  .panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+
+    height: 1.7rem;
+    background-color: var(--backgoundWave);
+  }
+}
+
+@media (max-width: 25rem) {
+  /*Front*/
+  .chip {
+    left: 1.5rem;
+    top: 1.1rem;
+    width: 12%;
+  }
+
+  .logo {
+    right: 1.5rem;
+    top: 1.3rem;
+    width: 22%;
+  }
+
+  .cardNo-container {
+    top: 4.1rem;
+  }
+
+  .cardNumber {
+    font-size: 1.35rem;
+  }
+
+  .nameSection {
+    top: 7.3rem;
+  }
+
+  .name {
+    max-width: 8.4rem;
+    font-size: 0.8rem;
+  }
+
+  .expiration {
+    left: 9.7rem;
+    bottom: 1rem;
+  }
+
+  .date {
+    gap: 0.1rem;
+  }
+
+  .dateText {
+    font-size: 0.3rem;
+  }
+
+  .expiryVal {
+    font-size: 0.7rem;
+  }
+
+  .cardText {
+    font-size: 0.7rem;
+  }
+
+  /*Back*/
+
+  .sucurity-container {
+    position: absolute;
+    left: 1.5rem;
+    right: 10%;
+    bottom: 4.5rem;
+    text-align: center;
+
+    display: flex;
+  }
+
+  .signature-panel {
+    height: 1.4rem;
+    font-size: 1rem;
+  }
+
+  .security-code {
+    padding: 0.3rem;
+    font-size: 0.8rem;
+  }
+
+  .panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+
+    height: 1.5rem;
+    background-color: var(--backgoundWave);
+  }
 }

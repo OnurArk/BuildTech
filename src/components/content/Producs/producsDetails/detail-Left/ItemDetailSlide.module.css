@@ -5,7 +5,7 @@
 }
 
 .slideImg {
-  height: 300px;
+  height: 18.75rem;
   aspect-ratio: 1/1;
   border-radius: 10px;
 
@@ -58,9 +58,21 @@
 
 @media (max-width: 29rem) {
   .slideImg {
-    height: 200px;
+    height: 12.5rem;
   }
   .smallImage {
     height: 45px;
+  }
+}
+
+@media (max-width: 29rem) {
+  .slideContainer {
+    gap: 1.2rem;
+  }
+  .slideImg {
+    height: 11rem;
+  }
+  .icon {
+    font-size: 1.2rem;
   }
 }

@@ -58,7 +58,7 @@ const CreditCard = ({
       <AppearanceCreditCard
         onClick={flipCardHandler}
         style={containerStyle}
-        right={'-25%'}
+        right={'-50%'}
       >
         <img
           src='https://cdn-icons-png.flaticon.com/512/6404/6404078.png'
@@ -72,9 +72,11 @@ const CreditCard = ({
           style={{ display: logo ? 'block' : 'none' }}
           className={styled.logo}
         />
-        <div className={styled.cardNumber}>
+        <div className={styled['cardNo-container']}>
           <p className={styled.cardText}>card number</p>
-          <h1>{numericVal.replace(/(.{4})/g, '$1 ')}</h1>
+          <h1 className={styled.cardNumber}>
+            {numericVal.replace(/(.{4})/g, '$1 ')}
+          </h1>
         </div>
         <div className={styled.nameSection}>
           <p className={styled.cardText}>cardholder name</p>
@@ -89,7 +91,7 @@ const CreditCard = ({
               <p className={styled.dateText}>THRU</p>
             </div>
             <BiCaretRight />
-            <h3>{expiryVal}</h3>
+            <h3 className={styled.expiryVal}>{expiryVal}</h3>
           </div>
         </div>
       </AppearanceCreditCard>
@@ -97,7 +99,7 @@ const CreditCard = ({
       <AppearanceCreditCard
         onClick={flipCardHandler}
         style={containerStyle}
-        right={'25%'}
+        right={'-50%'}
       >
         <div
           className={styled.panel}
