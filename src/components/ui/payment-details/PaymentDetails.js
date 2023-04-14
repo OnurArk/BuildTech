@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { Form, useActionData, Link } from 'react-router-dom';
 
-import AuthContext from '../../../../../../context/Auth-Context';
+import AuthContext from '../../../context/Auth-Context';
 import CardInputChange from './card-input-change/CardInputChange';
 import ColorCompany from './color-company/ColorCompany';
-import CreditCard from '../../../../../ui/CreditCard';
-import Input from '../../../../../ui/Input';
-import Button from '../../../../../ui/Button';
+import CreditCard from '../CreditCard';
+import Input from '../Input';
+import Button from '../Button';
 
 import styled from './PaymentDetails.module.css';
 

@@ -7,7 +7,7 @@ import AccountNavigation from './account-navigation/AccountNavigation';
 import PhoneNumb from './details-navs/phone-number/PhoneNumb';
 import Adress from './details-navs/adress/Adress';
 import EmailChange from './details-navs/email-change/EmailChange';
-import PaymentDetails from './details-navs/payment-details/PaymentDetails';
+import PaymentDetails from '../../../ui/payment-details/PaymentDetails';
 
 import styled from './AccountDetails.module.css';
 import { CSSTransition } from 'react-transition-group';

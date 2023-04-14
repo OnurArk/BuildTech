@@ -1,0 +1,38 @@
+.nav-container {
+  height: 3rem;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgb(235, 235, 235);
+  color: black;
+
+  border-bottom: 1px solid rgb(176, 176, 176);
+}
+
+.link {
+  box-sizing: unset;
+
+  border: none;
+  appearance: none;
+  color: inherit;
+
+  text-align: center;
+  flex: 1;
+  padding: 0.8rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.link:hover,
+.link:active {
+  box-shadow: 0 1.5px 0 0px black;
+}
+
+.middleLink {
+  box-shadow: 0 0 5px -4px black;
+}
+
+.activeLink {
+  box-shadow: 0 1.5px 0 0px black;
+}

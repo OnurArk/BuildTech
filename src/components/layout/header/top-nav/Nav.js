@@ -29,7 +29,7 @@ const Nav = ({ styling, className, onClick }) => {
 
       {authCtx?.currentUid && (
         <NavLink
-          to='cart'
+          to='cart?mode=items'
           className={({ isActive }) =>
             `${isActive ? styled.activeLink : styled.links} ${styled.linkColor}`
           }

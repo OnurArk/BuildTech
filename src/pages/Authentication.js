@@ -17,7 +17,6 @@ import styled from '../styles/Authentication.module.css';
 
 const Authentication = () => {
   const [exitTime, setExitTime] = useState(window.innerWidth < 608 ? 0 : 500);
-  console.log(exitTime);
 
   useEffect(() => {
     const handleResize = () => {
