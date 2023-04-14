@@ -1,17 +1,12 @@
 .authentication {
   position: relative;
-
   overflow: hidden;
-
   background-color: rgb(144, 144, 144);
 }
 
 .log_sign_reset-container {
   position: relative;
-  height: 85vh;
-  height: 85dvh;
-  width: 100vw;
-
+  min-height: calc(100vh - 64px - 75.2px);
   display: flex;
 }
 
@@ -44,5 +39,21 @@
 
   100% {
     opacity: 0;
+  }
+}
+
+@media (max-width: 38rem) {
+  .log_sign_reset-container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .closeSignup {
+    animation: none;
+  }
+
+  .authentication::-webkit-scrollbar {
+    display: none;
   }
 }

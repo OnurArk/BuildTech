@@ -1,12 +1,12 @@
 import React from 'react';
-import { Form, useActionData } from 'react-router-dom';
+import { Form, useActionData, Link } from 'react-router-dom';
 import Button from '../../ui/Button';
 
 import Input from '../../ui/Input';
 
 import styled from './ForgotPassword.module.css';
 
-const ForgotPassword = () => {
+const ForgotPassword = ({ exitTime }) => {
   const actionData = useActionData();
 
   return (
@@ -18,16 +18,20 @@ const ForgotPassword = () => {
           name='email'
           type='email'
           placeholder='Example: mail@mai'
-          className={`${styled.input} ${
-            actionData?.errType?.includes('email') ? `${styled.invalid}` : null
-          }`}
+          invalid={actionData?.errType?.includes('email') ? true : false}
+          className={styled.input}
           autoFocus
         >
           Email
         </Input>
         <Button>Change the Password</Button>
+        {exitTime === 0 && (
+          <Link to={'?mode=login'} className={styled.link}>
+            Log In
+          </Link>
+        )}
         {actionData && actionData.errMessage && (
-          <p className='err'>{actionData.errMessage}</p>
+          <p className={styled.err}>{actionData.errMessage}</p>
         )}
       </div>
     </Form>

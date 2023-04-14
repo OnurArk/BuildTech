@@ -1,12 +1,12 @@
 import React from 'react';
-import { Form, useActionData, useNavigation } from 'react-router-dom';
+import { Form, useActionData, useNavigation, Link } from 'react-router-dom';
 
 import Input from '../../ui/Input';
 import Button from '../../ui/Button';
 
 import styled from './Signup.module.css';
 
-const Signup = () => {
+const Signup = ({ exitTime }) => {
   const actionData = useActionData();
 
   const navigation = useNavigation();
@@ -21,9 +21,7 @@ const Signup = () => {
           name='email'
           type='email'
           placeholder='Example: mail@mail'
-          className={`${styled.input} ${
-            actionData?.errType?.includes('email') ? `${styled.invalid}` : null
-          }`}
+          invalid={actionData?.errType?.includes('email') ? true : false}
           autoComplete='email'
         >
           New Email
@@ -32,11 +30,7 @@ const Signup = () => {
           name='password'
           type='password'
           placeholder='At least 6 characters'
-          className={`${styled.input} ${
-            actionData?.errType?.includes('password')
-              ? `${styled.invalid}`
-              : null
-          }`}
+          invalid={actionData?.errType?.includes('password') ? true : false}
           autoComplete='new-password'
         >
           New Password
@@ -45,15 +39,12 @@ const Signup = () => {
           name='confirm-password'
           type='password'
           placeholder='Confirm New Password'
-          className={`${styled.input} ${
-            actionData?.errType?.includes('password')
-              ? `${styled.invalid}`
-              : null
-          }`}
+          invalid={actionData?.errType?.includes('password') ? true : false}
           autoComplete='new-password'
         >
           Confirm Password
         </Input>
+
         <div className={styled['btn-container']}>
           <Button
             className={`${styled.btn}`}
@@ -66,6 +57,12 @@ const Signup = () => {
             {isSubmitting ? 'Submitting...' : '+Signup'}
           </Button>
         </div>
+
+        {exitTime === 0 && (
+          <Link to={'?mode=login'} className={styled.link}>
+            Log In
+          </Link>
+        )}
         {actionData && actionData?.errMessage && (
           <p className={styled.err}>! {actionData.errMessage}</p>
         )}

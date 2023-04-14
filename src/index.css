@@ -157,6 +157,12 @@ img {
   }
 }
 
+@media (max-width: 38rem) {
+  body::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @media (max-width: 550px) {
   .rc-pagination {
     padding: 0.7rem;

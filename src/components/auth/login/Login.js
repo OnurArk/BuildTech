@@ -10,7 +10,7 @@ import Input from '../../ui/Input';
 import Button from '../../ui/Button';
 import styled from './Login.module.css';
 
-const Login = () => {
+const Login = ({ exitTime }) => {
   const actionData = useActionData();
 
   const navigation = useNavigation();
@@ -18,7 +18,6 @@ const Login = () => {
 
   const [searchParams] = useSearchParams();
   const isSignup = searchParams.get('mode') === 'signup';
-  const isForgatPassword = searchParams.get('mode') === 'forgot-password';
 
   return (
     <Form method='post' className={styled.form}>
@@ -29,9 +28,7 @@ const Login = () => {
           name='email'
           type='email'
           placeholder='Example: mail@mai'
-          className={`${styled.input} ${
-            actionData?.errType?.includes('email') ? `${styled.invalid}` : null
-          }`}
+          invalid={actionData?.errType?.includes('email') ? true : false}
           autoFocus
         >
           Email
@@ -40,11 +37,7 @@ const Login = () => {
           name='password'
           type='password'
           placeholder='Must contain at least 6 characters'
-          className={`${styled.input} ${
-            actionData?.errType?.includes('password')
-              ? `${styled.invalid}`
-              : null
-          }`}
+          invalid={actionData?.errType?.includes('password') ? true : false}
           autoComplete='true'
         >
           Password
@@ -57,15 +50,17 @@ const Login = () => {
           >
             {isSubmitting ? 'Submitting...' : 'Login'}
           </Button>
-          <Link
-            to={`?mode=${isForgatPassword ? 'login' : 'forgot-password'}`}
-            className={`${styled.btnResetPassword}  ${styled.btn}`}
-          >
+          <Link to={'?mode=forgot-password'} className={styled.link}>
             Forgot your password ?
           </Link>
+          {exitTime === 0 && (
+            <Link to={'?mode=signup'} className={styled.link}>
+              +Sing Up
+            </Link>
+          )}
         </div>
         {actionData && actionData?.errMessage && (
-          <p className='err'>{actionData.errMessage}</p>
+          <p className={styled.err}>{actionData.errMessage}</p>
         )}
       </div>
     </Form>

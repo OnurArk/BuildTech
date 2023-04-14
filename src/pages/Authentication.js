@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { redirect, useSearchParams } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import {
@@ -15,9 +15,28 @@ import ForgotPassword from '../components/auth/forgot-password/ForgotPassword';
 
 import styled from '../styles/Authentication.module.css';
 
-const animationTiming = { enter: 500, exit: 500 };
-
 const Authentication = () => {
+  const [exitTime, setExitTime] = useState(window.innerWidth < 608 ? 0 : 500);
+  console.log(exitTime);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const newWindowWidth = window.innerWidth;
+      const newExitTime = newWindowWidth < 608 ? 0 : 500;
+      if (newExitTime !== exitTime) {
+        setExitTime(newExitTime);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [exitTime]);
+
+  const animationTiming = { enter: 500, exit: exitTime };
+
   const [searchParams] = useSearchParams();
   const isSignup = searchParams.get('mode') === 'signup';
   const isForgatPassword = searchParams.get('mode') === 'forgot-password';
@@ -41,7 +60,7 @@ const Authentication = () => {
             exitActive: `${styled.closeSignup}`,
           }}
         >
-          <Login />
+          <Login exitTime={exitTime} />
         </CSSTransition>
 
         <CSSTransition
@@ -54,7 +73,7 @@ const Authentication = () => {
             exitActive: `${styled.closeSignup}`,
           }}
         >
-          <Signup />
+          <Signup exitTime={exitTime} />
         </CSSTransition>
 
         <CSSTransition
@@ -67,7 +86,7 @@ const Authentication = () => {
             exitActive: `${styled.closeSignup}`,
           }}
         >
-          <ForgotPassword />
+          <ForgotPassword exitTime={exitTime} />
         </CSSTransition>
       </div>
     </div>
