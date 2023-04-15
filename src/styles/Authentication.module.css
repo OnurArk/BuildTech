@@ -6,7 +6,7 @@
 
 .log_sign_reset-container {
   position: relative;
-  min-height: calc(100vh - 64px - 75.2px);
+  min-height: calc(100vh - 64px - 75.19px);
   display: flex;
 }
 

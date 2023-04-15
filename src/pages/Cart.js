@@ -13,9 +13,8 @@ const Cart = () => {
   return (
     <div className={styled['cart-container']}>
       <NavBar />
-      <div className={styled.panels}>{mode === 'payment' && <Payment />}</div>
-
-      <div className={styled.price}>
+      <div className={styled['content-container']}>
+        {mode === 'payment' && <Payment />}
         <Price />
       </div>
     </div>

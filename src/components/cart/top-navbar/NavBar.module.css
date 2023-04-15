@@ -1,6 +1,10 @@
 .nav-container {
-  height: 3rem;
+  position: relative;
+  z-index: 10;
 
+  height: 3rem;
+  max-width: 75rem;
+  margin: auto;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -36,4 +40,13 @@
 
 .activeLink {
   box-shadow: 0 2px 0 0px black;
+}
+
+@media (min-width: 75rem) {
+  .leftLink {
+    box-shadow: -2px 0 3px 0px black;
+  }
+  .rightLink {
+    box-shadow: 2px 0 3px 0px black;
+  }
 }

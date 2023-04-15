@@ -11,7 +11,7 @@ const NavBar = () => {
     <div className={styled['nav-container']}>
       <Link
         to={'?mode=items'}
-        className={`${styled.link} ${
+        className={`${styled.link} ${styled.leftLink} ${
           mode === 'items' ? styled.activeLink : null
         }`}
       >
@@ -27,7 +27,7 @@ const NavBar = () => {
       </Link>
       <Link
         to={'?mode=payment'}
-        className={`${styled.link} ${
+        className={`${styled.link}  ${styled.rightLink} ${
           mode === 'payment' ? styled.activeLink : null
         }`}
       >
