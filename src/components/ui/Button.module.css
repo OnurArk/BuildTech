@@ -10,6 +10,7 @@
 
   appearance: none;
   cursor: pointer;
+  user-select: none;
 }
 
 .glow-effect {

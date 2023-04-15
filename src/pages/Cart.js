@@ -1,8 +1,8 @@
-import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import NavBar from '../components/cart/top-navbar/NavBar';
 import Payment from '../components/cart/payment/Payment';
+import Price from '../components/cart/price/Price';
 
 import styled from '../styles/Cart.module.css';
 
@@ -13,7 +13,11 @@ const Cart = () => {
   return (
     <div className={styled['cart-container']}>
       <NavBar />
-      {mode === 'payment' && <Payment />}
+      <div className={styled.panels}>{mode === 'payment' && <Payment />}</div>
+
+      <div className={styled.price}>
+        <Price />
+      </div>
     </div>
   );
 };

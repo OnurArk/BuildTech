@@ -10,7 +10,7 @@ import Input from '../../ui/Input';
 import Button from '../../ui/Button';
 import styled from './Login.module.css';
 
-const Login = ({ exitTime }) => {
+const Login = ({ time }) => {
   const actionData = useActionData();
 
   const navigation = useNavigation();
@@ -53,7 +53,7 @@ const Login = ({ exitTime }) => {
           <Link to={'?mode=forgot-password'} className={styled.link}>
             Forgot your password ?
           </Link>
-          {exitTime === 0 && (
+          {time === 0 && (
             <Link to={'?mode=signup'} className={styled.link}>
               +Sing Up
             </Link>

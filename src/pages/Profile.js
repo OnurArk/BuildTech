@@ -27,10 +27,7 @@ const Profile = () => {
   const profileCtx = useContext(AuthContext);
 
   return (
-    <div
-      className={styled['profile-container']}
-      style={profileCtx.profileBackground}
-    >
+    <div className={styled['profile-container']} style={profileCtx.background}>
       <div className={styled['user-info-container']}>
         <UserContainer />
         <InfoContainer />

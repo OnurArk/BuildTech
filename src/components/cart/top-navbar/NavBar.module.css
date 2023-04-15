@@ -26,13 +26,14 @@
 
 .link:hover,
 .link:active {
-  box-shadow: 0 1.5px 0 0px black;
+  box-shadow: 0 2px 0 0px black;
 }
 
 .middleLink {
-  box-shadow: 0 0 5px -4px black;
+  border-left: 1px solid rgba(0, 0, 0, 0.055);
+  border-right: 1px solid rgba(0, 0, 0, 0.055);
 }
 
 .activeLink {
-  box-shadow: 0 1.5px 0 0px black;
+  box-shadow: 0 2px 0 0px black;
 }

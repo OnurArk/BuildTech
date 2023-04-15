@@ -6,7 +6,7 @@ import Input from '../../ui/Input';
 
 import styled from './ForgotPassword.module.css';
 
-const ForgotPassword = ({ exitTime }) => {
+const ForgotPassword = ({ time }) => {
   const actionData = useActionData();
 
   return (
@@ -25,7 +25,7 @@ const ForgotPassword = ({ exitTime }) => {
           Email
         </Input>
         <Button>Change the Password</Button>
-        {exitTime === 0 && (
+        {time === 0 && (
           <Link to={'?mode=login'} className={styled.link}>
             Log In
           </Link>

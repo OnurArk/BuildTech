@@ -69,7 +69,7 @@ const ColorCompany = (propfileCtx) => {
 
     // Undifined Card
     setBackground({});
-    propfileCtx.profileBackgroundHandler({});
+    propfileCtx.backgroundHandler({});
     setLogo();
   };
 
@@ -83,7 +83,7 @@ const ColorCompany = (propfileCtx) => {
       backgroundImage: `linear-gradient(45deg, ${backgoundCard},${backgoundWave})`,
       color: color ? color : null,
     };
-    propfileCtx.profileBackgroundHandler(propfileBackground);
+    propfileCtx.backgroundHandler(propfileBackground);
     setBackground(backgound);
     return;
   };

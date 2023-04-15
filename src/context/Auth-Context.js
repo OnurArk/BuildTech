@@ -3,22 +3,22 @@ import React, { useEffect, useState } from 'react';
 import { auth } from '../firebase';
 
 const AuthContext = React.createContext({
-  profileBackground: {},
-  profileBackgroundHandler: () => {},
+  background: {},
+  backgroundHandler: () => {},
   logout: () => {},
   currentUid: '',
 });
 
 export const AuthContextProvider = (props) => {
   const [currentUid, setCurrentUid] = useState('');
-  const [profileBackground, setProfileBackground] = useState({});
+  const [background, setBackground] = useState({});
 
   const logout = () => {
     return auth.signOut();
   };
 
-  const profileBackgroundHandler = (backgoundObj) => {
-    setProfileBackground(backgoundObj);
+  const backgroundHandler = (backgoundObj) => {
+    setBackground(backgoundObj);
   };
 
   useEffect(() => {
@@ -29,8 +29,8 @@ export const AuthContextProvider = (props) => {
   }, []);
 
   const value = {
-    profileBackground,
-    profileBackgroundHandler,
+    background,
+    backgroundHandler,
     logout,
     currentUid,
   };

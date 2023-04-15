@@ -6,7 +6,7 @@ import Button from '../../ui/Button';
 
 import styled from './Signup.module.css';
 
-const Signup = ({ exitTime }) => {
+const Signup = ({ time }) => {
   const actionData = useActionData();
 
   const navigation = useNavigation();
@@ -58,7 +58,7 @@ const Signup = ({ exitTime }) => {
           </Button>
         </div>
 
-        {exitTime === 0 && (
+        {time === 0 && (
           <Link to={'?mode=login'} className={styled.link}>
             Log In
           </Link>

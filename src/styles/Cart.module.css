@@ -1,4 +1,13 @@
 .cart-container {
+  position: relative;
+
   min-height: calc(100vh - 64px - 75.2px);
-  background-color: rgb(255, 255, 255);
+  background: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+}
+
+.price {
+  height: 10rem;
+  background-color: rgb(213, 213, 213);
 }
