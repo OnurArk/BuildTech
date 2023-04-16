@@ -9,7 +9,11 @@ const Payment = () => {
   const styleCtx = useContext(AuthContext);
   return (
     <div className={styled['payment-container']} style={styleCtx.background}>
-      <PaymentDetails />
+      <PaymentDetails
+        toCancel={'?mode=adress'}
+        btnName={'Back'}
+        isButtonsShowed={false}
+      />
     </div>
   );
 };

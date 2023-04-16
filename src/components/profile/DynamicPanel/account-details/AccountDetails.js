@@ -95,7 +95,10 @@ const AccountDetails = () => {
           exitActive: `${styled.close}`,
         }}
       >
-        <PaymentDetails />
+        <PaymentDetails
+          toCancel={'?mode=account-details'}
+          isButtonsShowed={true}
+        />
       </CSSTransition>
     </div>
   );
