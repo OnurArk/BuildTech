@@ -6,7 +6,7 @@ import AppearanceCreditCard from './AppearanceCreditCard';
 import styled from './CreditCard.module.css';
 import { BiCaretRight } from 'react-icons/bi';
 const CreditCard = ({
-  backgound,
+  background,
   nameVal,
   securityVal,
   expiryVal,
@@ -37,14 +37,14 @@ const CreditCard = ({
   }, [nameVal, expiryVal, numericVal]);
 
   const containerStyle = {
-    '--backgoundCard': backgound.backgoundCard
-      ? backgound.backgoundCard
+    '--backgoundCard': background.backgoundCard
+      ? background.backgoundCard
       : 'rgb(189, 189, 189)',
-    '--backgoundWave': backgound.backgoundWave
-      ? backgound.backgoundWave
+    '--backgoundWave': background.backgoundWave
+      ? background.backgoundWave
       : 'rgb(97, 97, 97)',
-    '--colorText': backgound.colorText
-      ? backgound.colorText
+    '--colorText': background.colorText
+      ? background.colorText
       : 'rgba(255, 255, 255, 0.726)',
   };
 
