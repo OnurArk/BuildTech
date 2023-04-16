@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 const ColorCompany = (propfileCtx) => {
   const [logo, setLogo] = useState();
-  const [backgound, setBackground] = useState({});
+  const [background, setBackground] = useState({});
 
   const companyFilter = (number) => {
     if (number.startsWith('4026') || number.startsWith('417500')) {
@@ -74,21 +74,21 @@ const ColorCompany = (propfileCtx) => {
   };
 
   const filterProfile = (backgoundCard, backgoundWave, color, colorText) => {
-    const backgound = {
+    const background = {
       backgoundCard: backgoundCard,
       backgoundWave: backgoundWave,
       colorText: colorText ? colorText : null,
     };
-    const propfileBackground = {
+    const contextBackground = {
       backgroundImage: `linear-gradient(45deg, ${backgoundCard},${backgoundWave})`,
       color: color ? color : null,
     };
-    propfileCtx.backgroundHandler(propfileBackground);
-    setBackground(backgound);
+    propfileCtx.backgroundHandler(contextBackground);
+    setBackground(background);
     return;
   };
 
-  return { logo, backgound, companyFilter };
+  return { logo, background, companyFilter };
 };
 
 export default ColorCompany;
