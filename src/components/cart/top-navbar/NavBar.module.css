@@ -30,7 +30,7 @@
 
 .link:hover,
 .link:active {
-  box-shadow: 0 2px 0 0px black;
+  box-shadow: 0 4px 4px -2px #b3f9a0;
 }
 
 .middleLink {
@@ -39,14 +39,5 @@
 }
 
 .activeLink {
-  box-shadow: 0 2px 0 0px black;
-}
-
-@media (min-width: 75rem) {
-  .leftLink {
-    box-shadow: -2px 0 3px 0px black;
-  }
-  .rightLink {
-    box-shadow: 2px 0 3px 0px black;
-  }
+  box-shadow: 0 4px 4px -2px #b3f9a0;
 }
