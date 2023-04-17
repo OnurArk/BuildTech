@@ -39,7 +39,7 @@ const PaymentDetails = ({ toCancel, btnName, isButtonsShowed }) => {
   } = CardInputChange(companyFilter);
 
   return (
-    <Form method='post' className={styled['patment-detail-container']}>
+    <Form method='post' className={styled['payment-detail-container']}>
       <CreditCard
         numericVal={numericVal}
         expiryVal={expiryVal}
@@ -84,7 +84,7 @@ const PaymentDetails = ({ toCancel, btnName, isButtonsShowed }) => {
       )}
 
       {isBtnAppered && (
-        <div className={styled.inputs}>
+        <div className={styled.smallInputs}>
           <Input
             name='expiration'
             invalid={actionData?.errType.includes('expiration') ? true : false}

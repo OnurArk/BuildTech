@@ -28,16 +28,11 @@
   user-select: none;
 }
 
-.link:hover,
-.link:active {
-  box-shadow: 0 4px 4px -2px #b3f9a0;
-}
-
 .middleLink {
   border-left: 1px solid rgba(0, 0, 0, 0.055);
   border-right: 1px solid rgba(0, 0, 0, 0.055);
 }
 
 .activeLink {
-  box-shadow: 0 4px 4px -2px #b3f9a0;
+  box-shadow: 0 4px 4px -2px #a0b0f9;
 }

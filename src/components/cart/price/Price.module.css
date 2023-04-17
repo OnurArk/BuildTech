@@ -1,5 +1,4 @@
 .price-container {
-  width: 100%;
   padding: 2rem;
 
   display: flex;
@@ -48,7 +47,6 @@
 @media (min-width: 48rem) {
   .price-container {
     width: none;
-    min-height: calc(100vh - 4rem - 4.7rem - 3rem);
-    flex: 1;
+    min-height: calc(100vh - 4rem - 4.7rem - 3rem - 4rem);
   }
 }

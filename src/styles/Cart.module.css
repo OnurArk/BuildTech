@@ -1,24 +1,51 @@
 .cart-container {
   position: relative;
 
-  min-height: calc(100vh - 64px - 75.2px - 16px);
+  min-height: calc(100vh - 4rem - 4.7rem);
 
-  background: rgb(113, 113, 113);
+  background-color: rgb(187, 187, 187);
+  background-image: url(../../assets/simon-berger-twukN12EN7c-unsplash.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  backdrop-filter: blur(10px);
   overflow: hidden;
 }
 
+.cart-container::before {
+  content: '';
+
+  position: absolute;
+
+  inset: 0;
+
+  background: black;
+  opacity: 0.6;
+}
+
 .content-container {
+  position: relative;
   max-width: 75rem;
+
+  min-height: calc(100vh - 4rem - 4.7rem - 3rem);
   margin: auto;
 
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+
+  z-index: 5;
+
+  opacity: 0.8;
 }
 
 @media (min-width: 48rem) {
+  .cart-container {
+    padding: 2rem 0;
+  }
+
   .content-container {
     flex-direction: row;
+    min-height: calc(100vh - 5rem - 4.7rem - 3rem - 4rem);
   }
 }
