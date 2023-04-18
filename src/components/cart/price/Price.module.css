@@ -44,7 +44,7 @@
   transform: scale(0.9);
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 40rem) {
   .price-container {
     width: none;
     min-height: calc(100vh - 4rem - 4.7rem - 3rem - 4rem);
