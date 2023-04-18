@@ -1,7 +1,7 @@
 import styled from './Items.module.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faMinus, faPlus, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 const img1 =
   'https://cdn.vatanbilgisayar.com/Upload/PRODUCT/grundig/thumb/132302-1-4_large.jpg';
@@ -28,6 +28,10 @@ const Items = () => {
       <div className={styled['info-container']}>
         <h4 className={styled.tag}>Total Price</h4>
         <p>{items.totalPrice} $</p>
+      </div>
+
+      <div className={styled['cancel-container']}>
+        <FontAwesomeIcon className={styled.icon} icon={faTrashCan} />
       </div>
     </div>
   ));
