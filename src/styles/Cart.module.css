@@ -10,7 +10,6 @@
   background-position: center;
 
   backdrop-filter: blur(10px);
-  overflow: hidden;
 }
 
 .cart-container::before {
@@ -28,7 +27,9 @@
   position: relative;
   max-width: 75rem;
 
-  min-height: calc(100vh - 4rem - 4.7rem - 3rem);
+  height: calc(100vh - 4rem - 4.7rem - 3rem);
+  min-height: 40rem;
+
   margin: auto;
 
   display: flex;
@@ -37,6 +38,7 @@
   z-index: 5;
 
   opacity: 0.8;
+  overflow: hidden;
 }
 
 @media (min-width: 40rem) {
@@ -51,6 +53,12 @@
   }
 
   .content-container {
-    min-height: calc(100vh - 5rem - 4.7rem - 3rem - 4rem);
+    height: calc(100vh - 4rem - 4.7rem - 3rem - 4rem);
+  }
+}
+
+@media (max-height: 57rem) and (max-width: 40rem) {
+  .content-container {
+    overflow-y: scroll;
   }
 }

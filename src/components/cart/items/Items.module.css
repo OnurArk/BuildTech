@@ -1,5 +1,5 @@
 .items-container {
-  padding: 2rem;
+  padding: 1.5rem 2rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -7,6 +7,8 @@
   gap: 0.5rem;
 
   flex: 6;
+
+  overflow-y: scroll;
 }
 
 .item-container {
@@ -52,6 +54,10 @@
   gap: 0.4rem;
 }
 
+.unit-price {
+  display: none;
+}
+
 .cancel-container {
   padding: 0.2rem;
 
@@ -61,16 +67,11 @@
   bottom: 0;
 
   font-size: 0.8rem;
-  background-color: rgba(255, 0, 0, 0.801);
+  background-color: rgba(0, 119, 255, 0.801);
 
   cursor: pointer;
   user-select: none;
 
-  display: none;
-}
-
-.item-container:hover .cancel-container,
-.item-container:hover .cancel-container:hover {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -100,20 +101,41 @@
   }
 }
 
+@media (min-width: 29rem) {
+  .unit-price {
+    display: flex;
+  }
+}
+
 @media (min-width: 40rem) {
   .items-container {
     min-height: calc(100vh - 4rem - 4.7rem - 3rem - 4rem);
     flex: 3;
-    gap: 1.5rem;
+    gap: 1rem;
   }
   .item-container {
     padding: 1rem;
     gap: 1rem;
   }
-
   .cancel-container {
-    right: -1.5rem;
     min-width: 1.5rem;
+    display: none;
+    right: -1.5rem;
+    font-size: 1rem;
+    background-color: rgba(255, 0, 0, 0.801);
+  }
+
+  .item-container:hover .cancel-container,
+  .item-container:active .cancel-container,
+  .item-container:hover .cancel-container:hover,
+  .item-container:active .cancel-container:active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .unit-price {
+    display: none;
   }
 
   .icon {
@@ -133,5 +155,11 @@
 
   .amount-container {
     gap: 0.8rem;
+  }
+}
+
+@media (min-width: 48rem) {
+  .unit-price {
+    display: flex;
   }
 }
