@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import styled from './Items.module.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -46,7 +48,17 @@ const Items = () => {
     </div>
   ));
 
-  return <div className={styled['items-container']}>{items}</div>;
+  return (
+    <div className={styled['items-container']}>
+      {dummyItems.length > 0 ? (
+        items
+      ) : (
+        <Link to={'/home'} className={styled.link}>
+          <h3 className={styled.emtyCart}>No Items in Cart</h3>
+        </Link>
+      )}
+    </div>
+  );
 };
 
 export default Items;
