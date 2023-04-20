@@ -67,7 +67,7 @@ const AccountDetails = () => {
           exitActive: `${styled.close}`,
         }}
       >
-        <AdressUi toCancel={'?mode=account-details'} isButtonsShowed={true} />
+        <AdressUi toCancel={'?mode=account-details'} isEditOpen={true} />
       </CSSTransition>
 
       <CSSTransition
