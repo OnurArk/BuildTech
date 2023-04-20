@@ -5,7 +5,7 @@ import { useLoaderData, Await, useSearchParams } from 'react-router-dom';
 
 import AccountNavigation from './account-navigation/AccountNavigation';
 import PhoneNumb from './details-navs/phone-number/PhoneNumb';
-import Adress from './details-navs/adress/Adress';
+import AdressUi from '../../../ui/adress/AdressUi';
 import EmailChange from './details-navs/email-change/EmailChange';
 import PaymentDetails from '../../../ui/payment-details/PaymentDetails';
 
@@ -67,7 +67,7 @@ const AccountDetails = () => {
           exitActive: `${styled.close}`,
         }}
       >
-        <Adress />
+        <AdressUi toCancel={'?mode=account-details'} isButtonsShowed={true} />
       </CSSTransition>
 
       <CSSTransition

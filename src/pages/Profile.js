@@ -125,8 +125,8 @@ export async function action({ request }) {
   if (nav === 'adress') {
     const line1 = data.get('line1')?.trim();
     const city = data.get('city')?.trim();
-    const state = data.get('state')?.trim();
     const country = data.get('country')?.trim();
+    const state = data.get('state')?.trim() || null;
 
     const adressRef = collection(db, 'adress');
 
@@ -153,13 +153,12 @@ export async function action({ request }) {
     }
 
     if (line1 && country && city) {
-      const adress = `${country}/ ${
-        state ? `${state}/` : ''
-      } ${city}/  ${line1}`;
-
       try {
         await setDoc(doc(adressRef, userInfo.uid), {
-          adress: adress,
+          line: line1,
+          city,
+          country,
+          state,
         });
         return redirect('?mode=account-details');
       } catch (err) {
@@ -356,8 +355,6 @@ async function getAuthInfo() {
 }
 
 async function getUserData(inputType) {
-  const userInfo = {};
-
   const userRef = collection(db, inputType);
   const docRef = query(userRef, auth?.currentUser?.uid);
   const docSnap = await getDocs(docRef);
@@ -370,20 +367,21 @@ async function getUserData(inputType) {
   const user = mappedData.find((user) => user.id === auth?.currentUser?.uid);
 
   if (inputType === 'phone') {
-    userInfo.phone = user?.data.phone;
-    return userInfo.phone;
+    return user?.data.phone;
   }
   if (inputType === 'adress') {
-    userInfo.adress = user?.data.adress;
-    return userInfo.adress;
+    return {
+      line: user?.data.line,
+      country: user?.data.country,
+      city: user?.data.city,
+      state: user?.data.state,
+    };
   }
   if (inputType === 'payment') {
-    userInfo.payment = user?.data;
-    return userInfo.payment;
+    return user?.data;
   }
   if (inputType === 'photoProp') {
-    userInfo.photoProp = user?.data;
-    return userInfo.photoProp;
+    return user?.data;
   }
 }
 
@@ -396,5 +394,3 @@ export async function loader() {
     photoProp: await getUserData('photoProp'),
   });
 }
-
-console.log('pppp');

@@ -34,7 +34,9 @@ const AccountNavigation = () => {
               className={styled.infos}
             >
               <span className={styled.titles}>Adress : </span>
-              {adress}
+              {`${adress.country}/ ${adress.state ? `${adress.state}/` : ''} ${
+                adress.city
+              }/  ${adress.line}`}
             </Link>
           )}
         </Await>

@@ -56,9 +56,3 @@
     height: calc(100vh - 4rem - 4.7rem - 3rem - 4rem);
   }
 }
-
-@media (max-height: 57rem) and (max-width: 40rem) {
-  .content-container {
-    overflow-y: scroll;
-  }
-}

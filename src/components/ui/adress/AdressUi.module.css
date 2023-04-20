@@ -1,0 +1,110 @@
+.adress-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+
+  text-align: center;
+}
+
+.longAdress {
+  min-width: 30rem;
+}
+
+.short-adress-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.middleAdresses {
+  width: 9rem;
+}
+
+.shortAdresses {
+  width: 5rem;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 0.7rem;
+  max-width: 5rem;
+}
+
+.err {
+  padding: 0.8rem;
+  background-color: rgb(247, 214, 218);
+  border-radius: 5px;
+  color: rgb(89, 46, 50);
+}
+
+@media (max-width: 51.5rem) {
+  .cart-adress-container {
+    font-size: 0.7rem;
+  }
+
+  .cartLongAdress {
+    min-width: 18rem;
+  }
+  .middleAdresses {
+    width: 6.5rem;
+  }
+
+  .shortAdresses {
+    width: 3.8rem;
+  }
+}
+
+@media (max-width: 40rem) {
+  .cart-adress-container {
+    font-size: 1rem;
+  }
+
+  .cartLongAdress {
+    min-width: 30rem;
+  }
+  .cartMiddleAdresses {
+    width: 9rem;
+  }
+
+  .shortAdresses {
+    width: 5rem;
+  }
+}
+
+@media (max-width: 34.5rem) {
+  .adress-container {
+    font-size: 0.7rem;
+  }
+
+  .longAdress {
+    min-width: 18rem;
+  }
+  .middleAdresses {
+    width: 6.5rem;
+  }
+
+  .shortAdresses {
+    width: 3.8rem;
+  }
+
+  .short-adress-container {
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 20.5rem) {
+  .colon {
+    display: none;
+  }
+}
