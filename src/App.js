@@ -10,7 +10,6 @@ import {
 import ProductDetail from './pages/ProductDetail';
 import RootLayout from './pages/RootLayout';
 import { action as authAction } from './pages/Authentication';
-import Cart from './pages/Cart';
 
 import ErrorPage from './pages/ErrorPage';
 
@@ -18,6 +17,7 @@ import './App.css';
 import Loaders from './components/ui/Loaders';
 
 const Home = lazy(() => import('./pages/Home'));
+const Cart = lazy(() => import('./pages/Cart'));
 
 const Profile = lazy(() => import('./pages/Profile'));
 const Authentication = lazy(() => import('./pages/Authentication'));
@@ -59,7 +59,24 @@ const router = createBrowserRouter(
         />
       </Route>
 
-      <Route path='/cart' element={<Cart />} />
+      <Route
+        path='/cart'
+        element={
+          <Suspense
+            fallback={
+              <Loaders
+                size={90}
+                type={'DotSpinner'}
+                height={'100vh'}
+                width={'100%'}
+                bacgroundColor={'rgb(36, 144, 251)'}
+              />
+            }
+          >
+            <Cart />
+          </Suspense>
+        }
+      />
       <Route
         path='/profile'
         element={
