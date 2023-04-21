@@ -1,0 +1,18 @@
+.open {
+  animation: modalOpen 0.5s ease-out forwards;
+}
+
+.close {
+  opacity: 0;
+  visibility: 0;
+}
+
+@keyframes modalOpen {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
