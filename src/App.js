@@ -61,6 +61,7 @@ const router = createBrowserRouter(
 
       <Route
         path='/cart'
+        loader={() => import('./pages/Cart').then((module) => module.loader())}
         element={
           <Suspense
             fallback={

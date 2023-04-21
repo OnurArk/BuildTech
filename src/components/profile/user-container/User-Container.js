@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import { Link, useLoaderData, useSearchParams, Await } from 'react-router-dom';
 
+import Loaders from '../../ui/Loaders';
 import UploadPhoto from './upload-photo/UploadPhoto';
 
 import styled from './User-Container.module.css';
@@ -29,7 +30,7 @@ const UserContainer = () => {
   return (
     <div className={styled['user-container']}>
       {isEditOpen && <UploadPhoto />}
-      <Suspense fallback={<p className='centered'>Loading...</p>}>
+      <Suspense fallback={<Loaders type={'Ring'} size={80} />}>
         <Await resolve={{ authInfo, photoProp }}>
           {(loadedData) => {
             const { authInfo, photoProp } = loadedData;

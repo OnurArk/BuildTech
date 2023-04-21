@@ -19,22 +19,20 @@ const NavBar = () => {
       >
         Items
       </Link>
-      <Link
-        to={'?mode=adress'}
+      <p
         className={`${styled.link} ${styled.middleLink} ${
           mode === 'adress' || mode === 'payment' ? styled.activeLink : null
         }`}
       >
         Adress
-      </Link>
-      <Link
-        to={'?mode=payment'}
+      </p>
+      <p
         className={`${styled.link} ${
           mode === 'payment' ? styled.activeLink : null
         }`}
       >
         Payment
-      </Link>
+      </p>
     </div>
   );
 };

@@ -14,6 +14,7 @@ import styled from '../styles/Home.module.css';
 
 const Home = () => {
   const { crauselData } = useLoaderData();
+
   const dispatch = useDispatch();
 
   const isLoading = useSelector((state) => state.items.isLoading);

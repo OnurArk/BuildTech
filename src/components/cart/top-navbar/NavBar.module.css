@@ -34,5 +34,5 @@
 }
 
 .activeLink {
-  box-shadow: 0 4px 4px -2px #a0b0f9;
+  box-shadow: 0 -4px 4px -2px #73f762 inset;
 }

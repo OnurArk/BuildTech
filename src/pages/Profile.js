@@ -390,7 +390,7 @@ export async function loader() {
     authInfo: await getAuthInfo(),
     phone: getUserData('phone'),
     adress: getUserData('adress'),
-    payment: getUserData('payment'),
+    payment: await getUserData('payment'),
     photoProp: await getUserData('photoProp'),
   });
 }

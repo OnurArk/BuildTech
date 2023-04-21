@@ -15,7 +15,7 @@ import { CSSTransition } from 'react-transition-group';
 // import { AiFillEdit } from 'react-icons/ai';
 
 const AccountDetails = () => {
-  const { phone } = useLoaderData();
+  const { phone, payment } = useLoaderData();
 
   const [searchParams] = useSearchParams();
   const nav = searchParams.get('nav');
@@ -98,6 +98,7 @@ const AccountDetails = () => {
         <PaymentDetails
           toCancel={'?mode=account-details'}
           isButtonsShowed={true}
+          paymentInfo={payment}
         />
       </CSSTransition>
     </div>

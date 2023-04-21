@@ -10,7 +10,12 @@ import Button from '../Button';
 
 import styled from './PaymentDetails.module.css';
 
-const PaymentDetails = ({ toCancel, btnName, isButtonsShowed }) => {
+const PaymentDetails = ({
+  toCancel,
+  btnName,
+  isButtonsShowed,
+  paymentInfo,
+}) => {
   const [isBtnAppered, setIsBtnAppered] = useState(isButtonsShowed || null);
 
   const shoeButtons = () => {
@@ -47,6 +52,7 @@ const PaymentDetails = ({ toCancel, btnName, isButtonsShowed }) => {
         nameVal={nameVal}
         background={background}
         logo={logo}
+        paymentInfo={paymentInfo}
       />
 
       {isBtnAppered && (

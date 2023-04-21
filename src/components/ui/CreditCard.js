@@ -12,6 +12,7 @@ const CreditCard = ({
   expiryVal,
   numericVal,
   logo,
+  paymentInfo,
 }) => {
   const [isFilipped, setIsFlipped] = useState(false);
 
@@ -75,12 +76,16 @@ const CreditCard = ({
         <div className={styled['cardNo-container']}>
           <p className={styled.cardText}>card number</p>
           <h1 className={styled.cardNumber}>
-            {numericVal.replace(/(.{4})/g, '$1 ')}
+            {numericVal
+              ? numericVal.replace(/(.{4})/g, '$1 ')
+              : paymentInfo.cardNumber}
           </h1>
         </div>
         <div className={styled.nameSection}>
           <p className={styled.cardText}>cardholder name</p>
-          <h3 className={styled.name}>{nameVal}</h3>
+          <h3 className={styled.name}>
+            {nameVal ? nameVal : paymentInfo.namePayment}
+          </h3>
         </div>
 
         <div className={styled.expiration}>
@@ -91,7 +96,9 @@ const CreditCard = ({
               <p className={styled.dateText}>THRU</p>
             </div>
             <BiCaretRight />
-            <h3 className={styled.expiryVal}>{expiryVal}</h3>
+            <h3 className={styled.expiryVal}>
+              {expiryVal ? expiryVal : paymentInfo.expiration}
+            </h3>
           </div>
         </div>
       </AppearanceCreditCard>
@@ -106,8 +113,12 @@ const CreditCard = ({
           style={{ '--backgoundWave': containerStyle['--backgoundWave'] }}
         />
         <div className={styled['sucurity-container']}>
-          <div className={styled['signature-panel']}>{nameVal}</div>
-          <div className={styled['security-code']}>{securityVal}</div>
+          <div className={styled['signature-panel']}>
+            {nameVal ? nameVal : paymentInfo.namePayment}
+          </div>
+          <div className={styled['security-code']}>
+            {securityVal ? securityVal : paymentInfo.securityCode}
+          </div>
         </div>
       </AppearanceCreditCard>
     </ReactCardFlip>

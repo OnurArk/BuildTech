@@ -1,4 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
+import { collection, query, getDocs } from 'firebase/firestore';
+import { auth, db } from '../firebase';
 
 import NavBar from '../components/cart/top-navbar/NavBar';
 import Items from '../components/cart/items/Items';
@@ -16,9 +18,12 @@ const Cart = () => {
     <div className={styled['cart-container']}>
       <NavBar />
       <div className={styled['content-container']}>
-        {mode === 'payment' && <Payment />}
         {mode === 'items' && <Items />}
+
         {mode === 'adress' && <Adress />}
+
+        {mode === 'payment' && <Payment />}
+
         <Price />
       </div>
     </div>
@@ -26,3 +31,35 @@ const Cart = () => {
 };
 
 export default Cart;
+
+async function getUserData(inputType) {
+  const userRef = collection(db, inputType);
+  const docRef = query(userRef, auth?.currentUser?.uid);
+  const docSnap = await getDocs(docRef);
+
+  const mappedData = docSnap.docs.map((doc) => ({
+    id: doc.id,
+    data: doc.data(),
+  }));
+
+  const user = mappedData.find((user) => user.id === auth?.currentUser?.uid);
+
+  if (inputType === 'adress') {
+    return {
+      line: user?.data.line,
+      country: user?.data.country,
+      city: user?.data.city,
+      state: user?.data.state,
+    };
+  }
+  if (inputType === 'payment') {
+    return user?.data;
+  }
+}
+
+export async function loader() {
+  return {
+    adress: await getUserData('adress'),
+    payment: await getUserData('payment'),
+  };
+}

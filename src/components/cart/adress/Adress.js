@@ -1,16 +1,11 @@
-import React from 'react';
+import { useLoaderData } from 'react-router-dom';
 
 import AdressUi from '../../ui/adress/AdressUi';
 import styled from './Adress.module.css';
 
-const dummyAdress = {
-  line: 'Bu adress tamamen hayal ürünüdür Bu adress tamamen hayal ürünüdür',
-  country: 'Amerika',
-  city: 'NewYork',
-  state: 'Texas',
-};
-
 const Adress = () => {
+  const { adress } = useLoaderData();
+
   return (
     <div className={styled['adress-container']}>
       <AdressUi
@@ -18,7 +13,7 @@ const Adress = () => {
         toCancel={'?mode=items'}
         btnName={'Back'}
         isEditOpen={false}
-        adress={dummyAdress}
+        adress={adress}
       />
     </div>
   );
