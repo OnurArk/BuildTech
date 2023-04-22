@@ -1,22 +1,36 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { cartAction } from '../../../../store/cart-slice';
 
 import Card from '../../../ui/Card';
+import Button from '../../../ui/Button';
 
 import styled from './Item.module.css';
 
-const Item = ({ img, name, price, id }) => {
-  // TO DO favoriye ekle kalp le
+const Item = ({ item }) => {
+  const dispatch = useDispatch();
+
+  const addCartHandler = (item) => {
+    dispatch(cartAction.addToCart({ ...item, id: item.id }));
+  };
 
   return (
     <Card className={styled.card}>
-      <Link to={id} className={styled['item-container']}>
+      <Link to={item.id} className={styled['item-container']}>
         <div className={styled['image-container']}>
-          <img className={styled.img} src={img} alt={name} />
+          <img className={styled.img} src={item.img} alt={item.name} />
         </div>
-        <p className={styled.info}>{name}</p>
-        <p className={`${styled.price}`}>{price} TL</p>
+        <p className={styled.info}>{item.name}</p>
+        <p
+          className={`${styled.price}`}
+        >{`${item.price.toLocaleString()} TL`}</p>
       </Link>
+      <div className={styled['addToCard-container']}>
+        <Button className={styled.btn} onClick={() => addCartHandler(item)}>
+          Add To Cart
+        </Button>
+      </div>
     </Card>
   );
 };

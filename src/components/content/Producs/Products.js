@@ -25,14 +25,7 @@ const Products = () => {
   const currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
 
   const itemData = currentItems.map((item) => (
-    <Item
-      img={item.img}
-      name={item.name}
-      price={item.price.toLocaleString()}
-      type={item.type}
-      key={item.id}
-      id={item.id}
-    />
+    <Item item={item} key={item.id} />
   ));
 
   return (
