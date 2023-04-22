@@ -1,10 +1,12 @@
 import { useSearchParams, Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import Button from '../../ui/Button';
 
 import styled from './Price.module.css';
 
 const Price = () => {
+  const totalPriceCart = useSelector((state) => state.cart.totalPrice);
   const [searchParams] = useSearchParams();
 
   const mode = searchParams.get('mode');
@@ -13,7 +15,7 @@ const Price = () => {
     <div className={styled['price-container']}>
       <div className={styled.price}>
         <p>Total Price:</p>
-        <p>10$</p>
+        <p>{`${totalPriceCart} $`}</p>
       </div>
 
       {mode !== 'payment' && (

@@ -28,17 +28,34 @@ const AccountNavigation = () => {
       </Suspense>
       <Suspense fallback={<p className='centered'>Loading...</p>}>
         <Await resolve={adress}>
-          {(adress) => (
-            <Link
-              to='?mode=account-details&nav=adress'
-              className={styled.infos}
-            >
-              <span className={styled.titles}>Adress : </span>
-              {`${adress.country}/ ${adress.state ? `${adress.state}/` : ''} ${
-                adress.city
-              }/  ${adress.line}`}
-            </Link>
-          )}
+          {(adress) => {
+            const result = Object.values(adress).every(
+              (val) => val === undefined || val === null
+            );
+
+            if (result || Object.keys(adress)?.length === 0) {
+              return (
+                <Link
+                  to='?mode=account-details&nav=adress'
+                  className={styled.infos}
+                >
+                  <span className={styled.titles}>Adress : </span>
+                  Press To Add New Adress
+                </Link>
+              );
+            }
+            return (
+              <Link
+                to='?mode=account-details&nav=adress'
+                className={styled.infos}
+              >
+                <span className={styled.titles}>Adress : </span>
+                {`${adress.country}/ ${
+                  adress.state ? `${adress.state}/` : ''
+                } ${adress.city}/  ${adress.line}`}
+              </Link>
+            );
+          }}
         </Await>
       </Suspense>
 

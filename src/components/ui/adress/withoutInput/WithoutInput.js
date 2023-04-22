@@ -4,9 +4,29 @@ import Button from '../../Button';
 
 import styled from './WithoutInput.module.css';
 const WithoutInput = ({ adress, toCancel, btnName, editHandler }) => {
-  if (!adress || Object.keys(adress).length === 0) {
-    return <h3>Press Edit Button to Add Adress</h3>;
+  const result = Object.values(adress).every(
+    (val) => val === undefined || val === null
+  );
+
+  if (result || Object.keys(adress)?.length === 0) {
+    return (
+      <>
+        <h3>Press Edit Button to Add Adress</h3>
+        <div className={styled.buttons}>
+          <Link to={toCancel}>
+            <Button type='button' className={styled.btn}>
+              {btnName ? btnName : 'Cancel'}
+            </Button>
+          </Link>
+
+          <Button type={'button'} className={styled.btn} onClick={editHandler}>
+            Edit
+          </Button>
+        </div>
+      </>
+    );
   }
+
   return (
     <div className={styled['adress-container']}>
       <p>{adress.line}</p>
@@ -24,7 +44,7 @@ const WithoutInput = ({ adress, toCancel, btnName, editHandler }) => {
       <div className={styled.buttons}>
         <Link to={toCancel}>
           <Button type='button' className={styled.btn}>
-            {btnName ? btnName : 'Cancel'}
+            {btnName || 'Cancel'}
           </Button>
         </Link>
 

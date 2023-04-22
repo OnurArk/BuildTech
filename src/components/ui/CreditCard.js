@@ -78,13 +78,13 @@ const CreditCard = ({
           <h1 className={styled.cardNumber}>
             {numericVal
               ? numericVal.replace(/(.{4})/g, '$1 ')
-              : paymentInfo.cardNumber}
+              : paymentInfo?.cardNumber}
           </h1>
         </div>
         <div className={styled.nameSection}>
           <p className={styled.cardText}>cardholder name</p>
           <h3 className={styled.name}>
-            {nameVal ? nameVal : paymentInfo.namePayment}
+            {nameVal ? nameVal : paymentInfo?.namePayment}
           </h3>
         </div>
 
@@ -97,7 +97,7 @@ const CreditCard = ({
             </div>
             <BiCaretRight />
             <h3 className={styled.expiryVal}>
-              {expiryVal ? expiryVal : paymentInfo.expiration}
+              {expiryVal ? expiryVal : paymentInfo?.expiration}
             </h3>
           </div>
         </div>
@@ -114,10 +114,10 @@ const CreditCard = ({
         />
         <div className={styled['sucurity-container']}>
           <div className={styled['signature-panel']}>
-            {nameVal ? nameVal : paymentInfo.namePayment}
+            {nameVal ? nameVal : paymentInfo?.namePayment}
           </div>
           <div className={styled['security-code']}>
-            {securityVal ? securityVal : paymentInfo.securityCode}
+            {securityVal ? securityVal : paymentInfo?.securityCode}
           </div>
         </div>
       </AppearanceCreditCard>

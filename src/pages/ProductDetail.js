@@ -20,7 +20,6 @@ const ProductDetail = () => {
         <Suspense fallback={<Loaders />}>
           <Await resolve={item}>
             {(item) => {
-              console.log(item.features);
               return (
                 <>
                   <ItemDetailSlide images={item.images || []} />
@@ -31,7 +30,7 @@ const ProductDetail = () => {
           </Await>
         </Suspense>
       </div>
-      <InfoContainer className={styled['right-side']} item={item} />
+      <InfoContainer className={styled['right-side']} />
     </div>
   );
 };

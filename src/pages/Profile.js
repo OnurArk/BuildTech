@@ -388,7 +388,7 @@ async function getUserData(inputType) {
 export async function loader() {
   return defer({
     authInfo: await getAuthInfo(),
-    phone: getUserData('phone'),
+    phone: await getUserData('phone'),
     adress: getUserData('adress'),
     payment: await getUserData('payment'),
     photoProp: await getUserData('photoProp'),

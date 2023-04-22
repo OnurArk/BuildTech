@@ -1,6 +1,7 @@
 .nav {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: row;
   gap: 2rem;
   margin-left: auto;
@@ -8,7 +9,15 @@
   user-select: none;
 }
 
+.links-container {
+  position: relative;
+}
+
 .links:after {
+  position: absolute;
+  left: 0;
+  right: 0;
+
   display: block;
   content: '';
   border-bottom: solid 3px var(--text-color);
@@ -26,7 +35,29 @@
 }
 
 .activeLink {
-  border-bottom: var(--border-bottom);
+  box-sizing: unset;
+  border-bottom: solid 3px var(--text-color);
+}
+
+.cartQuantity {
+  /* min-width: 5rem; */
+
+  font-size: 0.9rem;
+  color: var(--text-color);
+
+  text-align: center;
+  white-space: nowrap;
+
+  position: absolute;
+  top: -1.2rem;
+  left: 83%;
+  transform: translateX(-50%);
+}
+
+.icon {
+  display: inline-block;
+  color: var(--text-color);
+  margin-left: 0.5rem;
 }
 
 @media (max-width: 600px) {
