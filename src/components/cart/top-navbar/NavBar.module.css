@@ -15,8 +15,6 @@
 }
 
 .link {
-  box-sizing: unset;
-
   border: none;
   appearance: none;
   color: inherit;
@@ -28,11 +26,18 @@
   user-select: none;
 }
 
+.panelPath {
+  text-align: center;
+  flex: 1;
+  padding: 0.8rem;
+  user-select: none;
+}
+
 .middleLink {
   border-left: 1px solid rgba(0, 0, 0, 0.055);
   border-right: 1px solid rgba(0, 0, 0, 0.055);
 }
 
 .activeLink {
-  box-shadow: 0 -4px 3px -2px #000000 inset;
+  box-shadow: 0 4px 5px -2px rgb(255, 255, 255), 0 5px 1px -2px rgb(7, 71, 155);
 }

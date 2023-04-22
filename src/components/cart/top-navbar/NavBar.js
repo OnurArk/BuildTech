@@ -20,14 +20,14 @@ const NavBar = () => {
         Items
       </Link>
       <p
-        className={`${styled.link} ${styled.middleLink} ${
+        className={`${styled.panelPath} ${styled.middleLink} ${
           mode === 'adress' || mode === 'payment' ? styled.activeLink : null
         }`}
       >
         Adress
       </p>
       <p
-        className={`${styled.link} ${
+        className={`${styled.panelPath} ${
           mode === 'payment' ? styled.activeLink : null
         }`}
       >
