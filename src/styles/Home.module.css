@@ -27,7 +27,7 @@
   }
 }
 
-@media (max-width: 300px) {
+@media (max-width: 385px) {
   .slide {
     height: 120px;
   }
