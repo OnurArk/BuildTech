@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { cartAction } from '../../../store/cart-slice';
 
 import Button from '../../ui/Button';
 
@@ -10,18 +11,20 @@ const Price = () => {
   const [isOrdered, setIsOrdered] = useState(false);
   const [errMsg, setErrMsg] = useState();
 
+  const dispatch = useDispatch();
   const totalPriceCart = useSelector((state) => state.cart.totalPrice);
+  const orderedItems = useSelector((state) => state.cart.orderedItems);
   const [searchParams] = useSearchParams();
-
   const mode = searchParams.get('mode');
 
   const orderHandler = () => {
-    console.log('aa');
     if (totalPriceCart <= 0) {
       setErrMsg('You Need to Add Items to Cart to Order');
     } else {
       setIsOrdered(true);
       console.log('Ordered Successfully');
+      dispatch(cartAction.resetToCart());
+      orderedItems.map((item) => console.log(item));
     }
   };
 
@@ -71,7 +74,9 @@ const Price = () => {
       )}
 
       {errMsg && <p className={styled.errMsg}>{errMsg}</p>}
-      {isOrdered && <p className={styled.succesOrder}>Your Order Is Taken</p>}
+      {!errMsg && isOrdered && (
+        <p className={styled.succesOrder}>Your Order Is Taken</p>
+      )}
     </div>
   );
 };
