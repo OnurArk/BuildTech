@@ -30,7 +30,7 @@ const Items = () => {
       </div>
       <div className={`${styled['unit-price']} ${styled['info-container']}`}>
         <h4 className={styled.tag}>Unit Price</h4>
-        <p>{item.price} $</p>
+        <p>{item.price} TL</p>
       </div>
       <div className={styled['info-container']}>
         <h4 className={styled.tag}>Amount</h4>
@@ -50,7 +50,7 @@ const Items = () => {
       </div>
       <div className={styled['info-container']}>
         <h4 className={styled.tag}>Total Price</h4>
-        <p>{item.totalPrice} $</p>
+        <p>{item.totalPrice} TL</p>
       </div>
 
       <div
