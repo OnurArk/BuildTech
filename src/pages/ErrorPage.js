@@ -29,7 +29,7 @@ const ErrorPage = () => {
 
   return (
     <>
-      <Header />
+      <Header isError={true} />
       <main className={styled['error-container']}>
         {(error.status || status) && (
           <h1 className={styled.statusCode}>{status}</h1>

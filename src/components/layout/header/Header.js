@@ -5,7 +5,7 @@ import Nav from './top-nav/Nav';
 import Hamburger from '../../ui/Hamburger';
 
 import styled from './Header.module.css';
-const Header = () => {
+const Header = ({ isError }) => {
   const [isActive, setIsActive] = useState(false);
 
   const locationData = useLocation();
@@ -16,8 +16,8 @@ const Header = () => {
   };
 
   const styleColor = {
-    '--text-color': isInAuth ? '#fff' : '#293462',
-    '--background-color': isInAuth ? '#000' : '#f2f2f2',
+    '--text-color': isInAuth || isError ? '#fff' : '#293462',
+    '--background-color': isInAuth || isError ? '#000' : '#f2f2f2',
   };
 
   return (
