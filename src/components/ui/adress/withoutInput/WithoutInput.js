@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Button from '../../Button';
 
 import styled from './WithoutInput.module.css';
-const WithoutInput = ({ adress, toCancel, btnName, editHandler }) => {
+const WithoutInput = ({ adress, toCancel, btnName }) => {
   const result = Object.values(adress).every(
     (val) => val === undefined || val === null
   );
@@ -19,9 +19,11 @@ const WithoutInput = ({ adress, toCancel, btnName, editHandler }) => {
             </Button>
           </Link>
 
-          <Button type={'button'} className={styled.btn} onClick={editHandler}>
-            Edit
-          </Button>
+          <Link to={'?mode=adress&nav=editing'}>
+            <Button type={'button'} className={styled.btn}>
+              Edit
+            </Button>
+          </Link>
         </div>
       </>
     );
@@ -48,9 +50,11 @@ const WithoutInput = ({ adress, toCancel, btnName, editHandler }) => {
           </Button>
         </Link>
 
-        <Button type={'button'} className={styled.btn} onClick={editHandler}>
-          Edit
-        </Button>
+        <Link to={'?mode=adress&nav=editing'}>
+          <Button type={'button'} className={styled.btn}>
+            Edit
+          </Button>
+        </Link>
       </div>
     </div>
   );

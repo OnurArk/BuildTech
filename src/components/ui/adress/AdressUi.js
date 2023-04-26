@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 
 import WithInput from './withInput/WithInput';
@@ -7,18 +7,16 @@ import WithoutInput from './withoutInput/WithoutInput';
 import styled from './AdressUi.module.css';
 
 const AdressUi = ({ inCart, toCancel, btnName, isEditOpen, adress }) => {
-  const [isEditing, setIsEditing] = useState(isEditOpen || null);
+  const [searchParams] = useSearchParams();
 
-  const editHandler = () => {
-    setIsEditing(true);
-  };
+  const isEditing = searchParams.get('nav') === 'editing';
 
   return (
     <>
       <CSSTransition
         mountOnEnter
         unmountOnExit
-        in={isEditing}
+        in={isEditing || isEditOpen}
         key={'WithInput'}
         timeout={{ enter: 500 }}
         classNames={{
@@ -32,7 +30,7 @@ const AdressUi = ({ inCart, toCancel, btnName, isEditOpen, adress }) => {
       <CSSTransition
         mountOnEnter
         unmountOnExit
-        in={!isEditing}
+        in={inCart && !isEditing}
         key={'WithoutInput'}
         timeout={{ enter: 500 }}
         classNames={{
@@ -40,12 +38,7 @@ const AdressUi = ({ inCart, toCancel, btnName, isEditOpen, adress }) => {
           exitActive: `${styled.close}`,
         }}
       >
-        <WithoutInput
-          adress={adress}
-          toCancel={toCancel}
-          btnName={btnName}
-          editHandler={editHandler}
-        />
+        <WithoutInput adress={adress} toCancel={toCancel} btnName={btnName} />
       </CSSTransition>
     </>
   );

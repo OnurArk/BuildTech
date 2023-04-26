@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react';
-import { Form, useActionData, Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Form, useActionData, Link, useSearchParams } from 'react-router-dom';
 
 import AuthContext from '../../../context/Auth-Context';
 import CardInputChange from './card-input-change/CardInputChange';
@@ -16,11 +16,8 @@ const PaymentDetails = ({
   isButtonsShowed,
   paymentInfo,
 }) => {
-  const [isBtnAppered, setIsBtnAppered] = useState(isButtonsShowed || null);
-
-  const shoeButtons = () => {
-    setIsBtnAppered(true);
-  };
+  const [searchParams] = useSearchParams();
+  const isEditing = searchParams.get('nav') === 'editing' || isButtonsShowed;
 
   const actionData = useActionData();
   const profileCtx = useContext(AuthContext);
@@ -55,7 +52,7 @@ const PaymentDetails = ({
         paymentInfo={paymentInfo}
       />
 
-      {isBtnAppered && (
+      {isEditing && (
         <div className={styled.bigInputs}>
           <Input
             name='card-name'
@@ -89,7 +86,7 @@ const PaymentDetails = ({
         </div>
       )}
 
-      {isBtnAppered && (
+      {isEditing && (
         <div className={styled.smallInputs}>
           <Input
             name='expiration'
@@ -127,12 +124,14 @@ const PaymentDetails = ({
             {btnName ? btnName : 'Cancel'}
           </Button>
         </Link>
-        {!isBtnAppered && (
-          <Button type={'button'} className={styled.btn} onClick={shoeButtons}>
-            Edit
-          </Button>
+        {!isEditing && (
+          <Link to={'?mode=payment&nav=editing'}>
+            <Button type={'button'} className={styled.btn}>
+              Edit
+            </Button>
+          </Link>
         )}
-        {isBtnAppered && <Button className={styled.btn}>Save</Button>}
+        {isEditing && <Button className={styled.btn}>Save</Button>}
       </div>
 
       {actionData?.errMessage && (
