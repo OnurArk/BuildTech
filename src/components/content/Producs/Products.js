@@ -10,7 +10,7 @@ const Products = () => {
   const items = useSelector((state) => state.items.preferedItems);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const ITEMS_PER_PAGE = 12;
+  const ITEMS_PER_PAGE = 15;
 
   useEffect(() => {
     setCurrentPage(1);
