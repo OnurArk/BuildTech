@@ -39,9 +39,12 @@ const router = createBrowserRouter(
                 <Loaders
                   size={90}
                   type={'DotSpinner'}
-                  height={'100vh'}
-                  width={'100%'}
-                  bacgroundColor={'rgb(36, 144, 251)'}
+                  isFullPage={true}
+                  color={'#975720'}
+                  bacgroundColor={'white'}
+                  bacgroundImage={
+                    'https://images.unsplash.com/photo-1542435503-956c469947f6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80'
+                  }
                 />
               }
             >
@@ -62,6 +65,7 @@ const router = createBrowserRouter(
 
       <Route
         path='/cart'
+        action={cartAction}
         loader={() => import('./pages/Cart').then((module) => module.loader())}
         element={
           <Suspense
@@ -69,16 +73,18 @@ const router = createBrowserRouter(
               <Loaders
                 size={90}
                 type={'DotSpinner'}
-                height={'100vh'}
-                width={'100%'}
-                bacgroundColor={'rgb(36, 144, 251)'}
+                isFullPage={true}
+                color={'#D07796'}
+                bacgroundColor={'#170374'}
+                bacgroundImage={
+                  'https://img.freepik.com/free-vector/online-shopping-isometric-icon-internet-purchase-laptop-with-shop-basket-screen-online-payment_39422-973.jpg?w=900&t=st=1682520198~exp=1682520798~hmac=2b10ef08ce5a2144f9c3829e435bd7d56a626377f403310e64e41b6143c41784'
+                }
               />
             }
           >
             <Cart />
           </Suspense>
         }
-        action={cartAction}
       />
       <Route
         path='/profile'
@@ -88,9 +94,12 @@ const router = createBrowserRouter(
               <Loaders
                 size={90}
                 type={'DotSpinner'}
-                height={'100vh'}
-                width={'100%'}
-                bacgroundColor={'rgb(36, 144, 251)'}
+                isFullPage={true}
+                color={'#42DAC6'}
+                bacgroundColor={'#B6B9C1'}
+                bacgroundImage={
+                  'https://cdn.dribbble.com/userupload/3719041/file/original-a961817c221095421997301577064fe4.png?compress=1&resize=1024x768'
+                }
               />
             }
           >
@@ -111,10 +120,10 @@ const router = createBrowserRouter(
             fallback={
               <Loaders
                 size={90}
-                type={'DotSpinner'}
-                height={'100vh'}
-                width={'100%'}
-                bacgroundColor={'rgb(36, 144, 251)'}
+                type={'Ring'}
+                isFullPage={true}
+                color={'#05CE9A'}
+                bacgroundColor={'black'}
               />
             }
           >

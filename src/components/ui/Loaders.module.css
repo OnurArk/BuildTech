@@ -1,8 +1,20 @@
 .container {
+  width: var(--width);
+  height: var(--height);
   display: flex;
   justify-content: center;
   align-items: center;
-  width: var(--width);
-  height: var(--height);
+
   background: var(--bacgroundColor);
+  background-image: var(--bacgroundImage);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  z-index: 9999;
+}
+
+.fullPage {
+  position: fixed;
+  inset: 0;
 }

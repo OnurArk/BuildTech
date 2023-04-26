@@ -9,6 +9,8 @@ const Loaders = ({
   width,
   height,
   bacgroundColor,
+  bacgroundImage,
+  isFullPage,
 }) => {
   let Shape = Ring;
 
@@ -32,10 +34,17 @@ const Loaders = ({
     '--width': width ? width : 'auto',
     '--height': height ? height : 'auto',
     '--bacgroundColor': bacgroundColor ? bacgroundColor : 'transparent',
+    '--bacgroundImage': bacgroundImage ? `url(${bacgroundImage})` : 'none',
   };
 
+  console.log(bacgroundImage);
   return (
-    <div className={`${className} ${styled['container']}`} style={style}>
+    <div
+      className={`${className} ${styled['container']} ${
+        isFullPage ? styled.fullPage : ''
+      }`}
+      style={style}
+    >
       <Shape
         size={size ? size : 60}
         color={color ? color : '#fff'}
