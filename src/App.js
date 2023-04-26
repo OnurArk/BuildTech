@@ -10,6 +10,7 @@ import {
 import ProductDetail from './pages/ProductDetail';
 import RootLayout from './pages/RootLayout';
 import { action as authAction } from './pages/Authentication';
+import { action as cartAction } from './pages/Cart';
 
 import ErrorPage from './pages/ErrorPage';
 
@@ -77,6 +78,7 @@ const router = createBrowserRouter(
             <Cart />
           </Suspense>
         }
+        action={cartAction}
       />
       <Route
         path='/profile'
