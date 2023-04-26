@@ -10,6 +10,8 @@
   font-size: 0.8rem;
   background-color: rgb(213, 213, 213);
   flex: 0.5;
+
+  text-align: center;
 }
 
 .price {
@@ -43,6 +45,20 @@
 
 .btn:active {
   transform: scale(0.9);
+}
+
+.errMsg {
+  padding: 0.8rem;
+  background-color: rgb(247, 214, 218);
+  border-radius: 5px;
+  color: rgb(89, 46, 50);
+}
+
+.succesOrder {
+  padding: 0.8rem;
+  background-color: rgb(214, 247, 217);
+  border-radius: 5px;
+  color: rgb(46, 85, 89);
 }
 
 @media (min-width: 22rem) {
