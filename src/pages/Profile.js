@@ -281,8 +281,8 @@ export async function action({ request }) {
   if (mode === 'change-password') {
     try {
       await sendPasswordResetEmail(auth, user.email);
-
-      return redirect('/authentication');
+      toActionData.successMessage = 'Check Your Email to Reset Password';
+      return toActionData;
     } catch (err) {
       return handleError(err);
     }
