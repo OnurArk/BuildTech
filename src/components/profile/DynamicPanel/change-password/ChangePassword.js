@@ -25,7 +25,9 @@ const ChangePassword = () => {
           {isSubmitting ? '..Sending' : 'Reset Password'}
         </Button>
       </div>
-
+      {actionData?.successMessage && (
+        <p className={styled.success}>{actionData?.successMessage}</p>
+      )}
       {actionData?.errMessage && (
         <p className={styled.err}>{actionData?.errMessage}</p>
       )}
