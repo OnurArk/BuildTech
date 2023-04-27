@@ -3,9 +3,9 @@
   background-repeat: no-repeat;
   background-size: cover;
 
-  height: 85vh;
-  height: 85dvh;
-  width: 50vw;
+  width: 50%;
+  height: 100%;
+
   padding: 2rem;
 
   display: flex;
