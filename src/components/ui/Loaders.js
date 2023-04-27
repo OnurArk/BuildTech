@@ -37,7 +37,6 @@ const Loaders = ({
     '--bacgroundImage': bacgroundImage ? `url(${bacgroundImage})` : 'none',
   };
 
-  console.log(bacgroundImage);
   return (
     <div
       className={`${className} ${styled['container']} ${

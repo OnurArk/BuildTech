@@ -2,6 +2,7 @@
   position: relative;
   overflow: hidden;
   background-color: rgb(144, 144, 144);
+  min-height: calc(100vh - 4rem - 4.7rem);
 }
 
 .log_sign_reset-container {

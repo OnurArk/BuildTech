@@ -166,7 +166,12 @@ export async function action({ request }) {
       } catch (err) {
         err.message = err.message.replace('Firebase: ', '');
         err.message = err.message.replace(/ *\([^)]*\) */g, '');
-        toActionData.errMessage = err.message;
+        if (err.message.trim() === 'Error.') {
+          toActionData.errMessage = 'Check your Email and Password';
+        } else {
+          toActionData.errMessage = err.message;
+        }
+
         return toActionData;
       }
     }
