@@ -1,7 +1,8 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useContext } from 'react';
 import { Await, useLoaderData, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { cartAction } from '../../../../../store/cart-slice';
+import AuthContext from '../../../../../context/Auth-Context';
 
 import Loaders from '../../../../ui/Loaders';
 import Slide from '../../../../ui/Slide';
@@ -10,6 +11,7 @@ import Button from '../../../../ui/Button';
 import styled from './InfoContainer.module.css';
 
 const InfoContainer = ({ className }) => {
+  const authCtx = useContext(AuthContext);
   const dispatch = useDispatch();
   const { crauselData, item } = useLoaderData();
 
@@ -31,12 +33,14 @@ const InfoContainer = ({ className }) => {
               <div className={styled.price}>
                 Price: {item?.price?.toLocaleString()} TL
               </div>
-              <Button
-                className={styled.btn}
-                onClick={() => addCartHandler(item)}
-              >
-                Add To Cart
-              </Button>
+              {authCtx?.currentUid && (
+                <Button
+                  className={styled.btn}
+                  onClick={() => addCartHandler(item)}
+                >
+                  Add To Cart
+                </Button>
+              )}
             </>
           )}
         </Await>
