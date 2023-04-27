@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSearchParams, Link } from 'react-router-dom';
+import { useSearchParams, Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { cartAction } from '../../../store/cart-slice';
 
@@ -11,6 +11,7 @@ const Price = () => {
   const [isOrdered, setIsOrdered] = useState(false);
   const [errMsg, setErrMsg] = useState();
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const totalPriceCart = useSelector((state) => state.cart.totalPrice);
   const orderedItems = useSelector((state) => state.cart.orderedItems);
@@ -23,8 +24,11 @@ const Price = () => {
     } else {
       setIsOrdered(true);
       console.log('Ordered Successfully');
-      dispatch(cartAction.resetToCart());
       orderedItems.map((item) => console.log(item));
+      dispatch(cartAction.resetToCart());
+      setTimeout(() => {
+        navigate('/home');
+      }, 1200);
     }
   };
 
@@ -75,7 +79,27 @@ const Price = () => {
 
       {errMsg && <p className={styled.errMsg}>{errMsg}</p>}
       {!errMsg && isOrdered && (
-        <p className={styled.succesOrder}>Your Order Is Taken</p>
+        <>
+          <p className={styled.succesOrder}>Your Order Is Taken</p>
+          <svg
+            className={styled.checkmark}
+            xmlns='http://www.w3.org/2000/svg'
+            viewBox='0 0 52 52'
+          >
+            <circle
+              className={styled['checkmark__circle']}
+              cx='26'
+              cy='26'
+              r='25'
+              fill='none'
+            />
+            <path
+              className={styled['checkmark__check']}
+              fill='none'
+              d='M14.1 27.2l7.1 7.2 16.7-16.8'
+            />
+          </svg>
+        </>
       )}
     </div>
   );
