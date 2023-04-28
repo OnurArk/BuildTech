@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import { defer, json, redirect } from 'react-router-dom';
+// import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+
 import {
   updateEmail,
   updateProfile,
@@ -290,7 +292,7 @@ export async function action({ request }) {
 
   // Photo Update
   const urlPhoto = data.get('url-photo');
-
+  // const file = data.get('file');
   if (urlPhoto) {
     const photoPropRef = collection(db, 'photoProp');
     const position = data.get('position');
@@ -314,14 +316,31 @@ export async function action({ request }) {
 
         return redirect('/profile');
       }
-      // if (localPhoto.name) {
+      // if (file) {
+      //   // Get a reference to the storage service
+      //   const storage = getStorage();
+
+      //   // Create a reference to the file you want to upload
+      //   const fileRef = ref(storage, 'images/' + file.name);
+
+      //   // Upload the file
+      //   await uploadBytes(fileRef, file);
+
+      //   // Get the download URL of the uploaded image
+      //   const photoURL = await getDownloadURL(fileRef);
+
       //   await updateProfile(auth.currentUser, {
       //     displayName: user.displayName,
-      //     photoURL: filePhoto,
+      //     photoURL: photoURL,
       //   });
 
-      //   const photo = user.photoURL;
-      //   return { photo };
+      //   await setDoc(doc(photoPropRef, userInfo.uid), {
+      //     position,
+      //     size,
+      //   });
+
+      //   // TO DO değişicek
+      //   return redirect('/profile');
       // }
     } catch (err) {
       return handleError(err);
