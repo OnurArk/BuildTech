@@ -33,6 +33,7 @@ const Input = forwardRef((props, ref) => {
         pattern={props.pattern}
         inputMode={props.inputMode}
         onInput={props.onInput}
+        accept={props.accept}
       />
     </div>
   );
