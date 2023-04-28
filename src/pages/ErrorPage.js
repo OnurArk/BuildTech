@@ -11,7 +11,7 @@ const ErrorPage = () => {
   console.dir(error);
 
   let title = 'An error occured!';
-  let message = 'Could Not Find This Page!';
+  let message = 'Something Went Wrong!';
   let status = 404;
 
   if (error.status === 404) {
