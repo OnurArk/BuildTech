@@ -1,37 +1,33 @@
 .container {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 500;
 
+  inset: 0;
+
+  z-index: 500;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 .background {
   position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  width: 100vw;
+  min-height: 100vh;
 
   background-color: rgba(0, 0, 0, 0.702);
   z-index: 500;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .upload-photo-container {
   position: relative;
 
+  height: 45rem;
+
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  flex-wrap: wrap;
   gap: 2rem;
   z-index: 1000;
 }
@@ -122,4 +118,10 @@
   background-color: rgb(247, 214, 218);
   border-radius: 5px;
   color: rgb(89, 46, 50);
+}
+
+@media (max-height: 37.5rem) {
+  .preView {
+    display: none;
+  }
 }

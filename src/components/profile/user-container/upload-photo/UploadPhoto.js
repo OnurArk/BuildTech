@@ -23,10 +23,21 @@ function UploadPhoto() {
   const positionHandler = (event) => {
     setPosition(event.target.value);
   };
-
   const sizeHandler = (event) => {
     setSize(event.target.value);
   };
+
+  // const handleFileChange = (event) => {
+  //   const file = event.target.files[0];
+
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.readAsDataURL(file);
+  //     reader.onload = () => {
+  //       setPreViewPhoto(reader.result);
+  //     };
+  //   }
+  // };
 
   const positionOptions = dummyPositions.map((position) => (
     <option value={position || ''} key={position}>
@@ -48,7 +59,11 @@ function UploadPhoto() {
   return (
     <div className={styled.container}>
       <Link to='/profile' className={styled.background} />
-      <Form method='post' className={styled['upload-photo-container']}>
+      <Form
+        method='post'
+        className={styled['upload-photo-container']}
+        encType='multipart/form-data'
+      >
         <div className={styled.preView} style={editStyle} />
         <Input
           name='url-photo'
@@ -59,11 +74,17 @@ function UploadPhoto() {
               : null
           }
           placeholder='Enter image URL'
-          value={preViewPhoto || ''}
           onChange={(event) => {
             setPreViewPhoto(event.target.value);
           }}
         />
+        {/* <Input
+          name='file'
+          type='file'
+          accept='image/*'
+          className={styled.fileInput}
+          onChange={handleFileChange}
+        /> */}
         <div className={styled.selectContainer}>
           <span>Position : </span>
           <select
