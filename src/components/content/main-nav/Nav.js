@@ -26,7 +26,7 @@ const dummyNav = [
   { icon: faTelevision, type: 'Tv' },
   { icon: faTablet, type: 'Tablet' },
   { icon: faMobileAndroid, type: 'Phone' },
-  { icon2: IoWatchSharp, type: 'Smart Watch' },
+  { icon2: IoWatchSharp, type: 'Watch' },
   { icon: faCameraRetro, type: 'Camera' },
   { icon: faGamepad, type: 'Game' },
   { icon: faHeadphonesSimple, type: 'Headphones' },
