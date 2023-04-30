@@ -12,11 +12,11 @@
   margin: 0 auto;
 }
 
-@media (max-width: 1260px) {
+/* @media (max-width: 1260px) {
   .item-container {
     gap: 2.5rem;
   }
-}
+} */
 
 @media (max-width: 1024px) {
   .item-container {

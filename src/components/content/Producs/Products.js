@@ -7,10 +7,30 @@ import styled from './Products.module.css';
 import { MdOutlineNavigateBefore, MdOutlineNavigateNext } from 'react-icons/md';
 
 const Products = () => {
-  const items = useSelector((state) => state.items.preferedItems);
+  const [itemsPerPage, setItemsPerPage] = useState(
+    window.innerWidth > 1276 ? 15 : 12
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      const newWindowWidth = window.innerWidth;
+      const newItemsPerPage = newWindowWidth > 1276 ? 15 : 12;
+      if (newItemsPerPage !== itemsPerPage) {
+        setItemsPerPage(newItemsPerPage);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [itemsPerPage]);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const ITEMS_PER_PAGE = 15;
+  const ITEMS_PER_PAGE = itemsPerPage;
+
+  const items = useSelector((state) => state.items.preferedItems);
 
   useEffect(() => {
     setCurrentPage(1);
