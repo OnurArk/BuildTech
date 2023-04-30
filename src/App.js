@@ -74,10 +74,10 @@ const router = createBrowserRouter(
                 size={90}
                 type={'DotSpinner'}
                 isFullPage={true}
-                color={'#D07796'}
-                bacgroundColor={'#170374'}
+                color={'#D3F963'}
+                bacgroundColor={'#B6B9C1'}
                 bacgroundImage={
-                  'https://img.freepik.com/free-vector/online-shopping-isometric-icon-internet-purchase-laptop-with-shop-basket-screen-online-payment_39422-973.jpg?w=900&t=st=1682520198~exp=1682520798~hmac=2b10ef08ce5a2144f9c3829e435bd7d56a626377f403310e64e41b6143c41784'
+                  'https://plus.unsplash.com/premium_photo-1681487985079-b299ac8ba1df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1057&q=80'
                 }
               />
             }
