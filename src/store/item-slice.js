@@ -13,7 +13,13 @@ const itemSlice = createSlice({
     replaceItem(state, action) {
       const payload = action.payload;
       state.allItems = payload;
-      state.preferedItems = payload;
+      if (state.filtedTypes.length > 0) {
+        state.preferedItems = state.allItems.filter((item) =>
+          state.filtedTypes.includes(item.type)
+        );
+      } else {
+        state.preferedItems = payload;
+      }
       state.isLoading = false;
     },
     loading(state) {
@@ -40,26 +46,6 @@ const itemSlice = createSlice({
       } else {
         state.preferedItems = state.allItems.filter((item) =>
           state.filtedTypes.includes(item.type)
-        );
-      }
-    },
-    priceFilter(state, action) {
-      const price = action.payload;
-      if (state.filtedTypes.length <= 0) {
-        state.preferedItems = state.allItems.filter(
-          (item) => item.price < price
-        );
-      } else {
-        state.preferedItems = state.allItems.filter(
-          (item) => state.filtedTypes.includes(item.type) && item.price < price
-        );
-      }
-    },
-    toggleFavs(state, action) {
-      const payload = action.payload;
-      if (payload.id) {
-        state.favItems = state.favItems.concat(
-          state.allItems.filter((item) => item.id === payload.id)
         );
       }
     },
