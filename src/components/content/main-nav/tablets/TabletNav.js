@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { itemActions } from '../../../../store/item-slice';
 
@@ -8,7 +8,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { RxDoubleArrowDown } from 'react-icons/rx';
 
 const TabletNav = ({ id, type, icon, Icon2 }) => {
-  const [isActive, setIsActive] = useState(false);
+  const filtedTypes = useSelector((state) => state.items.filtedTypes);
+  const [isActive, setIsActive] = useState(
+    filtedTypes.includes(type.toLowerCase())
+  );
   const dispatch = useDispatch();
 
   const toggleActive = () => {

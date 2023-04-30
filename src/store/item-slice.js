@@ -20,8 +20,8 @@ const itemSlice = createSlice({
       state.isLoading = true;
     },
     itemFilter(state, action) {
-      const payload = action.payload;
-      state.filtedTypes = state.filtedTypes.concat(payload.type.toLowerCase());
+      const type = action.payload.type;
+      state.filtedTypes = state.filtedTypes.concat(type.toLowerCase());
       if (state.filtedTypes.length <= 0) {
         state.preferedItems = state.allItems;
       } else {
