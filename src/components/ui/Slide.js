@@ -23,7 +23,7 @@ const Slide = ({ slideData, className, isArrowsActive }) => {
   useEffect(() => {
     const interval = setTimeout(() => {
       forwardImage();
-    }, 50000);
+    }, 5000);
 
     return () => clearTimeout(interval);
   }, [forwardImage]);
