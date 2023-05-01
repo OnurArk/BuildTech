@@ -1,16 +1,27 @@
 import { useState } from 'react';
-import { useSearchParams, Link, useNavigate } from 'react-router-dom';
+import {
+  useSearchParams,
+  Link,
+  useNavigate,
+  useLoaderData,
+} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { cartAction } from '../../../store/cart-slice';
 
 import Button from '../../ui/Button';
 
 import styled from './Price.module.css';
+import { useEffect } from 'react';
 
 const Price = () => {
   const [isOrdered, setIsOrdered] = useState(false);
   const [errMsg, setErrMsg] = useState();
+  const [adressInfo, setAdressInfo] = useState();
+  const [paymentInfo, setPaymentInfo] = useState();
 
+  const { adress, payment } = useLoaderData();
+  console.log(adressInfo);
+  console.log(paymentInfo);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const totalPriceCart = useSelector((state) => state.cart.totalPrice);
@@ -18,9 +29,18 @@ const Price = () => {
   const [searchParams] = useSearchParams();
   const mode = searchParams.get('mode');
 
+  useEffect(() => {
+    setAdressInfo(adress);
+    setPaymentInfo(payment);
+  }, [adress, payment]);
+
   const orderHandler = () => {
     if (totalPriceCart <= 0) {
       setErrMsg('You Need to Add Items to Cart to Order');
+    } else if (!adressInfo || !adressInfo.line) {
+      setErrMsg('You Need to Add Adress Information to Order');
+    } else if (!paymentInfo || !paymentInfo.cardNumber) {
+      setErrMsg('You Need to Add Payment Information to Order');
     } else {
       setIsOrdered(true);
       console.log('Ordered Successfully');
@@ -78,7 +98,7 @@ const Price = () => {
       )}
 
       {errMsg && <p className={styled.errMsg}>{errMsg}</p>}
-      {!errMsg && isOrdered && (
+      {isOrdered && (
         <>
           <p className={styled.succesOrder}>Your Order Is Taken</p>
           <svg
