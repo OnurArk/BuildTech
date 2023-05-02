@@ -152,9 +152,23 @@ export async function action({ request }) {
         toActionData.isSucceed = true;
         return redirect('/');
       } catch (err) {
-        err.message = err.message.replace('Firebase: ', '');
-        err.message = err.message.replace(/ *\([^)]*\) */g, '');
-        toActionData.errMessage = err.message;
+        console.dir(err);
+        if (
+          err.customData &&
+          err.customData._tokenResponse &&
+          err.customData._tokenResponse.error
+        ) {
+          toActionData.errMessage =
+            err.customData._tokenResponse.error?.errors[0]?.message.replace(
+              /_/g,
+              ' '
+            );
+        } else {
+          err.message = err.message.replace('Firebase: ', '');
+          err.message = err.message.replace(/ *\([^)]*\) */g, '');
+          toActionData.errMessage = err.message;
+        }
+
         return toActionData;
       }
     }
