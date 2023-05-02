@@ -24,7 +24,7 @@ const Header = ({ isError }) => {
     <header className={styled.header} style={styleColor}>
       <h1>
         <Link to='/home' className={styled.logo}>
-          Brand Logo
+          Build TecH
         </Link>
       </h1>
 
