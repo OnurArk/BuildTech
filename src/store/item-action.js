@@ -1,8 +1,7 @@
 import { itemActions } from './item-slice';
 export const fetchItemsData = () => {
   return async (dispatch) => {
-    const url =
-      'https://pcbuilder-items-default-rtdb.firebaseio.com/items.json';
+    const url = 'https://[YOUR-ADRESS]/items.json';
 
     const fetchData = async () => {
       const reponse = await fetch(url);
